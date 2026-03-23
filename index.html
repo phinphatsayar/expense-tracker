@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<title>SplitTrip</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;font-family:'Kanit',sans-serif;background:#FCD6E3;color:#3D1A2E}
+
+:root{
+  --bg:#FCD6E3;
+  --bg2:#F5BECE;
+  --bg3:#FAEAF0;
+  --surface:#FFFFFF;
+  --ink:#3D1A2E;
+  --ink2:#7A4A63;
+  --ink3:#B88FA0;
+  --accent:#C0446E;
+  --accent-light:#FDEDF3;
+  --accent-mid:#F0A8C0;
+  --accent-shadow:rgba(192,68,110,.22);
+  --green:#2E7D5E;
+  --green-light:#EAF5F0;
+  --red:#C0392B;
+  --red-light:#FDECEC;
+  --border:rgba(192,68,110,.14);
+  --shadow:0 2px 14px rgba(192,68,110,.10);
+  --shadow-lg:0 8px 28px rgba(192,68,110,.18);
+  --r:16px;--rs:10px;
+}
+
+#root{height:100%;display:flex;flex-direction:column}
+.page{flex:1;overflow-y:auto;padding:0 16px 100px;-webkit-overflow-scrolling:touch}
+.page::-webkit-scrollbar{display:none}
+
+.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(252,214,227,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0;border:none;background:none;cursor:pointer;color:var(--ink3);transition:color .15s;font-family:'Kanit',sans-serif}
+.nb.on{color:var(--accent)}
+.nb svg{width:22px;height:22px;stroke-width:1.8}
+.nb span{font-size:10px;font-weight:600;letter-spacing:.03em}
+
+.hdr{padding:20px 16px 12px;display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
+.hdr-title{font-family:'Kanit',sans-serif;font-weight:700;font-size:26px;line-height:1.1;color:var(--ink)}
+.hdr-sub{font-size:12px;color:var(--ink2);margin-top:2px}
+
+.sec{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;margin-bottom:12px;animation:up .22s ease}
+.sec-title{font-weight:700;font-size:15px;margin-bottom:14px;color:var(--ink)}
+.card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;margin-bottom:10px;cursor:pointer;transition:transform .12s,box-shadow .12s}
+.card:active{transform:scale(.99)}
+
+input,select,textarea{background:var(--bg3);border:1.5px solid transparent;color:var(--ink);border-radius:var(--rs);padding:11px 14px;font-family:'Kanit',sans-serif;font-size:15px;outline:none;transition:border-color .2s,background .2s;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);background:var(--surface)}
+input::placeholder,textarea::placeholder{color:var(--ink3)}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B88FA0' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+textarea{resize:none;line-height:1.5}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:none;border-radius:var(--rs);padding:11px 17px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s,transform .1s;color:var(--ink)}
+.btn:active{transform:scale(.96);opacity:.8}
+.btn-p{background:var(--accent);color:#fff!important;border-radius:var(--r);padding:15px;font-size:16px;width:100%;box-shadow:0 4px 16px var(--accent-shadow)}
+.btn-g{background:var(--bg3);color:var(--ink2)!important}
+.btn-sm{padding:7px 12px;font-size:13px;border-radius:8px}
+.btn-del{background:var(--red-light);color:var(--red)!important}
+.btn-acc{background:var(--accent-light);color:var(--accent)!important}
+
+.chip{display:inline-flex;align-items:center;gap:4px;padding:7px 13px;border-radius:20px;border:1.5px solid transparent;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;user-select:none;font-family:'Kanit',sans-serif}
+.chip.on{background:var(--accent-light);border-color:var(--accent-mid);color:var(--accent)}
+.chip.off{background:var(--bg3);color:var(--ink2)}
+
+.av{display:flex;align-items:center;justify-content:center;border-radius:50%;font-weight:700;flex-shrink:0;font-family:'Kanit',sans-serif}
+
+.badge{display:inline-flex;align-items:center;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600}
+.b-pos{background:var(--green-light);color:var(--green)}
+.b-neg{background:var(--red-light);color:var(--red)}
+.b-zero{background:var(--bg3);color:var(--ink3)}
+
+.cur-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;background:var(--accent-light);color:var(--accent);letter-spacing:.04em}
+
+.row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bg2)}
+.row:last-child{border-bottom:none;padding-bottom:0}
+.row:first-child{padding-top:0}
+
+.mem-card{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--surface);border-radius:12px;margin-bottom:8px;box-shadow:var(--shadow);cursor:pointer;transition:transform .12s;border:1px solid var(--border)}
+.mem-card:active{transform:scale(.98)}
+
+.settle{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--green-light);border-radius:var(--rs);margin-bottom:8px}
+
+.my-banner{border-radius:var(--r);padding:16px 18px;margin:12px 16px 0;animation:up .3s ease}
+.my-banner.owe{background:linear-gradient(135deg,#FFF0F0,#FFE4E4);border:1px solid rgba(192,57,43,.15)}
+.my-banner.recv{background:linear-gradient(135deg,#F0FAF5,#E0F5EC);border:1px solid rgba(46,125,94,.15)}
+.my-banner.even{background:var(--surface);border:1px solid var(--border)}
+.banner-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.banner-amt{font-family:'Kanit',sans-serif;font-weight:700;font-size:32px;line-height:1}
+.banner-sub{font-size:12px;margin-top:6px;font-weight:500}
+
+.modal-bg{position:fixed;inset:0;background:rgba(61,26,46,.4);z-index:200;display:flex;align-items:flex-end;animation:fade-in .2s ease}
+.modal{background:var(--surface);border-radius:20px 20px 0 0;padding:8px 20px 40px;width:100%;max-height:92vh;overflow-y:auto;animation:slide-up .25s ease}
+.modal::-webkit-scrollbar{display:none}
+.modal-handle{width:36px;height:4px;background:var(--ink3);border-radius:2px;margin:12px auto 20px;opacity:.3}
+
+.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:30px;font-size:13px;font-weight:500;white-space:nowrap;z-index:999;animation:tst .22s ease;box-shadow:var(--shadow-lg);font-family:'Kanit',sans-serif}
+@keyframes tst{from{opacity:0;transform:translateX(-50%) translateY(6px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes slide-in{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+@keyframes slide-up{from{transform:translateY(50px)}to{transform:none}}
+
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.stat-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:16px}
+.stat-val{font-family:'Kanit',sans-serif;font-weight:700;font-size:22px;margin-top:3px;color:var(--ink)}
+
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.ms{background:var(--bg3);border-radius:var(--rs);padding:10px 11px}
+.ms-l{font-size:10px;color:var(--ink3);margin-bottom:2px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.ms-v{font-size:14px;font-weight:700}
+
+.back-btn{display:flex;align-items:center;gap:6px;padding:10px 0;color:var(--accent);font-weight:600;font-size:14px;cursor:pointer;border:none;background:none;font-family:'Kanit',sans-serif}
+.empty{text-align:center;padding:40px 20px}
+.ei{font-size:40px;margin-bottom:10px}
+.et{font-size:14px;color:var(--ink3)}
+.caption{font-size:12px;color:var(--ink2)}
+.divider{height:1px;background:var(--bg2);margin:10px 0}
+.attach-img{width:100%;max-height:140px;object-fit:cover;border-radius:var(--rs);margin-top:10px;display:block;border:1px solid var(--border);background:var(--bg3)}
+.attach-link{display:flex;align-items:center;gap:6px;padding:8px 12px;background:var(--bg3);border-radius:var(--rs);font-size:13px;color:var(--accent);margin-top:8px;text-decoration:none;word-break:break-all}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+// =======================================================================
+// 🔴 นำลิงก์ Web App URL จาก Google Apps Script มาวางในเครื่องหมายคำพูดด้านล่างนี้ 🔴
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzLGzE8NeGLHmdp1ySkzoyhgtQ5TFWYwDOzzMEXcl8h_ox_xyuMgn7PHEFXT13DgbIQ/exec'; 
+// =======================================================================
+
+const {useState,useEffect,useCallback,useRef}=React;
+const KEY='splittrip-v5';
+const MY_KEY='splittrip-myname-v5';
+
+const CURRENCIES=[
+  {code:'THB',sym:'฿',name:'บาทไทย'},
+  {code:'USD',sym:'$',name:'ดอลลาร์สหรัฐ'},
+  {code:'EUR',sym:'€',name:'ยูโร'},
+  {code:'JPY',sym:'¥',name:'เยนญี่ปุ่น'},
+  {code:'SGD',sym:'S$',name:'ดอลลาร์สิงคโปร์'},
+  {code:'GBP',sym:'£',name:'ปอนด์อังกฤษ'},
+  {code:'CNY',sym:'¥',name:'หยวนจีน'},
+  {code:'KRW',sym:'₩',name:'วอนเกาหลี'},
+  {code:'AUD',sym:'A$',name:'ดอลลาร์ออสเตรเลีย'},
+  {code:'MYR',sym:'RM',name:'ริงกิตมาเลเซีย'},
+];
+
+const getCur=code=>CURRENCIES.find(x=>x.code===code)||CURRENCIES[0];
+const fmtAmt=(n,code)=>{
+  const c=getCur(code);const v=Math.abs(n);
+  const dec=(code==='JPY'||code==='KRW')?0:2;
+  return c.sym+v.toLocaleString('th-TH',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+};
+
+const loadData=()=>{try{return JSON.parse(localStorage.getItem(KEY))||initData()}catch{return initData()}};
+const initData=()=>({tripName:'ทริปของเรา',members:[],expenses:[],displayCurrency:'THB'});
+const persist=d=>localStorage.setItem(KEY,JSON.stringify(d));
+const today=()=>new Date().toISOString().slice(0,10);
+
+function calcBal(members,expenses,displayCurrency){
+  const paid={},owe={};
+  members.forEach(m=>{paid[m]=0;owe[m]=0});
+  expenses.forEach(e=>{
+    const c=e.currency||'THB';
+    if(c!==displayCurrency)return; 
+    if(paid[e.payer]!==undefined)paid[e.payer]+=e.amount;
+    Object.entries(e.splits).forEach(([n,v])=>{if(owe[n]!==undefined)owe[n]+=v});
+  });
+  const net={};members.forEach(m=>{net[m]=(paid[m]||0)-(owe[m]||0)});
+  return{paid,owe,net};
+}
+
+function calcBalAll(members,expenses){
+  const currencies=[...new Set(expenses.map(e=>e.currency||'THB'))];
+  const result={};
+  currencies.forEach(cur=>{
+    const paid={},owe={};
+    members.forEach(m=>{paid[m]=0;owe[m]=0});
+    expenses.filter(e=>(e.currency||'THB')===cur).forEach(e=>{
+      if(paid[e.payer]!==undefined)paid[e.payer]+=e.amount;
+      Object.entries(e.splits).forEach(([n,v])=>{if(owe[n]!==undefined)owe[n]+=v});
+    });
+    const net={};members.forEach(m=>{net[m]=(paid[m]||0)-(owe[m]||0)});
+    result[cur]={paid,owe,net};
+  });
+  return result;
+}
+
+function calcSettle(net){
+  const cr=[],db=[];
+  Object.entries(net).forEach(([n,v])=>{
+    const val = Math.round(v * 100) / 100;
+    if(val>0)cr.push({n,a:val});
+    if(val<0)db.push({n,a:-val});
+  });
+  cr.sort((a,b)=>b.a-a.a);db.sort((a,b)=>b.a-a.a);
+  const r=[];let ci=0,di=0;
+  while(ci<cr.length&&di<db.length){
+    const t=Math.min(cr[ci].a,db[di].a);
+    const amt=Math.round(t*100)/100;
+    if(amt>0) r.push({from:db[di].n,to:cr[ci].n,amount:amt});
+    cr[ci].a=Math.round((cr[ci].a-amt)*100)/100;
+    db[di].a=Math.round((db[di].a-amt)*100)/100;
+    if(cr[ci].a<=0)ci++;
+    if(db[di].a<=0)di++;
+  }
+  return r;
+}
+
+const AV_COLORS=['#C0446E','#2E7D5E','#6366F1','#D97706','#0E7490','#BE185D','#0891B2','#65A30D'];
+function Av({name,size=36}){
+  const c=AV_COLORS[name.charCodeAt(0)%AV_COLORS.length];
+  return <div className="av" style={{width:size,height:size,background:c+'22',border:`2px solid ${c}55`,fontSize:size*.38,color:c}}>{name[0]?.toUpperCase()}</div>;
+}
+
+function useToast(){
+  const [t,setT]=useState(null);
+  const show=useCallback(msg=>{setT(msg);setTimeout(()=>setT(null),2200)},[]);
+  return[t,show];
+}
+
+const I={
+  home:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
+  add:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>,
+  list:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><circle cx="3" cy="18" r="1" fill="currentColor"/></svg>,
+  settings:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
+  back:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>,
+  trash:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>,
+  ok:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>,
+  chev:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>,
+  img:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>,
+  link:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>,
+  note:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>,
+  edit:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
+};
+
+/* ── Expense Detail Modal ── */
+function ExpenseViewModal({expense, onEdit, onDelete, onClose}) {
+  const cur = expense.currency || 'THB';
+  const fmt = n => fmtAmt(n, cur);
+  return (
+    <div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)onClose()}}>
+      <div className="modal">
+        <div className="modal-handle"/>
+        <div style={{textAlign:'center', marginBottom:20}}>
+          <div style={{fontSize:28, fontWeight:700, color:'var(--ink)', lineHeight:1.2}}>{fmt(expense.amount)}</div>
+          <div style={{fontSize:18, fontWeight:600, marginTop:4}}>{expense.desc}</div>
+          <div className="caption" style={{marginTop:4}}>{expense.date} · <span className="cur-badge">{cur}</span></div>
+        </div>
+
+        <div className="sec" style={{padding:'14px 16px', marginBottom:12}}>
+          <div className="sec-title" style={{fontSize:14, marginBottom:10}}>ผู้จ่ายเงิน</div>
+          <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+            <div style={{display:'flex', alignItems:'center', gap:8}}>
+               <Av name={expense.payer} size={28}/>
+               <span style={{fontWeight:600}}>{expense.payer}</span>
+            </div>
+            <span style={{fontWeight:700, color:'var(--green)'}}>+{fmt(expense.amount)}</span>
+          </div>
+        </div>
+
+        <div className="sec" style={{padding:'14px 16px', marginBottom:12}}>
+          <div className="sec-title" style={{fontSize:14, marginBottom:10}}>ผู้ที่ต้องหาร ({Object.keys(expense.splits).length} คน)</div>
+          {Object.entries(expense.splits).map(([n,s])=>(
+            <div key={n} style={{display:'flex', justifyContent:'space-between', alignItems:'center', padding:'6px 0', borderBottom:'1px solid var(--bg2)'}}>
+              <div style={{display:'flex', alignItems:'center', gap:8}}>
+                 <Av name={n} size={24}/>
+                 <span>{n}</span>
+              </div>
+              <span style={{fontWeight:500, color:'var(--red)'}}>-{fmt(s)}</span>
+            </div>
+          ))}
+        </div>
+
+        {(expense.note || expense.photo || expense.link) && (
+          <div className="sec" style={{padding:'14px 16px', marginBottom:16}}>
+            <div className="sec-title" style={{fontSize:14, marginBottom:10}}>ข้อมูลเพิ่มเติม</div>
+            {expense.note && <div style={{fontSize:13, color:'var(--ink)', marginBottom:8, background:'var(--bg3)', padding:'10px', borderRadius:'8px'}}>{expense.note}</div>}
+            {expense.link && <a href={expense.link} target="_blank" className="attach-link" style={{marginBottom:8}}>{I.link} <span style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{expense.link}</span></a>}
+            {expense.photo && <img src={expense.photo} className="attach-img"/>}
+          </div>
+        )}
+
+        {(onEdit || onDelete) && (
+          <div style={{display:'flex', gap:10, marginTop:20}}>
+            {onDelete && <button className="btn btn-del" style={{flex:1, padding:'12px'}} onClick={()=>{if(confirm('ยืนยันลบรายการนี้?'))onDelete()}}>{I.trash} ลบ</button>}
+            {onEdit && <button className="btn btn-p" style={{flex:2, padding:'12px'}} onClick={onEdit}>{I.edit} แก้ไขข้อมูล</button>}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── Edit Add-ons Modal ── */
+function EditModal({expense,onSave,onClose}){
+  const [photo,setPhoto]=useState(expense.photo||null);
+  const [link,setLink]=useState(expense.link||'');
+  const [note,setNote]=useState(expense.note||'');
+  const fileRef=useRef();
+  
+  // ระบบย่อขนาดรูปภาพก่อนเซฟลง Database อัตโนมัติ (ป้องกันเว็บค้าง)
+  const handlePhoto=e=>{
+    const f=e.target.files?.[0];if(!f)return;
+    const r=new FileReader();
+    r.onload=ev=>{
+      const img=new Image();
+      img.onload=()=>{
+        const cvs=document.createElement('canvas');
+        let w=img.width, h=img.height, max=600;
+        if(w>max||h>max){if(w>h){h*=max/w;w=max;}else{w*=max/h;h=max;}}
+        cvs.width=w; cvs.height=h;
+        const ctx=cvs.getContext('2d');
+        ctx.drawImage(img,0,0,w,h);
+        setPhoto(cvs.toDataURL('image/jpeg',0.6));
+      };
+      img.src=ev.target.result;
+    };
+    r.readAsDataURL(f);
+  };
+  
+  return(
+    <div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)onClose()}}>
+      <div className="modal">
+        <div className="modal-handle"/>
+        <div style={{marginBottom:16}}>
+          <div style={{fontWeight:700,fontSize:17}}>แก้ไขข้อมูล: {expense.desc}</div>
+        </div>
+        <div style={{marginBottom:14}}>
+          <div className="lbl">รูปภาพ</div>
+          {photo?<div style={{position:'relative'}}>
+              <img src={photo} className="attach-img" style={{marginTop:0}}/>
+              <button style={{position:'absolute',top:8,right:8,background:'rgba(0,0,0,.5)',border:'none',color:'#fff',borderRadius:'50%',width:28,height:28,cursor:'pointer',fontSize:16,display:'flex',alignItems:'center',justifyContent:'center'}} onClick={()=>setPhoto(null)}>×</button>
+            </div>
+            :<button className="btn btn-g" style={{width:'100%',padding:'12px'}} onClick={()=>fileRef.current.click()}>{I.img}&nbsp;เลือกรูปภาพ</button>}
+          <input ref={fileRef} type="file" accept="image/*" style={{display:'none'}} onChange={handlePhoto}/>
+        </div>
+        <div style={{marginBottom:14}}>
+          <div className="lbl">ลิงก์อ้างอิง</div>
+          <input placeholder="https://..." value={link} onChange={e=>setLink(e.target.value)}/>
+        </div>
+        <div style={{marginBottom:20}}>
+          <div className="lbl">หมายเหตุ</div>
+          <textarea rows={3} placeholder="เช่น โต๊ะ A3, รายละเอียดเพิ่มเติม..." value={note} onChange={e=>setNote(e.target.value)}/>
+        </div>
+        <button className="btn btn-p" onClick={()=>onSave({photo,link:link.trim()||null,note:note.trim()||null})}>{I.ok}&nbsp;บันทึก</button>
+      </div>
+    </div>
+  );
+}
+
+/* ── Personal Banner ── */
+function PersonalBanner({myName,data,onChangeName}){
+  const {members,expenses,displayCurrency}=data;
+  const fmt=n=>fmtAmt(n,displayCurrency);
+
+  if(!myName||!members.includes(myName))return(
+    <div className="my-banner even" style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:10}}>
+      <div>
+        <div className="banner-label" style={{color:'var(--ink3)'}}>คุณเป็นใครในทริปนี้?</div>
+        <div style={{fontSize:13,color:'var(--ink2)',marginTop:2}}>กรอกชื่อเพื่อดูยอดของตัวเอง</div>
+      </div>
+      <button className="btn btn-acc btn-sm" onClick={onChangeName}>ตั้งชื่อ</button>
+    </div>
+  );
+
+  const {net}=calcBal(members,expenses,displayCurrency);
+  const allBal=calcBalAll(members,expenses);
+  const settle=calcSettle(net);
+  const mySettles=settle.filter(s=>s.from===myName);
+  const n=net[myName]||0;
+
+  const myNets=Object.entries(allBal).map(([cur,bal])=>({cur,n:bal.net[myName]||0})).filter(x=>Math.abs(x.n)>0.01);
+
+  let cls='even',labelColor='var(--ink3)';
+  if(n>0.01){cls='recv';labelColor='var(--green)'}
+  if(n<-0.01){cls='owe';labelColor='var(--red)'}
+
+  return(
+    <div className={`my-banner ${cls}`}>
+      <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',gap:8}}>
+        <div style={{flex:1}}>
+          <div className="banner-label" style={{color:labelColor}}>
+            {n>0.01?`💚 คนอื่นค้างคุณ (${displayCurrency})`:n<-0.01?`🔴 คุณยังค้างอยู่ (${displayCurrency})`:`✓ ยอดเท่ากัน`}
+          </div>
+          <div className="banner-amt" style={{color:n>0.01?'var(--green)':n<-0.01?'var(--red)':'var(--ink)'}}>{fmt(Math.abs(n))}</div>
+          {myNets.filter(x=>x.cur!==displayCurrency).map(x=>(
+            <div key={x.cur} style={{fontSize:12,color:x.n>0?'var(--green)':'var(--red)',marginTop:3,fontWeight:500}}>
+              {x.cur}: {x.n>0?`+${fmtAmt(x.n,x.cur)}`:`-${fmtAmt(-x.n,x.cur)}`}
+            </div>
+          ))}
+          {mySettles.length>0&&<div className="banner-sub" style={{color:'var(--red)'}}>
+            {mySettles.map((s,i)=><div key={i}>→ โอนให้ <strong>{s.to}</strong> {fmt(s.amount)}</div>)}
+          </div>}
+        </div>
+        <div style={{display:'flex',flexDirection:'column',alignItems:'flex-end',gap:6}}>
+          <div style={{fontSize:13,fontWeight:600,color:'var(--ink2)'}}>สวัสดี, {myName}</div>
+          <button className="btn btn-g btn-sm" onClick={onChangeName} style={{fontSize:11,padding:'5px 10px'}}>เปลี่ยน</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Member Detail ── */
+function MemberDetail({member,data,upd,toast,onBack}){
+  const {members,expenses,displayCurrency}=data;
+  const [viewingExp, setViewingExp] = useState(null);
+  const [editingExp, setEditingExp] = useState(null);
+
+  const {paid,owe,net}=calcBal(members,expenses,displayCurrency);
+  const allBal=calcBalAll(members,expenses);
+  const fmt=n=>fmtAmt(n,displayCurrency);
+  const settle=calcSettle(net);
+  const n=net[member]||0;
+  const myExps=expenses.filter(e=>e.payer===member||member in e.splits);
+  const mySettles=settle.filter(s=>s.from===member||s.to===member);
+
+  const saveEdit=(id,patch)=>{upd(d=>{d.expenses=d.expenses.map(e=>e.id===id?{...e,...patch}:e);return d});setEditingExp(null);toast('แก้ไขแล้ว ✓')};
+  const del=id=>{upd(d=>{d.expenses=d.expenses.filter(e=>e.id!==id);return d});setViewingExp(null);setEditingExp(null);toast('ลบแล้ว')};
+
+  return <div className="page" style={{animation:'slide-in .2s ease'}}>
+    <div className="hdr">
+      <div style={{width:'100%'}}>
+        <button className="back-btn" onClick={onBack}>{I.back} กลับ</button>
+        <div style={{display:'flex',alignItems:'center',gap:12,marginTop:4}}>
+          <Av name={member} size={48}/>
+          <div>
+            <div className="hdr-title">{member}</div>
+            <span className={`badge ${n>0.01?'b-pos':n<-0.01?'b-neg':'b-zero'}`}>
+              {n>0.01?`ค้าง ${fmt(n)}`:n<-0.01?`ต้องจ่าย ${fmt(-n)}`:'เท่ากัน ✓'} ({displayCurrency})
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {Object.entries(allBal).map(([cur,bal])=>{
+      const paidC=bal.paid[member]||0; const oweC=bal.owe[member]||0; const netC=bal.net[member]||0;
+      if(paidC===0&&oweC===0)return null;
+      return <div key={cur} className="sec" style={{padding:'14px 16px',marginBottom:8}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:10}}>
+          <div style={{fontWeight:700,fontSize:14}}>{cur}</div>
+          <span className={`badge ${netC>0.01?'b-pos':netC<-0.01?'b-neg':'b-zero'}`}>
+            {netC>0.01?`+${fmtAmt(netC,cur)}`:netC<-0.01?`-${fmtAmt(-netC,cur)}`:'เท่ากัน'}
+          </span>
+        </div>
+        <div className="g3" style={{marginBottom:0}}>
+          <div className="ms"><div className="ms-l">จ่ายไป</div><div className="ms-v" style={{color:'var(--green)',fontSize:13}}>{fmtAmt(paidC,cur)}</div></div>
+          <div className="ms"><div className="ms-l">ส่วนแบ่ง</div><div className="ms-v" style={{fontSize:13}}>{fmtAmt(oweC,cur)}</div></div>
+          <div className="ms"><div className="ms-l">{netC>=0?'ได้คืน':'ต้องจ่าย'}</div><div className="ms-v" style={{color:netC>=0?'var(--green)':'var(--red)',fontSize:13}}>{fmtAmt(Math.abs(netC),cur)}</div></div>
+        </div>
+      </div>;
+    })}
+
+    {mySettles.length>0&&<div className="sec">
+      <div className="sec-title">💸 ต้องโอน / รับโอน ({displayCurrency})</div>
+      {mySettles.map((s,i)=>{const isFrom=s.from===member;return(
+        <div key={i} className="settle" style={{background:isFrom?'var(--red-light)':'var(--green-light)'}}>
+          <Av name={isFrom?s.to:s.from} size={30}/>
+          <div style={{flex:1,fontSize:13}}>
+            {isFrom?<><span style={{fontWeight:600,color:'var(--red)'}}>โอนให้</span><span style={{margin:'0 6px',color:'var(--ink2)'}}>→</span><span style={{fontWeight:600}}>{s.to}</span></>
+                   :<><span style={{fontWeight:600,color:'var(--green)'}}>รับจาก</span><span style={{margin:'0 6px',color:'var(--ink2)'}}> ←</span><span style={{fontWeight:600}}>{s.from}</span></>}
+          </div>
+          <span style={{fontWeight:700,fontSize:15,color:isFrom?'var(--red)':'var(--green)'}}>{fmt(s.amount)}</span>
+        </div>
+      );})}
+    </div>}
+
+    <div className="sec">
+      <div className="sec-title">📋 รายการที่เกี่ยวข้อง ({myExps.length})</div>
+      {myExps.length===0&&<div className="empty" style={{padding:'16px 0'}}><div className="et">ไม่มีรายการ</div></div>}
+      {myExps.map(e=>{const isP=e.payer===member;const sh=e.splits[member]||0;const cur=e.currency||'THB';return(
+        <div key={e.id} className="row" onClick={()=>setViewingExp(e)} style={{cursor:'pointer'}}>
+          <div style={{flex:1}}>
+            <div style={{fontWeight:600,fontSize:14}}>{e.desc} <span className="cur-badge">{cur}</span></div>
+            <div className="caption">{e.date} · {isP?'จ่ายแทน':`ส่วนแบ่ง ${fmtAmt(sh,cur)}`}</div>
+          </div>
+          <div style={{fontWeight:700,fontSize:14,color:isP?'var(--green)':'var(--red)'}}>{isP?`+${fmtAmt(e.amount,cur)}`:`-${fmtAmt(sh,cur)}`}</div>
+        </div>
+      );})}
+    </div>
+
+    {viewingExp && <ExpenseViewModal expense={viewingExp} onClose={()=>setViewingExp(null)} onDelete={()=>del(viewingExp.id)} onEdit={()=>{setEditingExp(viewingExp);setViewingExp(null)}} />}
+    {editingExp && <EditModal expense={editingExp} onSave={p=>saveEdit(editingExp.id,p)} onClose={()=>setEditingExp(null)}/>}
+  </div>;
+}
+
+/* ── Home Tab ── */
+function HomeTab({data,upd,toast,setMemberDetail,myName,onChangeName,syncData}){
+  const [addMode,setAdd]=useState(false);
+  const [nm,setNm]=useState('');
+  const {members,expenses,displayCurrency}=data;
+  const fmt=n=>fmtAmt(n,displayCurrency);
+  const {paid,owe,net}=calcBal(members,expenses,displayCurrency);
+  
+  const curGroups={};
+  expenses.forEach(e=>{const c=e.currency||'THB';curGroups[c]=(curGroups[c]||0)+e.amount});
+
+  const addM=()=>{const n=nm.trim();if(!n)return;if(members.includes(n))return toast('มีชื่อนี้แล้ว');upd(d=>{d.members=[...d.members,n];return d});setNm('');toast(`เพิ่ม ${n} แล้ว ✓`)};
+  const delM=m=>{if(expenses.some(e=>e.payer===m||m in e.splits))return toast(`${m} มีรายจ่ายอยู่`);upd(d=>{d.members=d.members.filter(x=>x!==m);return d})};
+
+  return <>
+    <PersonalBanner myName={myName} data={data} onChangeName={onChangeName}/>
+    <div className="page">
+      <div className="hdr">
+        <div>
+          <div className="hdr-title" style={{display:'flex', alignItems:'center', gap:10}}>
+            {data.tripName}
+            {WEB_APP_URL && (
+              <button onClick={syncData} style={{background:'none',border:'none',color:'var(--accent)',cursor:'pointer',display:'flex',padding:4}} title="ซิงค์ข้อมูลล่าสุด">
+                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+              </button>
+            )}
+          </div>
+          <div className="hdr-sub">{members.length} คน · {expenses.length} รายการ</div>
+        </div>
+        <button className="btn btn-g btn-sm" onClick={()=>{const n=prompt('ชื่อทริป:',data.tripName);if(n?.trim())upd(d=>{d.tripName=n.trim();return d})}}>แก้ไข</button>
+      </div>
+
+      {expenses.length>0&&<div className="sec" style={{padding:'14px 18px',marginBottom:12}}>
+        <div className="lbl" style={{marginBottom:8}}>ยอดรวมแต่ละสกุลเงิน</div>
+        {Object.entries(curGroups).map(([cur,sum])=>(
+          <div key={cur} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'6px 0',borderBottom:'1px solid var(--bg2)'}}>
+            <div style={{display:'flex',alignItems:'center',gap:8}}>
+              <span className="cur-badge">{cur}</span>
+              <span style={{fontSize:13,color:'var(--ink2)'}}>{getCur(cur).name}</span>
+            </div>
+            <span style={{fontWeight:700,fontSize:16,color:'var(--ink)'}}>{fmtAmt(sum,cur)}</span>
+          </div>
+        ))}
+        {members.length>0&&<div style={{display:'flex',justifyContent:'space-between',paddingTop:8,fontSize:12,color:'var(--ink3)'}}>
+          <span>แสดงผลหลักใน</span>
+          <span style={{fontWeight:700,color:'var(--accent)'}}>{displayCurrency}</span>
+        </div>}
+      </div>}
+
+      <div className="sec">
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:14}}>
+          <div className="sec-title" style={{marginBottom:0}}>สมาชิก</div>
+          <button className="btn btn-acc btn-sm" onClick={()=>setAdd(v=>!v)}>{addMode?'ยกเลิก':'+ เพิ่ม'}</button>
+        </div>
+        {addMode&&<div style={{display:'flex',gap:8,marginBottom:14,animation:'up .2s ease'}}>
+          <input placeholder="ชื่อสมาชิก" value={nm} onChange={e=>setNm(e.target.value)} onKeyDown={e=>e.key==='Enter'&&addM()} autoFocus/>
+          <button className="btn btn-p" style={{width:'auto',padding:'11px 16px',borderRadius:'var(--rs)'}} onClick={addM}>{I.ok}</button>
+        </div>}
+        {members.length===0
+          ?<div className="empty"><div className="ei">👥</div><div className="et">เพิ่มสมาชิกเพื่อเริ่มต้น</div></div>
+          :members.map(m=>{const n=net[m]||0;return(
+            <div key={m} className="mem-card" onClick={()=>setMemberDetail(m)}>
+              <Av name={m}/>
+              <div style={{flex:1}}>
+                <div style={{fontWeight:600}}>{m}{m===myName&&<span style={{fontSize:11,color:'var(--accent)',marginLeft:6,fontWeight:600}}>คุณ</span>}</div>
+                <div className="caption">จ่ายไป {fmt(paid[m]||0)} ({displayCurrency})</div>
+              </div>
+              <span className={`badge ${n>0.01?'b-pos':n<-0.01?'b-neg':'b-zero'}`}>
+                {n>0.01?`+${fmt(n)}`:n<-0.01?`-${fmt(-n)}`:'เท่ากัน'}
+              </span>
+              <span style={{color:'var(--ink3)',marginLeft:2,width:20}}>{I.chev}</span>
+              <button style={{border:'none',background:'none',color:'var(--ink3)',fontSize:20,padding:'2px 4px',cursor:'pointer',lineHeight:1}} onClick={e=>{e.stopPropagation();delM(m)}}>×</button>
+            </div>
+          );})}
+      </div>
+    </div>
+  </>;
+}
+
+/* ── Add Tab ── */
+function AddTab({data,upd,toast,go}){
+  const {members,displayCurrency}=data;
+  const [desc,setDesc]=useState('');
+  const [amt,setAmt]=useState('');
+  const [currency,setCurrency]=useState(displayCurrency||'THB');
+  const [payer,setPayer]=useState('');
+  const [stype,setStype]=useState('equal');
+  const [sel,setSel]=useState({});
+  const [cust,setCust]=useState({});
+  const [date,setDate]=useState(today());
+  const fmt=n=>fmtAmt(n,currency);
+
+  useEffect(()=>{const s={};members.forEach(m=>{s[m]=true});setSel(s);if(!payer&&members[0])setPayer(members[0])},[members.join()]);
+  useEffect(()=>setCurrency(displayCurrency||'THB'),[displayCurrency]);
+
+  if(members.length<2)return <div className="page">
+    <div className="hdr"><div className="hdr-title">เพิ่มรายจ่าย</div></div>
+    <div className="sec" style={{textAlign:'center',padding:'40px 20px'}}>
+      <div style={{fontSize:40,marginBottom:12}}>👥</div>
+      <div style={{color:'var(--ink2)',marginBottom:16}}>ต้องมีสมาชิกอย่างน้อย 2 คนก่อน</div>
+      <button className="btn btn-p" style={{width:'auto',padding:'12px 24px'}} onClick={()=>go(0)}>ไปเพิ่มสมาชิก</button>
+    </div>
+  </div>;
+
+  const active=members.filter(m=>sel[m]);
+  const a=parseFloat(amt)||0;
+  const each=active.length>0?a/active.length:0;
+  const custTotal=Object.entries(cust).filter(([m])=>sel[m]).reduce((s,[,v])=>s+(parseFloat(v)||0),0);
+  const custOk=Math.abs(custTotal-a)<0.5;
+
+  const submit=()=>{
+    if(!desc.trim())return toast('ใส่รายละเอียดด้วย');
+    if(!a||a<=0)return toast('ใส่จำนวนเงิน');
+    if(!payer)return toast('เลือกคนจ่าย');
+    if(active.length===0)return toast('เลือกคนหารด้วย');
+    if(stype==='custom'&&!custOk)return toast(`ยังขาด ${fmt(a-custTotal)}`);
+    const splits={};active.forEach(m=>{splits[m]=stype==='equal'?each:(parseFloat(cust[m])||0)});
+    upd(d=>{d.expenses=[{id:Date.now(),desc:desc.trim(),amount:a,currency,payer,splits,date,photo:null,link:null,note:null},...d.expenses];return d});
+    toast('บันทึกแล้ว ✓');setDesc('');setAmt('');go(0);
+  };
+
+  const cur=getCur(currency);
+
+  return <div className="page">
+    <div className="hdr"><div className="hdr-title">เพิ่มรายจ่าย</div></div>
+    <div className="sec">
+      <div style={{marginBottom:14}}><div className="lbl">รายละเอียด</div><input placeholder="เช่น ค่าอาหาร, ค่าโรงแรม..." value={desc} onChange={e=>setDesc(e.target.value)}/></div>
+
+      <div style={{marginBottom:14}}>
+        <div className="lbl">จำนวนเงิน</div>
+        <div style={{display:'flex',gap:8}}>
+          <div style={{flex:1}}>
+            <input type="number" inputMode="decimal" placeholder="0.00" value={amt} onChange={e=>setAmt(e.target.value)}/>
+          </div>
+          <div style={{width:110}}>
+            <select value={currency} onChange={e=>setCurrency(e.target.value)}>
+              {CURRENCIES.map(c=><option key={c.code} value={c.code}>{c.sym} {c.code}</option>)}
+            </select>
+          </div>
+        </div>
+        {currency!==displayCurrency&&<div style={{fontSize:11,color:'var(--ink3)',marginTop:4}}>
+          ⓘ แสดงผลหลักเป็น {displayCurrency} · รายการนี้เป็น {currency}
+        </div>}
+      </div>
+
+      <div style={{marginBottom:14}}><div className="lbl">วันที่</div><input type="date" value={date} onChange={e=>setDate(e.target.value)}/></div>
+      <div style={{marginBottom:14}}><div className="lbl">ใครจ่าย</div>
+        <select value={payer} onChange={e=>setPayer(e.target.value)}>
+          {members.map(m=><option key={m} value={m}>{m}</option>)}
+        </select>
+      </div>
+      <div style={{marginBottom:14}}><div className="lbl">วิธีหาร</div>
+        <div style={{display:'flex',gap:8}}>
+          {['equal','custom'].map(t=><button key={t} onClick={()=>setStype(t)} className="btn" style={{flex:1,padding:'10px',borderRadius:'var(--rs)',border:'1.5px solid',borderColor:stype===t?'var(--accent)':'transparent',background:stype===t?'var(--accent-light)':'var(--bg3)',color:stype===t?'var(--accent)':'var(--ink2)',fontWeight:600,fontSize:13}}>
+            {t==='equal'?'⚖️ เท่ากัน':'✍️ กำหนดเอง'}
+          </button>)}
+        </div>
+      </div>
+      <div style={{marginBottom:14}}><div className="lbl">หารกับใคร</div>
+        <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
+          {members.map(m=><button key={m} className={`chip ${sel[m]?'on':'off'}`} onClick={()=>setSel(s=>({...s,[m]:!s[m]}))}>
+            {sel[m]&&<span style={{fontSize:11}}>✓</span>}{m}
+          </button>)}
+        </div>
+      </div>
+      {stype==='custom'&&<div style={{background:'var(--bg3)',borderRadius:'var(--rs)',padding:14,marginBottom:14,animation:'up .2s ease'}}>
+        <div className="lbl" style={{marginBottom:10}}>ใส่ยอดแต่ละคน ({cur.sym})</div>
+        {active.map(m=><div key={m} style={{display:'flex',alignItems:'center',gap:10,marginBottom:8}}>
+          <Av name={m} size={28}/><div style={{flex:1,fontWeight:500,fontSize:14}}>{m}</div>
+          <div style={{width:110}}><input type="number" inputMode="decimal" placeholder="0" value={cust[m]||''} onChange={e=>setCust(s=>({...s,[m]:e.target.value}))} style={{textAlign:'right'}}/></div>
+        </div>)}
+        <div style={{fontSize:12,fontWeight:600,textAlign:'right',color:custOk?'var(--green)':'var(--red)',marginTop:4}}>{fmt(custTotal)} / {fmt(a)} {custOk?'✓':''}</div>
+      </div>}
+      {a>0&&active.length>0&&stype==='equal'&&<div style={{background:'var(--green-light)',borderRadius:'var(--rs)',padding:'10px 14px',marginBottom:14,fontSize:13,color:'var(--green)',fontWeight:600}}>
+        แต่ละคนจ่าย {fmt(each)} {currency}
+      </div>}
+      <button className="btn btn-p" onClick={submit}>บันทึกรายจ่าย</button>
+    </div>
+  </div>;
+}
+
+/* ── List Tab ── */
+function ListTab({data,upd,toast}){
+  const {expenses}=data;
+  const [viewing,setViewing]=useState(null);
+  const [editing,setEditing]=useState(null);
+
+  const saveEdit=(id,patch)=>{upd(d=>{d.expenses=d.expenses.map(e=>e.id===id?{...e,...patch}:e);return d});setEditing(null);toast('แก้ไขแล้ว ✓')};
+  const del=id=>{upd(d=>{d.expenses=d.expenses.filter(e=>e.id!==id);return d});setViewing(null);setEditing(null);toast('ลบแล้ว')};
+
+  return <>
+    <div className="page">
+      <div className="hdr"><div><div className="hdr-title">รายการ</div><div className="hdr-sub">{expenses.length} รายการ</div></div></div>
+      {expenses.length===0&&<div className="empty"><div className="ei">📋</div><div className="et">ยังไม่มีรายจ่าย</div></div>}
+      {expenses.map(e=>{
+        const cur=e.currency||'THB';
+        const fmt=n=>fmtAmt(n,cur);
+        return <div key={e.id} className="card" onClick={()=>setViewing(e)}>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:8}}>
+            <div style={{flex:1,marginRight:10}}>
+              <div style={{fontWeight:600,fontSize:15,display:'flex',alignItems:'center',gap:6,flexWrap:'wrap'}}>
+                {e.desc}
+                <span className="cur-badge">{cur}</span>
+              </div>
+              <div className="caption" style={{marginTop:2}}>{e.date} · <span style={{color:'var(--accent)',fontWeight:500}}>{e.payer}</span> จ่าย</div>
+            </div>
+            <div style={{fontWeight:700,fontSize:18,color:'var(--ink)',whiteSpace:'nowrap'}}>{fmt(e.amount)}</div>
+          </div>
+          <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
+            <span className="cur-badge" style={{background:'var(--bg3)',color:'var(--ink2)'}}>{Object.keys(e.splits).length} คนหาร</span>
+            {e.photo&&<span style={{fontSize:12}}>📸 มีรูปภาพ</span>}
+            {e.note&&<span style={{fontSize:12}}>📝 มีโน้ต</span>}
+            {e.link&&<span style={{fontSize:12}}>🔗 มีลิงก์</span>}
+          </div>
+        </div>;
+      })}
+    </div>
+    {viewing && <ExpenseViewModal expense={viewing} onClose={()=>setViewing(null)} onEdit={()=>{setEditing(viewing);setViewing(null)}} onDelete={()=>del(viewing.id)} />}
+    {editing && <EditModal expense={editing} onSave={p=>saveEdit(editing.id,p)} onClose={()=>setEditing(null)}/>}
+  </>;
+}
+
+/* ── Settings Tab ── */
+function SettingsTab({data,upd,myName,onChangeName}){
+  const {displayCurrency}=data;
+  return <div className="page">
+    <div className="hdr"><div className="hdr-title">ตั้งค่า</div></div>
+
+    <div className="sec">
+      <div className="sec-title">👤 ชื่อของฉัน</div>
+      <div style={{display:'flex',alignItems:'center',gap:12,padding:'8px 0'}}>
+        {myName?<><Av name={myName} size={40}/><div style={{flex:1}}><div style={{fontWeight:600}}>{myName}</div><div className="caption">ชื่อนี้จะแสดงยอดของคุณบนหน้าแรก</div></div></>
+               :<div style={{color:'var(--ink2)',fontSize:14,flex:1}}>ยังไม่ได้ตั้งชื่อ</div>}
+        <button className="btn btn-acc btn-sm" onClick={onChangeName}>{myName?'เปลี่ยน':'ตั้งชื่อ'}</button>
+      </div>
+    </div>
+
+    <div className="sec">
+      <div className="sec-title">💱 สกุลเงินที่แสดงผลหลัก</div>
+      <div style={{fontSize:13,color:'var(--ink2)',marginBottom:14,lineHeight:1.6}}>
+        ยอดรวม ยอดค้าง และแบนเนอร์หน้าแรก จะแสดงเป็นสกุลเงินนี้<br/>
+        (ส่วนแต่ละรายการสามารถเลือกสกุลเงินได้เองตอนเพิ่มรายจ่าย)
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
+        {CURRENCIES.map(c=><button key={c.code} className="btn" style={{justifyContent:'flex-start',gap:8,padding:'10px 14px',border:'1.5px solid',borderColor:displayCurrency===c.code?'var(--accent)':'var(--border)',background:displayCurrency===c.code?'var(--accent-light)':'var(--bg3)',color:displayCurrency===c.code?'var(--accent)':'var(--ink2)',fontWeight:displayCurrency===c.code?700:400,fontSize:13,borderRadius:'var(--rs)'}} onClick={()=>upd(d=>{d.displayCurrency=c.code;return d})}>
+          <span style={{fontSize:16,fontWeight:700,minWidth:20,textAlign:'center'}}>{c.sym}</span>
+          <div style={{textAlign:'left'}}>
+            <div style={{fontSize:12,fontWeight:600}}>{c.code}</div>
+            <div style={{fontSize:10,opacity:.7}}>{c.name}</div>
+          </div>
+        </button>)}
+      </div>
+    </div>
+
+    <div className="sec">
+      <div className="sec-title">✈️ ชื่อทริป</div>
+      <button className="btn btn-g" style={{width:'100%',padding:'12px'}} onClick={()=>{const n=prompt('ชื่อทริป:',data.tripName);if(n?.trim())upd(d=>{d.tripName=n.trim();return d})}}>แก้ไขชื่อทริป: {data.tripName}</button>
+    </div>
+
+    <div className="sec">
+      <div className="sec-title">⚠️ รีเซ็ต (ระวัง: ลบข้อมูลของทุกคน)</div>
+      <button className="btn btn-del" style={{width:'100%',padding:'12px'}} onClick={()=>{if(confirm('ลบข้อมูลทริปทั้งหมดของทุกคน?')){upd(()=>initData())}}}>ลบข้อมูลทั้งหมด</button>
+    </div>
+  </div>;
+}
+
+/* ── App ── */
+function App(){
+  const [data,setData]=useState(null);
+  const [tab,setTab]=useState(0);
+  const [memberDetail,setMemberDetail]=useState(null);
+  const [myName,setMyName]=useState(()=>localStorage.getItem(MY_KEY)||'');
+  const [toast,showToast]=useToast();
+  const [loading,setLoading]=useState(true);
+
+  const syncData = useCallback(() => {
+    if(!WEB_APP_URL) return;
+    setLoading(true);
+    fetch(WEB_APP_URL)
+      .then(r=>r.json())
+      .then(d=>{
+        if(!d.members) d = initData();
+        setData(d);
+        setLoading(false);
+        showToast('ซิงค์ข้อมูลล่าสุดแล้ว ✓');
+      })
+      .catch(e=>{
+         console.error(e);
+         setData(loadData());
+         setLoading(false);
+         showToast('⚠️ เชื่อมต่อล้มเหลว ใช้ข้อมูลในเครื่อง');
+      });
+  }, [showToast]);
+
+  useEffect(()=>{
+    if(!WEB_APP_URL) {
+      setData(loadData());
+      setLoading(false);
+    } else {
+      syncData();
+    }
+  },[syncData]);
+
+  // สำรองข้อมูลลงเครื่องไว้เสมอ
+  useEffect(() => { if(data) persist(data); }, [data]);
+  useEffect(()=>localStorage.setItem(MY_KEY,myName),[myName]);
+
+  const upd=fn=>{
+    setData(prev=>{
+      const nd=fn({...prev});
+      if(WEB_APP_URL) {
+        // อัปเดตขึ้น Google Sheets แบบเบื้องหลัง
+        fetch(WEB_APP_URL, {
+          method:'POST',
+          headers:{'Content-Type':'text/plain;charset=utf-8'},
+          body:JSON.stringify(nd)
+        }).catch(()=>showToast('⚠️ บันทึกข้อมูลไม่สำเร็จ'));
+      }
+      return nd;
+    });
+  };
+
+  const changeName=()=>{const n=prompt('พิมพ์ชื่อของคุณ (ต้องตรงกับชื่อสมาชิก):',myName);if(n!==null)setMyName(n.trim())};
+
+  const tabs=[
+    {lbl:'หน้าแรก',ico:I.home},
+    {lbl:'เพิ่ม',ico:I.add},
+    {lbl:'รายการ',ico:I.list},
+    {lbl:'ตั้งค่า',ico:I.settings},
+  ];
+
+  const nav=<nav className="nav">
+    {tabs.map((t,i)=><button key={i} className={`nb ${tab===i&&!memberDetail?'on':''}`} onClick={()=>{setMemberDetail(null);setTab(i)}}>{t.ico}<span>{t.lbl}</span></button>)}
+  </nav>;
+
+  // หน้าโหลดข้อมูลตอนเข้าเว็บครั้งแรก
+  if(loading && !data) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:12,color:'var(--accent)'}}><div style={{fontSize:40,animation:'up 0.5s infinite alternate'}}>🚀</div><div style={{fontWeight:600}}>กำลังโหลดข้อมูลทริป...</div></div>;
+
+  if(memberDetail)return <>
+    <MemberDetail member={memberDetail} data={data} upd={upd} toast={showToast} onBack={()=>setMemberDetail(null)}/>
+    {toast&&<div className="toast">{toast}</div>}
+    {nav}
+  </>;
+
+  return <>
+    {tab===0&&<HomeTab data={data} upd={upd} toast={showToast} setMemberDetail={setMemberDetail} myName={myName} onChangeName={changeName} syncData={syncData}/>}
+    {tab===1&&<AddTab data={data} upd={upd} toast={showToast} go={setTab}/>}
+    {tab===2&&<ListTab data={data} upd={upd} toast={showToast}/>}
+    {tab===3&&<SettingsTab data={data} upd={upd} myName={myName} onChangeName={changeName}/>}
+    {toast&&<div className="toast">{toast}</div>}
+    {nav}
+  </>;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

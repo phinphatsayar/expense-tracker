@@ -29,79 +29,71 @@ html,body{height:100%;overflow:hidden;font-family:'Kanit',sans-serif;background:
 .app-container{flex:1;overflow-y:auto;padding-bottom:120px;-webkit-overflow-scrolling:touch;background:var(--bg-main);}
 .app-container::-webkit-scrollbar{display:none}
 
-/* --- Inline Editable Field --- */
-.inline-input { border: 1px dashed var(--ink-light); background: rgba(255,255,255,0.5); padding: 4px 8px; border-radius: 8px; font-family: inherit; font-size: inherit; font-weight: inherit; color: inherit; width: 100%; outline: none; }
-.inline-input:focus { border: 1px solid var(--accent); background: var(--surface); }
+.inline-input{border:1px dashed var(--ink-light);background:rgba(255,255,255,0.5);padding:4px 8px;border-radius:8px;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;width:100%;outline:none;}
+.inline-input:focus{border:1px solid var(--accent);background:var(--surface);}
 
-/* --- Top Header (White Area) --- */
-.top-header { padding: 24px 20px 20px; display: flex; justify-content: space-between; align-items: flex-start; background: var(--bg-main); }
-.bubble-chat { background: var(--surface); padding: 12px 20px; border-radius: 30px; border-bottom-left-radius: 8px; box-shadow: var(--shadow); cursor: pointer; display: inline-block; animation: pop .3s ease; border: 1px solid rgba(119,5,35,0.05); }
-.bubble-hi { font-weight: 800; font-size: 16px; color: var(--accent); line-height: 1.2; }
-.bubble-sub { font-size: 13px; color: var(--ink-light); font-weight: 500; }
-.settings-btn { width: 44px; height: 44px; border-radius: 50%; background: var(--surface); border: none; box-shadow: var(--shadow); display: flex; justify-content: center; align-items: center; cursor: pointer; color: var(--accent); transition: transform .1s; }
-.settings-btn:active { transform: scale(0.95); }
-.settings-btn svg { width: 22px; height: 22px; stroke-width: 2.5; }
+.top-header{padding:24px 20px 20px;display:flex;justify-content:space-between;align-items:flex-start;background:var(--bg-main);}
+.bubble-chat{background:var(--surface);padding:12px 20px;border-radius:30px;border-bottom-left-radius:8px;box-shadow:var(--shadow);cursor:pointer;display:inline-block;animation:pop .3s ease;border:1px solid rgba(119,5,35,0.05);}
+.bubble-hi{font-weight:800;font-size:16px;color:var(--accent);line-height:1.2;}
+.bubble-sub{font-size:13px;color:var(--ink-light);font-weight:500;}
+.settings-btn{width:44px;height:44px;border-radius:50%;background:var(--surface);border:none;box-shadow:var(--shadow);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(--accent);transition:transform .1s;}
+.settings-btn:active{transform:scale(0.95);}
+.settings-btn svg{width:22px;height:22px;stroke-width:2.5;}
 
-/* --- Pink Board Overlay --- */
-.pink-board { background: var(--bg-pink); border-radius: 32px 32px 0 0; padding: 24px 20px 40px; min-height: 100%; }
+.pink-board{background:var(--bg-pink);border-radius:32px 32px 0 0;padding:24px 20px 40px;min-height:100%;}
 
-/* --- Trip Title --- */
-.trip-header { margin-bottom: 20px; }
-.trip-title { font-size: 22px; font-weight: 800; color: var(--ink-dark); display: flex; align-items: center; gap: 8px; cursor: pointer; }
-.trip-sub { font-size: 13px; color: var(--ink-dark); font-weight: 500; margin-top: 4px; opacity: 0.8; }
+.trip-header{margin-bottom:20px;}
+.trip-title{font-size:22px;font-weight:800;color:var(--ink-dark);display:flex;align-items:center;gap:8px;cursor:pointer;}
+.trip-sub{font-size:13px;color:var(--ink-dark);font-weight:500;margin-top:4px;opacity:0.8;}
 
-/* --- Cards --- */
-.sec-card { background: var(--surface); border-radius: var(--r); box-shadow: var(--shadow); padding: 20px; margin-bottom: 16px; animation: slide-up .3s ease; }
-.settings-card { background: var(--surface); border-radius: 16px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.sec-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;margin-bottom:16px;animation:slide-up .3s ease;}
+.settings-card{background:var(--surface);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
 
-/* --- Buttons & Inputs --- */
-.pill-btn { background: var(--surface); color: var(--accent); border: 1.5px solid rgba(119,5,35,0.1); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 14px; cursor: pointer; font-family: 'Kanit'; }
-.pill-btn:active { background: var(--accent-light); }
-.btn-main { background: var(--accent); color: #fff; border: none; padding: 14px 20px; border-radius: var(--rs); font-weight: 700; font-size: 16px; width: 100%; cursor: pointer; font-family: 'Kanit'; }
-input, select, textarea { width: 100%; padding: 12px 16px; border: 1.5px solid rgba(119,5,35,0.2); border-radius: var(--rs); font-family: 'Kanit'; font-size: 15px; color: var(--ink-dark); outline: none; transition: border-color .2s; }
-input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-.input-group { display: flex; gap: 8px; align-items: center; }
+.pill-btn{background:var(--surface);color:var(--accent);border:1.5px solid rgba(119,5,35,0.1);padding:6px 16px;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Kanit';}
+.pill-btn:active{background:var(--accent-light);}
+.btn-main{background:var(--accent);color:#fff;border:none;padding:14px 20px;border-radius:var(--rs);font-weight:700;font-size:16px;width:100%;cursor:pointer;font-family:'Kanit';}
+input,select,textarea{width:100%;padding:12px 16px;border:1.5px solid rgba(119,5,35,0.2);border-radius:var(--rs);font-family:'Kanit';font-size:15px;color:var(--ink-dark);outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);}
+.input-group{display:flex;gap:8px;align-items:center;}
 
-/* --- Splits Chips --- */
-.split-chip-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
-.split-chip { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 30px; border: 2px solid transparent; padding: 10px 20px; font-family: 'Kanit'; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; background: var(--surface); box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
-.split-chip.off { color: var(--ink-dark); border-color: transparent; }
-.split-chip.on { color: var(--accent); border-color: var(--bg-pink); }
-.split-chip svg { width: 22px; height: 22px; fill: none; stroke: var(--accent); }
+.split-chip-group{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+.split-chip{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;border:2px solid transparent;padding:10px 20px;font-family:'Kanit';font-size:16px;font-weight:700;cursor:pointer;transition:all 0.2s;background:var(--surface);box-shadow:0 2px 6px rgba(0,0,0,0.04);}
+.split-chip.off{color:var(--ink-dark);border-color:transparent;}
+.split-chip.on{color:var(--accent);border-color:var(--bg-pink);}
+.split-chip svg{width:22px;height:22px;fill:none;stroke:var(--accent);}
 
-/* --- Add Member Row --- */
-.add-mem-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-.paw-btn { width: 44px; height: 44px; border-radius: 12px; background: #FBF6F2; border: 1.5px solid rgba(119,5,35,0.15); display: flex; justify-content: center; align-items: center; cursor: pointer; color: var(--accent); flex-shrink:0;}
-.paw-btn svg { width: 22px; height: 22px; fill: currentColor; }
+.add-mem-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.paw-btn{width:44px;height:44px;border-radius:12px;background:#FBF6F2;border:1.5px solid rgba(119,5,35,0.15);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(--accent);flex-shrink:0;}
+.paw-btn svg{width:22px;height:22px;fill:currentColor;}
 
-/* --- Bottom Nav (อัปเดตตามรูป) --- */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); box-shadow: 0 -2px 10px rgba(0,0,0,0.03); display: flex; justify-content: space-around; align-items: center; padding: 12px 20px 24px; z-index: 100; border-top: 1px solid rgba(119,5,35,0.05);}
-.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; background: none; border: none; color: var(--accent); font-family: 'Kanit'; cursor: pointer; width: 80px; }
-.nav-item svg { width: 28px; height: 28px; stroke-width: 2.5; stroke: var(--accent); fill: none; }
-.nav-item span { font-size: 13px; font-weight: 800; color: var(--accent); }
-.fab-container { position: relative; top: -18px; }
-.fab-btn { width: 68px; height: 68px; border-radius: 50%; background: var(--bg-pink); border: 6px solid var(--surface); box-shadow: none; display: flex; justify-content: center; align-items: center; font-size: 36px; color: var(--surface); cursor: pointer; font-weight: 300; }
+/* Language Toggle */
+.lang-toggle{display:flex;background:#F0E6EA;border-radius:30px;padding:4px;gap:2px;}
+.lang-btn{padding:6px 14px;border-radius:24px;border:none;font-family:'Kanit';font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--ink-light);}
+.lang-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 6px rgba(119,5,35,0.25);}
 
-/* --- Members & Totals --- */
-.mem-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(119,5,35,0.05); cursor: pointer;}
-.mem-item:last-child { border-bottom: none; padding-bottom: 0; }
-.av-sq { width: 40px; height: 40px; border-radius: 10px; background: var(--green-light); color: var(--green); display: flex; justify-content: center; align-items: center; font-weight: 700; font-size: 18px; }
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);box-shadow:0 -2px 10px rgba(0,0,0,0.03);display:flex;justify-content:space-around;align-items:center;padding:12px 20px 24px;z-index:100;border-top:1px solid rgba(119,5,35,0.05);}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;color:var(--accent);font-family:'Kanit';cursor:pointer;width:80px;}
+.nav-item svg{width:28px;height:28px;stroke-width:2.5;stroke:var(--accent);fill:none;}
+.nav-item span{font-size:13px;font-weight:800;color:var(--accent);}
+.fab-container{position:relative;top:-18px;}
+.fab-btn{width:68px;height:68px;border-radius:50%;background:var(--bg-pink);border:6px solid var(--surface);box-shadow:none;display:flex;justify-content:center;align-items:center;font-size:36px;color:var(--surface);cursor:pointer;font-weight:300;}
 
-/* --- Total Card --- */
-.total-label { font-size: 16px; font-weight: 800; color: var(--accent); margin-bottom: 12px; }
-.total-row { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid rgba(119,5,35,0.1); }
-.badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
+.mem-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(119,5,35,0.05);cursor:pointer;}
+.mem-item:last-child{border-bottom:none;padding-bottom:0;}
+.av-sq{width:40px;height:40px;border-radius:10px;background:var(--green-light);color:var(--green);display:flex;justify-content:center;align-items:center;font-weight:700;font-size:18px;}
 
-/* --- Settings Grid --- */
-.curr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.curr-item { border: 1px solid #eee; border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; background: var(--surface); }
-.curr-item.active { border-color: var(--accent); background: #FCF4F6; }
+.total-label{font-size:16px;font-weight:800;color:var(--accent);margin-bottom:12px;}
+.total-row{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(119,5,35,0.1);}
+.badge{display:inline-flex;align-items:center;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:0.02em;}
 
-/* --- Utilities --- */
-.lbl { font-size: 13px; font-weight: 700; color: var(--ink-light); margin-bottom: 6px; }
-.toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: var(--ink-dark); color: #fff; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 500; z-index: 999; animation: pop .2s ease; white-space:nowrap;}
-@keyframes pop { 0% { opacity: 0; transform: scale(0.9) translateX(-50%); } 100% { opacity: 1; transform: scale(1) translateX(-50%); } }
-@keyframes slide-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.curr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.curr-item{border:1px solid #eee;border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer;background:var(--surface);}
+.curr-item.active{border-color:var(--accent);background:#FCF4F6;}
+
+.lbl{font-size:13px;font-weight:700;color:var(--ink-light);margin-bottom:6px;}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink-dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:500;z-index:999;animation:pop .2s ease;white-space:nowrap;}
+@keyframes pop{0%{opacity:0;transform:scale(0.9) translateX(-50%);}100%{opacity:1;transform:scale(1) translateX(-50%);}}
+@keyframes slide-up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 </style>
 </head>
 <body>
@@ -111,48 +103,240 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); }
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
 
-// =======================================================================
-// 🔴 นำลิงก์ Web App URL จาก Google Apps Script มาวางในเครื่องหมายคำพูดด้านล่างนี้ 🔴
-const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzLGzE8NeGLHmdp1ySkzoyhgtQ5TFWYwDOzzMEXcl8h_ox_xyuMgn7PHEFXT13DgbIQ/exec'; 
-// =======================================================================
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzLGzE8NeGLHmdp1ySkzoyhgtQ5TFWYwDOzzMEXcl8h_ox_xyuMgn7PHEFXT13DgbIQ/exec';
 
-const {useState, useEffect, useRef, useCallback}=React;
-const KEY='splittrip-v6';
-const MY_KEY='splittrip-myname-v6';
+const {useState, useEffect, useRef, useCallback} = React;
+const KEY = 'splittrip-v6';
+const MY_KEY = 'splittrip-myname-v6';
+const LANG_KEY = 'splittrip-lang-v1';
 
+// ═══════════════════════════════════════════════════
+// 🌐 TRANSLATIONS
+// ═══════════════════════════════════════════════════
+const T = {
+  th: {
+    // App / Global
+    appName: 'NoMorePaylater',
+    save: 'บันทึก',
+    cancel: 'ยกเลิก',
+    back: 'กลับ',
+    add: '+ เพิ่ม',
+    delete: 'ลบรายการนี้',
+    confirmDelete: 'ลบรายการนี้?',
+    edit: 'แก้ไข',
+
+    // Nav
+    navHome: 'หน้าหลัก',
+    navTransactions: 'รายการ',
+
+    // Home
+    hello: 'สวัสดี!',
+    nicknamePlaceholder: 'ใส่ชื่อเล่นของคุณที่นี่!',
+    defaultTripName: "Where's the squad wandering next...?",
+    memberCount: (n) => `${n} คน`,
+    transactionCount: (n) => `${n} รายการ`,
+    total: 'ยอดรวม',
+    member: 'สมาชิก',
+    memberNamePlaceholder: 'ชื่อสมาชิก',
+    memberDuplicate: 'มีชื่อนี้แล้ว!',
+    memberAdded: (n) => `เพิ่ม ${n} แล้ว ✓`,
+    spent: (amt) => `จ่ายไป ${amt}`,
+    noMembers: `เพิ่มสมาชิกเพื่อเริ่มต้น`,
+    needMoreMembers: 'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน 👥',
+    syncDone: 'ซิงค์ข้อมูลล่าสุดแล้ว ✓',
+    syncFail: '⚠️ เชื่อมต่อล้มเหลว',
+    syncing: 'กำลังซิงค์ข้อมูล...',
+    cloudFail: '⚠️ บันทึกขึ้น Cloud ไม่สำเร็จ',
+
+    // Add/Edit Expense
+    addTransaction: 'เพิ่มรายการ',
+    editTransaction: 'แก้ไขรายการ',
+    category: 'หมวดหมู่ (Category)',
+    detail: 'รายละเอียด',
+    detailPlaceholder: 'เช่น ค่าอาหาร...',
+    amount: (cur) => `จำนวนเงิน (${cur})`,
+    note: 'หมายเหตุ (Note)',
+    notePlaceholder: 'รายละเอียดเพิ่มเติม...',
+    whoPayQuestion: 'ใครเป็นคนจ่าย?',
+    splitWithQuestion: 'หารกับใครบ้าง?',
+    needDetail: 'กรุณาใส่รายละเอียด',
+    needAmount: 'ใส่จำนวนเงิน',
+    needPayer: 'เลือกคนจ่าย',
+    needSplit: 'เลือกคนหารด้วย',
+    saved: 'บันทึกแล้ว',
+    edited: 'แก้ไขรายการแล้ว',
+    deleted: 'ลบแล้ว',
+    needMinMembers: 'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน',
+
+    // Transactions
+    transactions: 'รายการ',
+    noTransactions: 'ยังไม่มีรายการ',
+    paidBy: (name) => `${name} จ่าย`,
+
+    // Member Detail
+    settleHeader: '💸 รายการต้องโอน / รับโอน',
+    payTo: 'จ่ายให้',
+    receiveFrom: 'รับจาก',
+    alreadySent: 'คุณโอนเงินแล้ว',
+    alreadyReceived: 'ได้รับเงินแล้ว',
+    tapWhenSent: 'กดเมื่อโอนเงินแล้ว',
+    tapWhenReceived: 'กดเมื่อได้รับเงินแล้ว',
+    owesFriend: (amt) => `ต้องจ่ายเพื่อน ${amt}`,
+    friendOwes: (amt) => `คนอื่นค้างอยู่ ${amt}`,
+    allClear: 'เคลียร์หนี้หมดแล้ว 🎉',
+    settleSaved: 'บันทึกการชำระเงินแล้ว ✓',
+    settleCancel: 'ยกเลิกการชำระเงินแล้ว',
+
+    // Settings
+    settings: 'ตั้งค่า',
+    myName: '👤 ชื่อของฉัน',
+    myNameSub: 'ชื่อนี้จะแสดงยอดของคุณบนหน้าแรก',
+    myNamePlaceholder: 'แตะเพื่อตั้งชื่อ',
+    currency: '💱 สกุลเงินที่แสดงผลหลัก',
+    currencySub: 'ยอดรวม ยอดค้าง และแบนเนอร์หน้าแรก จะแสดงเป็นสกุลเงินนี้',
+    convertConfirm: (to) => `คุณต้องการแปลงยอดเงินของ "ทุกรายการ" เป็น ${to} ด้วยอัตราแลกเปลี่ยนโดยประมาณหรือไม่?\n\n*หากยกเลิก จะเปลี่ยนแค่สัญลักษณ์ แต่ไม่แปลงตัวเลข*`,
+    converted: (cur) => `แปลงทุกยอดเป็น ${cur} แล้ว`,
+    dangerZone: '⚠️ รีเซ็ต (ระวัง: ลบข้อมูลของทุกคน)',
+    resetBtn: 'ลบข้อมูลทั้งหมด',
+    resetConfirm: 'ลบข้อมูลทริปทั้งหมดของทุกคน?',
+    language: '🌐 ภาษา / Language',
+    langTH: 'ไทย',
+    langEN: 'English',
+  },
+
+  en: {
+    // App / Global
+    appName: 'NoMorePaylater',
+    save: 'Save',
+    cancel: 'Cancel',
+    back: 'Back',
+    add: '+ Add',
+    delete: 'Delete this item',
+    confirmDelete: 'Delete this item?',
+    edit: 'Edit',
+
+    // Nav
+    navHome: 'Home',
+    navTransactions: 'Transactions',
+
+    // Home
+    hello: 'Hello!',
+    nicknamePlaceholder: 'Pop your nickname here!',
+    defaultTripName: "Where's the squad wandering next...?",
+    memberCount: (n) => `${n} member${n !== 1 ? 's' : ''}`,
+    transactionCount: (n) => `${n} transaction${n !== 1 ? 's' : ''}`,
+    total: 'Total',
+    member: 'Member',
+    memberNamePlaceholder: 'Member name',
+    memberDuplicate: 'Name already exists!',
+    memberAdded: (n) => `Added ${n} ✓`,
+    spent: (amt) => `spent ${amt}`,
+    noMembers: 'Add members to get started',
+    needMoreMembers: 'Need at least 2 members first 👥',
+    syncDone: 'Synced latest data ✓',
+    syncFail: '⚠️ Connection failed',
+    syncing: 'Syncing data...',
+    cloudFail: '⚠️ Could not save to Cloud',
+
+    // Add/Edit Expense
+    addTransaction: 'Add Transaction',
+    editTransaction: 'Edit Transaction',
+    category: 'Category',
+    detail: 'Description',
+    detailPlaceholder: 'e.g. Dinner, taxi...',
+    amount: (cur) => `Amount (${cur})`,
+    note: 'Note',
+    notePlaceholder: 'Additional details...',
+    whoPayQuestion: 'Who paid?',
+    splitWithQuestion: 'Split with?',
+    needDetail: 'Please enter a description',
+    needAmount: 'Enter an amount',
+    needPayer: 'Select who paid',
+    needSplit: 'Select who to split with',
+    saved: 'Saved!',
+    edited: 'Item updated',
+    deleted: 'Deleted',
+    needMinMembers: 'Need at least 2 members first',
+
+    // Transactions
+    transactions: 'Transactions',
+    noTransactions: 'No transactions yet',
+    paidBy: (name) => `${name} paid`,
+
+    // Member Detail
+    settleHeader: '💸 Transfers to make / receive',
+    payTo: 'Pay to',
+    receiveFrom: 'Receive from',
+    alreadySent: 'Transfer sent',
+    alreadyReceived: 'Payment received',
+    tapWhenSent: 'Tap when sent',
+    tapWhenReceived: 'Tap when received',
+    owesFriend: (amt) => `Owes ${amt}`,
+    friendOwes: (amt) => `Is owed ${amt}`,
+    allClear: 'All settled up 🎉',
+    settleSaved: 'Payment recorded ✓',
+    settleCancel: 'Payment undone',
+
+    // Settings
+    settings: 'Settings',
+    myName: '👤 My Name',
+    myNameSub: 'This name shows your balance on the home screen',
+    myNamePlaceholder: 'Tap to set name',
+    currency: '💱 Display Currency',
+    currencySub: 'Totals, balances, and the home banner will show in this currency',
+    convertConfirm: (to) => `Convert ALL expense amounts to ${to} using approximate exchange rates?\n\n*Cancel to only change the symbol without converting numbers.*`,
+    converted: (cur) => `All amounts converted to ${cur}`,
+    dangerZone: '⚠️ Reset (Warning: deletes everyone\'s data)',
+    resetBtn: 'Delete All Data',
+    resetConfirm: 'Delete all trip data for everyone?',
+    language: '🌐 Language / ภาษา',
+    langTH: 'ไทย',
+    langEN: 'English',
+  }
+};
+
+// ═══════════════════════════════════════════════════
 const RATES = { THB: 35, USD: 1, EUR: 0.92, JPY: 150, SGD: 1.34, GBP: 0.79, CNY: 7.2, KRW: 1330, AUD: 1.52, MYR: 4.7 };
 
-const CURRENCIES=[
-  {code:'THB',sym:'฿',name:'บาทไทย'},{code:'USD',sym:'$',name:'ดอลลาร์สหรัฐ'},
-  {code:'EUR',sym:'€',name:'ยูโร'},{code:'JPY',sym:'¥',name:'เยนญี่ปุ่น'},
-  {code:'SGD',sym:'S$',name:'ดอลลาร์สิงคโปร์'},{code:'GBP',sym:'£',name:'ปอนด์อังกฤษ'},
-  {code:'CNY',sym:'¥',name:'หยวนจีน'},{code:'KRW',sym:'₩',name:'วอนเกาหลี'},
-  {code:'AUD',sym:'A$',name:'ดอลลาร์ออสเตรเลีย'},{code:'MYR',sym:'RM',name:'ริงกิตมาเลเซีย'}
+const CURRENCIES = [
+  {code:'THB',sym:'฿',name:'บาทไทย / Thai Baht'},
+  {code:'USD',sym:'$',name:'ดอลลาร์สหรัฐ / US Dollar'},
+  {code:'EUR',sym:'€',name:'ยูโร / Euro'},
+  {code:'JPY',sym:'¥',name:'เยน / Japanese Yen'},
+  {code:'SGD',sym:'S$',name:'ดอลลาร์สิงคโปร์ / SGD'},
+  {code:'GBP',sym:'£',name:'ปอนด์ / British Pound'},
+  {code:'CNY',sym:'¥',name:'หยวน / Chinese Yuan'},
+  {code:'KRW',sym:'₩',name:'วอน / Korean Won'},
+  {code:'AUD',sym:'A$',name:'ดอลลาร์ออสเตรเลีย / AUD'},
+  {code:'MYR',sym:'RM',name:'ริงกิต / Malaysian Ringgit'}
 ];
 
 const CATEGORIES = ['Food', 'Accommodation', 'Transport', 'Ticket', 'Shopping', 'Settlement', 'Other'];
 
-// 🎨 ระบบสีหมวดหมู่ตามที่คุณออกแบบ
 const CAT_COLORS = {
-  'Food': { bg: '#FFED9E', text: '#111111' },         // BUTTER
-  'Accommodation': { bg: '#A6CFF2', text: '#111111' }, // SKY
-  'Transport': { bg: '#426BC2', text: '#FFFFFF' },     // TWILIGHT
-  'Ticket': { bg: '#F2C0CA', text: '#111111' },        // BLOSSOM
-  'Shopping': { bg: '#4A9166', text: '#FFFFFF' },      // LEAVES
-  'Settlement': { bg: '#EAF5F0', text: '#2E7D5E' },    
-  'Other': { bg: '#F0F0F0', text: '#111111' }          
+  'Food':          { bg:'#FFED9E', text:'#111111' },
+  'Accommodation': { bg:'#A6CFF2', text:'#111111' },
+  'Transport':     { bg:'#426BC2', text:'#FFFFFF' },
+  'Ticket':        { bg:'#F2C0CA', text:'#111111' },
+  'Shopping':      { bg:'#4A9166', text:'#FFFFFF' },
+  'Settlement':    { bg:'#EAF5F0', text:'#2E7D5E' },
+  'Other':         { bg:'#F0F0F0', text:'#111111' }
 };
 
-const getCur=code=>CURRENCIES.find(x=>x.code===code)||CURRENCIES[0];
-const fmtAmt=(n,code)=>{ const c=getCur(code); const dec=(code==='JPY'||code==='KRW')?0:2; return c.sym+Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec}); };
+const getCur = code => CURRENCIES.find(x=>x.code===code)||CURRENCIES[0];
+const fmtAmt = (n,code) => {
+  const c = getCur(code);
+  const dec = (code==='JPY'||code==='KRW') ? 0 : 2;
+  return c.sym + Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+};
 
-const initData=()=>({tripName:"Where's the squad wandering next...?",members:[],expenses:[],displayCurrency:'THB'});
-const loadData=()=>JSON.parse(localStorage.getItem(KEY))||initData();
-const persist=d=>localStorage.setItem(KEY,JSON.stringify(d));
-const today=()=>new Date().toISOString().slice(0,10);
+const initData = () => ({ tripName:"Where's the squad wandering next...?", members:[], expenses:[], displayCurrency:'THB' });
+const loadData = () => JSON.parse(localStorage.getItem(KEY)) || initData();
+const persist = d => localStorage.setItem(KEY, JSON.stringify(d));
+const today = () => new Date().toISOString().slice(0,10);
 
-function calcBal(members,expenses,displayCurrency){
-  const paid={},owe={}, net={};
+function calcBal(members, expenses, displayCurrency){
+  const paid={}, owe={}, net={};
   members.forEach(m=>{paid[m]=0;owe[m]=0;net[m]=0});
   expenses.forEach(e=>{
     if((e.currency||'THB')!==displayCurrency) return;
@@ -165,7 +349,7 @@ function calcBal(members,expenses,displayCurrency){
 
 function calcSettle(net){
   const cr=[],db=[];
-  Object.entries(net).forEach(([n,v])=>{ const val = Math.round(v*100)/100; if(val>0)cr.push({n,a:val}); if(val<0)db.push({n,a:-val}); });
+  Object.entries(net).forEach(([n,v])=>{ const val=Math.round(v*100)/100; if(val>0)cr.push({n,a:val}); if(val<0)db.push({n,a:-val}); });
   cr.sort((a,b)=>b.a-a.a); db.sort((a,b)=>b.a-a.a);
   const r=[]; let ci=0,di=0;
   while(ci<cr.length&&di<db.length){
@@ -177,41 +361,36 @@ function calcSettle(net){
   return r;
 }
 
-// Icons (Updated matching the new images)
-const I={
-  gear:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
-  paw:<svg viewBox="0 0 24 24"><path d="M12 8.5c-1.5 0-2.7-1.4-2.7-3.2S10.5 2 12 2s2.7 1.4 2.7 3.2-1.2 3.3-2.7 3.3zM6.5 12c-1.4 0-2.5-1.5-2.5-3.5S5.1 5 6.5 5 9 6.5 9 8.5 7.9 12 6.5 12zm11 0c-1.4 0-2.5-1.5-2.5-3.5S16.1 5 17.5 5 20 6.5 20 8.5 18.9 12 17.5 12zm-5.5 10c-3.8 0-5.5-2-6-4.5-.3-1.5.5-2.5 1.5-3.5 1.5-1.5 3-2 4.5-2s3 .5 4.5 2c1 1 1.8 2 1.5 3.5-.5 2.5-2.2 4.5-6 4.5z"/></svg>,
-  // Updated Home & List Icons
-  home:<svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9.5L12 3l9 6.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5z"/><path d="M9 22V12h6v10"/></svg>,
-  list:<svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M15 4H8a2 2 0 0 0-2 2v14l3-3 3 3 3-3 3 3V6a2 2 0 0 0-2-2z"/><line x1="9" y1="9" x2="14" y2="9"/><line x1="9" y1="13" x2="14" y2="13"/><line x1="9" y1="17" x2="14" y2="17"/></svg>,
-  back:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>,
-  edit:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style={{width:16,height:16}}><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
-  refresh:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+// Icons
+const I = {
+  gear: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
+  paw: <svg viewBox="0 0 24 24"><path d="M12 8.5c-1.5 0-2.7-1.4-2.7-3.2S10.5 2 12 2s2.7 1.4 2.7 3.2-1.2 3.3-2.7 3.3zM6.5 12c-1.4 0-2.5-1.5-2.5-3.5S5.1 5 6.5 5 9 6.5 9 8.5 7.9 12 6.5 12zm11 0c-1.4 0-2.5-1.5-2.5-3.5S16.1 5 17.5 5 20 6.5 20 8.5 18.9 12 17.5 12zm-5.5 10c-3.8 0-5.5-2-6-4.5-.3-1.5.5-2.5 1.5-3.5 1.5-1.5 3-2 4.5-2s3 .5 4.5 2c1 1 1.8 2 1.5 3.5-.5 2.5-2.2 4.5-6 4.5z"/></svg>,
+  home: <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9.5L12 3l9 6.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5z"/><path d="M9 22V12h6v10"/></svg>,
+  list: <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M15 4H8a2 2 0 0 0-2 2v14l3-3 3 3 3-3 3 3V6a2 2 0 0 0-2-2z"/><line x1="9" y1="9" x2="14" y2="9"/><line x1="9" y1="13" x2="14" y2="13"/><line x1="9" y1="17" x2="14" y2="17"/></svg>,
+  back: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"/></svg>,
+  edit: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style={{width:16,height:16}}><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
+  refresh: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
 };
 
-function PlaceholderImage({ size = 50, rounded = 'var(--rs)', style }) {
-  return <div style={{ width: size, height: size, borderRadius: rounded, border: '1.5px solid #2ECC71', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#2ECC71', fontSize: 10, fontWeight: 600, backgroundColor: 'rgba(46, 204, 113, 0.05)', ...style }}>IMG</div>;
+function PlaceholderImage({ size=50, rounded='var(--rs)', style }) {
+  return <div style={{width:size,height:size,borderRadius:rounded,border:'1.5px solid #2ECC71',display:'flex',alignItems:'center',justifyContent:'center',color:'#2ECC71',fontSize:10,fontWeight:600,backgroundColor:'rgba(46,204,113,0.05)',...style}}>IMG</div>;
 }
 
-// 🆕 ไอคอนมือถือเหรียญ (Hand with Coin 'S')
 function HandCoinIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      {/* Hand shape */}
       <path d="M4 14c2 0 4-1 6-1s3 .5 3 2-2 2-4 2H4"/>
       <path d="M4 18c2 0 4 3 8 3 4 0 7-3 7-5"/>
-      {/* Coin */}
       <circle cx="15" cy="7" r="4.5"/>
-      {/* 'S' inside coin */}
       <text x="15" y="10.5" fontSize="10" fontWeight="900" fill="currentColor" stroke="none" textAnchor="middle" fontFamily="Kanit, sans-serif">S</text>
     </svg>
   );
 }
 
-function NewArrowIcon({ color = 'currentColor' }) {
+function NewArrowIcon({ color='currentColor' }) {
   return (
-    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 6H16.5M16.5 6L11.5 1M16.5 6L11.5 11" stroke={color} stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+      <path d="M0 6H16.5M16.5 6L11.5 1M16.5 6L11.5 11" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 }
@@ -226,9 +405,9 @@ function InlineEdit({ text, onSave, className, placeholder, isTitle, style }) {
   const handleSave = () => { setIsEditing(false); if(val.trim()) onSave(val.trim()); else setVal(text); };
 
   if (isEditing) {
-    return <input ref={inputRef} value={val} onChange={e=>setVal(e.target.value)} onBlur={handleSave} onKeyDown={e=>{if(e.key==='Enter')handleSave()}} className="inline-input" style={{fontSize: isTitle?22:16, fontWeight: isTitle?800:600, ...style}}/>
+    return <input ref={inputRef} value={val} onChange={e=>setVal(e.target.value)} onBlur={handleSave} onKeyDown={e=>{if(e.key==='Enter')handleSave()}} className="inline-input" style={{fontSize:isTitle?22:16,fontWeight:isTitle?800:600,...style}}/>
   }
-  return <div onClick={()=>{setVal(text); setIsEditing(true);}} className={className} style={{cursor:'text', ...style}}>{text || placeholder} <span style={{opacity:0.5}}>{I.edit}</span></div>
+  return <div onClick={()=>{setVal(text); setIsEditing(true);}} className={className} style={{cursor:'text',...style}}>{text || placeholder} <span style={{opacity:0.5}}>{I.edit}</span></div>
 }
 
 function useToast(){
@@ -236,47 +415,49 @@ function useToast(){
   return [t, msg=>{setT(msg);setTimeout(()=>setT(null),2000)}];
 }
 
-/* ── Tab: Home ── */
-function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember, syncData}){
-  const [addMode, setAdd]=useState(false);
-  const [nm, setNm]=useState('');
-  const {members, expenses, displayCurrency, tripName}=data;
+// ═══════════════════════════════════════════════════
+// HOME TAB
+// ═══════════════════════════════════════════════════
+function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember, syncData, t}){
+  const [addMode, setAdd] = useState(false);
+  const [nm, setNm] = useState('');
+  const {members, expenses, displayCurrency, tripName} = data;
 
-  const {paid, net}=calcBal(members, expenses, displayCurrency);
-  const totalAmt = expenses.filter(e=>e.category!=='Settlement').reduce((s,e)=>s+e.amount,0); 
+  const {paid} = calcBal(members, expenses, displayCurrency);
+  const totalAmt = expenses.filter(e=>e.category!=='Settlement').reduce((s,e)=>s+e.amount, 0);
 
-  const addM=()=>{
-    const n=nm.trim(); if(!n) return;
-    if(members.includes(n)) return toast('มีชื่อนี้แล้ว!');
-    upd(d=>{d.members=[...d.members,n]; return d;}); setNm(''); setAdd(false); toast(`เพิ่ม ${n} แล้ว ✓`);
+  const addM = () => {
+    const n = nm.trim(); if(!n) return;
+    if(members.includes(n)) return toast(t.memberDuplicate);
+    upd(d=>{d.members=[...d.members,n]; return d;});
+    setNm(''); setAdd(false); toast(t.memberAdded(n));
   };
 
   return <div className="app-container">
     <div className="top-header">
       <div style={{display:'flex', gap:10}}>
-        <PlaceholderImage size={64} rounded="8px" />
+        <PlaceholderImage size={64} rounded="8px"/>
         <div className="bubble-chat">
-          <div className="bubble-hi">Hello!</div>
+          <div className="bubble-hi">{t.hello}</div>
           <div style={{marginTop:2}}>
-             <InlineEdit text={myName} onSave={onChangeName} placeholder="Pop your nickname here!" className="bubble-sub"/>
+            <InlineEdit text={myName} onSave={onChangeName} placeholder={t.nicknamePlaceholder} className="bubble-sub"/>
           </div>
         </div>
       </div>
       <div style={{display:'flex', gap:8}}>
-        {/* กดปุ่มนี้เพื่อซิงค์ข้อมูลล่าสุด */}
         <button className="settings-btn" onClick={syncData} style={{color:'var(--ink-light)'}}>{I.refresh}</button>
         <button className="settings-btn" onClick={()=>setTab('settings')}>{I.gear}</button>
       </div>
     </div>
-    
+
     <div className="pink-board">
       <div className="trip-header">
-         <InlineEdit text={tripName} onSave={v=>upd(d=>{d.tripName=v; return d;})} isTitle={true} className="trip-title" />
-         <div className="trip-sub">{members.length} member · {expenses.length} transactions</div>
+        <InlineEdit text={tripName} onSave={v=>upd(d=>{d.tripName=v; return d;})} isTitle={true} className="trip-title"/>
+        <div className="trip-sub">{t.memberCount(members.length)} · {t.transactionCount(expenses.length)}</div>
       </div>
 
       <div className="sec-card">
-        <div className="total-label">Total</div>
+        <div className="total-label">{t.total}</div>
         <div className="total-row">
           <span className="badge" style={{background:'var(--accent-light)', color:'var(--accent)'}}>{displayCurrency}</span>
           <span style={{fontSize:20, fontWeight:800, color:'var(--ink-dark)'}}>{fmtAmt(totalAmt, displayCurrency)}</span>
@@ -285,31 +466,33 @@ function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember
 
       <div className="sec-card">
         <div className="add-mem-row">
-          <div style={{fontWeight:800, fontSize:16, color:'var(--ink-dark)'}}>Member</div>
-          {addMode ? <button className="pill-btn" style={{border:'none', color:'var(--ink-light)'}} onClick={()=>setAdd(false)}>Cancel</button> 
-                   : <button className="pill-btn" onClick={()=>setAdd(true)}>+ Add</button>}
+          <div style={{fontWeight:800, fontSize:16, color:'var(--ink-dark)'}}>{t.member}</div>
+          {addMode
+            ? <button className="pill-btn" style={{border:'none', color:'var(--ink-light)'}} onClick={()=>setAdd(false)}>{t.cancel}</button>
+            : <button className="pill-btn" onClick={()=>setAdd(true)}>{t.add}</button>
+          }
         </div>
-        
+
         {addMode && (
-          <div className="input-group" style={{marginBottom: 16}}>
-            <input placeholder="Member name" value={nm} onChange={e=>setNm(e.target.value)} onKeyDown={e=>e.key==='Enter'&&addM()} autoFocus/>
+          <div className="input-group" style={{marginBottom:16}}>
+            <input placeholder={t.memberNamePlaceholder} value={nm} onChange={e=>setNm(e.target.value)} onKeyDown={e=>e.key==='Enter'&&addM()} autoFocus/>
             <button className="paw-btn" onClick={addM}>{I.paw}</button>
           </div>
         )}
 
         {members.length===0 && !addMode && (
           <div style={{textAlign:'center', padding:'20px 0', color:'var(--ink-light)', fontSize:13}}>
-            <center><PlaceholderImage size={80} rounded="10px" style={{marginBottom:10}} /></center>
-            <div style={{opacity:0.6}}>Add members to get started {I.paw}</div>
+            <center><PlaceholderImage size={80} rounded="10px" style={{marginBottom:10}}/></center>
+            <div style={{opacity:0.6}}>{t.noMembers}</div>
           </div>
         )}
 
         {members.map(m=>(
           <div key={m} className="mem-item" onClick={()=>onSelectMember(m)}>
-            <div className="av-sq" style={{background: m===myName?'var(--accent-light)':'#FBF6F2', color: m===myName?'var(--accent)':'var(--ink-light)'}}>{m[0].toUpperCase()}</div>
+            <div className="av-sq" style={{background:m===myName?'var(--accent-light)':'#FBF6F2', color:m===myName?'var(--accent)':'var(--ink-light)'}}>{m[0].toUpperCase()}</div>
             <div style={{flex:1}}>
               <div style={{fontWeight:700, fontSize:15, color:'var(--ink-dark)'}}>{m}</div>
-              <div style={{fontSize:12, color:'var(--ink-light)'}}>spent {fmtAmt(paid[m]||0, displayCurrency)}</div>
+              <div style={{fontSize:12, color:'var(--ink-light)'}}>{t.spent(fmtAmt(paid[m]||0, displayCurrency))}</div>
             </div>
             <div style={{color:'var(--ink-light)'}}>&gt;</div>
           </div>
@@ -319,365 +502,397 @@ function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember
   </div>;
 }
 
-/* ── Tab: Add/Edit Expense ── */
-function AddTab({data, upd, toast, goBack, editingExp}){
-  const {members, displayCurrency}=data;
+// ═══════════════════════════════════════════════════
+// ADD / EDIT EXPENSE TAB
+// ═══════════════════════════════════════════════════
+function AddTab({data, upd, toast, goBack, editingExp, t}){
+  const {members, displayCurrency} = data;
   const isEdit = !!editingExp;
-  
-  const [desc,setDesc]=useState(isEdit?editingExp.desc:'');
-  const [amt,setAmt]=useState(isEdit?editingExp.amount:'');
-  const [cat,setCat]=useState(isEdit?editingExp.category:'Food');
-  const [payer,setPayer]=useState(isEdit?editingExp.payer:(members[0]||''));
-  const [note,setNote]=useState(isEdit?(editingExp.note||''):''); 
-  const [sel,setSel]=useState({});
+
+  const [desc, setDesc] = useState(isEdit?editingExp.desc:'');
+  const [amt,  setAmt]  = useState(isEdit?editingExp.amount:'');
+  const [cat,  setCat]  = useState(isEdit?editingExp.category:'Food');
+  const [payer,setPayer] = useState(isEdit?editingExp.payer:(members[0]||''));
+  const [note, setNote] = useState(isEdit?(editingExp.note||''):'');
+  const [sel,  setSel]  = useState({});
 
   useEffect(()=>{
-    const s={}; 
-    if(isEdit) { members.forEach(m=>{ s[m] = !!editingExp.splits[m]; }); }
-    else { members.forEach(m=>{ s[m] = true; }); }
+    const s={};
+    if(isEdit){ members.forEach(m=>{ s[m]=!!editingExp.splits[m]; }); }
+    else { members.forEach(m=>{ s[m]=true; }); }
     setSel(s);
   },[members, isEdit]);
 
-  if(members.length<2) return <div className="app-container"><div style={{marginTop:40, textAlign:'center'}}>ต้องมีสมาชิกอย่างน้อย 2 คนก่อน</div></div>;
+  if(members.length<2) return <div className="app-container"><div style={{marginTop:40,textAlign:'center'}}>{t.needMinMembers}</div></div>;
 
-  const submit=()=>{
+  const submit = () => {
     const active = members.filter(m=>sel[m]);
     const a = parseFloat(amt);
-    if(!desc.trim()) return toast('กรุณาใส่รายละเอียด');
-    if(!a || a<=0) return toast('ใส่จำนวนเงิน');
-    if(!payer) return toast('เลือกคนจ่าย');
-    if(active.length===0) return toast('เลือกคนหารด้วย');
+    if(!desc.trim()) return toast(t.needDetail);
+    if(!a || a<=0)   return toast(t.needAmount);
+    if(!payer)       return toast(t.needPayer);
+    if(active.length===0) return toast(t.needSplit);
 
     const each = a / active.length;
     const splits = {}; active.forEach(m=>splits[m]=each);
 
-    const expObj = { id: isEdit?editingExp.id:Date.now(), desc:desc.trim(), amount:a, currency:displayCurrency, category:cat, payer, splits, note:note.trim(), date:today() };
+    const expObj = { id:isEdit?editingExp.id:Date.now(), desc:desc.trim(), amount:a, currency:displayCurrency, category:cat, payer, splits, note:note.trim(), date:today() };
 
     if(isEdit){
-      upd(d=>{ d.expenses = d.expenses.map(e=>e.id===expObj.id ? expObj : e); return d; });
-      toast('แก้ไขรายการแล้ว');
+      upd(d=>{ d.expenses=d.expenses.map(e=>e.id===expObj.id?expObj:e); return d; });
+      toast(t.edited);
     } else {
-      upd(d=>{ d.expenses = [expObj, ...d.expenses]; return d; });
-      toast('บันทึกแล้ว');
+      upd(d=>{ d.expenses=[expObj,...d.expenses]; return d; });
+      toast(t.saved);
     }
     goBack();
   };
 
-  const del=()=>{
-    if(confirm('ลบรายการนี้?')){ upd(d=>{d.expenses=d.expenses.filter(e=>e.id!==editingExp.id); return d;}); toast('ลบแล้ว'); goBack(); }
+  const del = () => {
+    if(confirm(t.confirmDelete)){
+      upd(d=>{d.expenses=d.expenses.filter(e=>e.id!==editingExp.id); return d;});
+      toast(t.deleted); goBack();
+    }
   };
 
   return <div className="app-container" style={{background:'var(--bg-pink)'}}>
     <div className="top-header" style={{alignItems:'center', background:'transparent'}}>
-      <button className="pill-btn" style={{display:'flex',gap:6,alignItems:'center'}} onClick={goBack}>{I.back} Back</button>
-      <div style={{fontWeight:800, fontSize:18, color:'var(--ink-dark)'}}>{isEdit?'Edit':'Add'} Transaction</div>
+      <button className="pill-btn" style={{display:'flex',gap:6,alignItems:'center'}} onClick={goBack}>{I.back} {t.back}</button>
+      <div style={{fontWeight:800, fontSize:18, color:'var(--ink-dark)'}}>{isEdit?t.editTransaction:t.addTransaction}</div>
       <div style={{width:80}}></div>
     </div>
 
     <div style={{padding:'0 20px 40px'}}>
       <div className="sec-card">
-        <center><PlaceholderImage size={60} rounded="10px" style={{marginBottom:16}} /></center>
-        
-        <div className="lbl">หมวดหมู่ (Category)</div>
+        <center><PlaceholderImage size={60} rounded="10px" style={{marginBottom:16}}/></center>
+
+        <div className="lbl">{t.category}</div>
         <select value={cat} onChange={e=>setCat(e.target.value)} style={{marginBottom:16}}>
           {CATEGORIES.filter(c=>c!=='Settlement').map(c=><option key={c} value={c}>{c}</option>)}
         </select>
 
-        <div className="lbl">รายละเอียด</div>
-        <input placeholder="เช่น ค่าอาหาร..." value={desc} onChange={e=>setDesc(e.target.value)} style={{marginBottom:16}}/>
+        <div className="lbl">{t.detail}</div>
+        <input placeholder={t.detailPlaceholder} value={desc} onChange={e=>setDesc(e.target.value)} style={{marginBottom:16}}/>
 
-        <div className="lbl">จำนวนเงิน ({displayCurrency})</div>
+        <div className="lbl">{t.amount(displayCurrency)}</div>
         <input type="number" inputMode="decimal" placeholder="0.00" value={amt} onChange={e=>setAmt(e.target.value)} style={{marginBottom:16}}/>
 
-        <div className="lbl">หมายเหตุ (Note)</div>
-        <textarea rows="2" placeholder="รายละเอียดเพิ่มเติม..." value={note} onChange={e=>setNote(e.target.value)} style={{marginBottom:16, resize:'none'}}/>
+        <div className="lbl">{t.note}</div>
+        <textarea rows="2" placeholder={t.notePlaceholder} value={note} onChange={e=>setNote(e.target.value)} style={{marginBottom:16,resize:'none'}}/>
 
-        <div className="lbl">ใครเป็นคนจ่าย?</div>
+        <div className="lbl">{t.whoPayQuestion}</div>
         <select value={payer} onChange={e=>setPayer(e.target.value)} style={{marginBottom:24}}>
           {members.map(m=><option key={m} value={m}>{m}</option>)}
         </select>
 
-        <div className="lbl">หารกับใครบ้าง?</div>
+        <div className="lbl">{t.splitWithQuestion}</div>
         <div className="split-chip-group">
-          {members.map(m=>{
-            const isSelected = sel[m];
-            return (
-              <div key={m} onClick={()=>setSel(s=>({...s,[m]:!s[m]}))} className={`split-chip ${isSelected ? 'on' : 'off'}`}>
-                {isSelected && <HandCoinIcon />}
-                {m}
-              </div>
-            );
-          })}
+          {members.map(m=>(
+            <div key={m} onClick={()=>setSel(s=>({...s,[m]:!s[m]}))} className={`split-chip ${sel[m]?'on':'off'}`}>
+              {sel[m] && <HandCoinIcon/>}
+              {m}
+            </div>
+          ))}
         </div>
 
-        <button className="btn-main" onClick={submit}>บันทึก</button>
-        {isEdit && <button className="pill-btn" style={{width:'100%', marginTop:12, color:'white', background:'#A65368', border:'none'}} onClick={del}>ลบรายการนี้</button>}
+        <button className="btn-main" onClick={submit}>{t.save}</button>
+        {isEdit && <button className="pill-btn" style={{width:'100%',marginTop:12,color:'white',background:'#A65368',border:'none'}} onClick={del}>{t.delete}</button>}
       </div>
     </div>
   </div>;
 }
 
-/* ── Tab: Transaction List ── */
-function ListTab({data, setEditingExp, goBack}){
+// ═══════════════════════════════════════════════════
+// TRANSACTION LIST TAB
+// ═══════════════════════════════════════════════════
+function ListTab({data, setEditingExp, t}){
   const {expenses, displayCurrency} = data;
-  const exps = expenses.filter(e=>e.category !== 'Settlement'); 
-  
+  const exps = expenses.filter(e=>e.category!=='Settlement');
+
   return <div className="app-container" style={{background:'var(--bg-pink)'}}>
     <div className="top-header" style={{background:'transparent'}}>
-       <div style={{fontWeight:800, fontSize:24, color:'var(--ink-dark)'}}>Transactions</div>
+      <div style={{fontWeight:800, fontSize:24, color:'var(--ink-dark)'}}>{t.transactions}</div>
     </div>
     <div style={{padding:'0 20px 40px'}}>
-      {exps.length===0 && <div style={{textAlign:'center', marginTop:40, color:'var(--ink-light)'}}>ยังไม่มีรายการ</div>}
+      {exps.length===0 && <div style={{textAlign:'center', marginTop:40, color:'var(--ink-light)'}}>{t.noTransactions}</div>}
       {exps.map(e=>{
         const colorStyle = CAT_COLORS[e.category] || CAT_COLORS['Other'];
-
         return (
-          <div key={e.id} className="sec-card" style={{padding:'16px', cursor:'pointer'}} onClick={()=>setEditingExp(e)}>
-            <div style={{display:'flex', justifyContent:'space-between', marginBottom:8}}>
-              <div style={{fontWeight:700, fontSize:16, color:'var(--ink-dark)'}}>{e.desc}</div>
-              <div style={{fontWeight:800, fontSize:16}}>{fmtAmt(e.amount, e.currency)}</div>
+          <div key={e.id} className="sec-card" style={{padding:'16px',cursor:'pointer'}} onClick={()=>setEditingExp(e)}>
+            <div style={{display:'flex',justifyContent:'space-between',marginBottom:8}}>
+              <div style={{fontWeight:700,fontSize:16,color:'var(--ink-dark)'}}>{e.desc}</div>
+              <div style={{fontWeight:800,fontSize:16}}>{fmtAmt(e.amount, e.currency)}</div>
             </div>
-            <div style={{display:'flex', justifyContent:'space-between', fontSize:13, color:'var(--ink-light)', marginBottom:e.note?6:0, alignItems:'center'}}>
-              <div><span className="badge" style={{background: colorStyle.bg, color: colorStyle.text}}>{e.category}</span></div>
-              <div>{e.payer} จ่าย</div>
+            <div style={{display:'flex',justifyContent:'space-between',fontSize:13,color:'var(--ink-light)',marginBottom:e.note?6:0,alignItems:'center'}}>
+              <div><span className="badge" style={{background:colorStyle.bg,color:colorStyle.text}}>{e.category}</span></div>
+              <div>{t.paidBy(e.payer)}</div>
             </div>
-            {e.note && <div style={{fontSize:12, color:'var(--ink-light)', background:'#FBF6F2', padding:'6px 10px', borderRadius:8}}>📝 {e.note}</div>}
+            {e.note && <div style={{fontSize:12,color:'var(--ink-light)',background:'#FBF6F2',padding:'6px 10px',borderRadius:8}}>📝 {e.note}</div>}
           </div>
-        )
+        );
       })}
     </div>
   </div>;
 }
 
-/* ── Member Detail & Settlements ── */
-function MemberDetail({member, data, upd, toast, goBack}){
-  const {members, expenses, displayCurrency}=data;
-  
-  const realExpenses = expenses.filter(e => e.category !== 'Settlement');
+// ═══════════════════════════════════════════════════
+// MEMBER DETAIL
+// ═══════════════════════════════════════════════════
+function MemberDetail({member, data, upd, toast, goBack, t}){
+  const {members, expenses, displayCurrency} = data;
+
+  const realExpenses = expenses.filter(e=>e.category!=='Settlement');
   const {net: grossNet} = calcBal(members, realExpenses, displayCurrency);
-  const grossSettles = calcSettle(grossNet).filter(s => s.from === member || s.to === member);
+  const grossSettles = calcSettle(grossNet).filter(s=>s.from===member||s.to===member);
 
   const {net: actualNet} = calcBal(members, expenses, displayCurrency);
   const currentN = actualNet[member] || 0;
 
   const togglePaid = (s) => {
-    const relatedSettlements = expenses.filter(e => e.category === 'Settlement' && e.currency === displayCurrency && e.payer === s.from && e.splits[s.to]);
-    const paidAmt = relatedSettlements.reduce((sum, e) => sum + (e.splits[s.to] || 0), 0);
+    const related = expenses.filter(e=>e.category==='Settlement'&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to]);
+    const paidAmt = related.reduce((sum,e)=>sum+(e.splits[s.to]||0),0);
     const isPaid = paidAmt >= (s.amount - 0.01);
 
     if(isPaid){
-       upd(d => {
-         d.expenses = d.expenses.filter(e => !(e.category === 'Settlement' && e.currency === displayCurrency && e.payer === s.from && e.splits[s.to]));
-         return d;
-       });
-       toast('ยกเลิกการชำระเงินแล้ว');
+      upd(d=>{d.expenses=d.expenses.filter(e=>!(e.category==='Settlement'&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to])); return d;});
+      toast(t.settleCancel);
     } else {
-       upd(d=>{
-         d.expenses.push({ id:Date.now(), desc:`เคลียร์หนี้ ${s.from} ➔ ${s.to}`, amount:s.amount, currency:displayCurrency, category:'Settlement', payer:s.from, splits:{[s.to]: s.amount}, date:today(), note:'' });
-         return d;
-       });
-       toast('บันทึกการชำระเงินแล้ว ✓');
+      upd(d=>{
+        d.expenses.push({id:Date.now(),desc:`${s.from} ➔ ${s.to}`,amount:s.amount,currency:displayCurrency,category:'Settlement',payer:s.from,splits:{[s.to]:s.amount},date:today(),note:''});
+        return d;
+      });
+      toast(t.settleSaved);
     }
   };
 
-  return <div className="app-container" style={{background:'var(--bg-main)', zIndex:200, position:'absolute', top:0, left:0, right:0, bottom:0}}>
-     <div className="top-header" style={{alignItems:'center'}}>
-      <button className="pill-btn" style={{display:'flex',gap:6,alignItems:'center'}} onClick={goBack}>{I.back} Back</button>
+  return <div className="app-container" style={{background:'var(--bg-main)',zIndex:200,position:'absolute',top:0,left:0,right:0,bottom:0}}>
+    <div className="top-header" style={{alignItems:'center'}}>
+      <button className="pill-btn" style={{display:'flex',gap:6,alignItems:'center'}} onClick={goBack}>{I.back} {t.back}</button>
       <div style={{width:80}}></div>
     </div>
-    <div className="content-area" style={{paddingTop:10}}>
-       <div style={{display:'flex', alignItems:'center', gap:16, marginBottom:24}}>
-          <div className="av-sq" style={{width:60, height:60, fontSize:24, background:'var(--surface)', border:'2px solid var(--accent)'}}>{member[0]}</div>
-          <div>
-            <div style={{fontSize:24, fontWeight:800, color:'var(--ink-dark)'}}>{member}</div>
-            <div style={{fontSize:14, fontWeight:600, color: currentN>0?'var(--green)': currentN<-0.01 ?'var(--accent)':'var(--ink-light)'}}>
-               {currentN>0.01 ? `คนอื่นค้างอยู่ ${fmtAmt(currentN, displayCurrency)}` : currentN<-0.01 ? `ต้องจ่ายเพื่อน ${fmtAmt(-currentN, displayCurrency)}` : 'เคลียร์หนี้หมดแล้ว 🎉'}
-            </div>
+    <div style={{padding:'0 20px 20px'}}>
+      <div style={{display:'flex',alignItems:'center',gap:16,marginBottom:24}}>
+        <div className="av-sq" style={{width:60,height:60,fontSize:24,background:'var(--surface)',border:'2px solid var(--accent)'}}>{member[0]}</div>
+        <div>
+          <div style={{fontSize:24,fontWeight:800,color:'var(--ink-dark)'}}>{member}</div>
+          <div style={{fontSize:14,fontWeight:600,color:currentN>0.01?'var(--green)':currentN<-0.01?'var(--accent)':'var(--ink-light)'}}>
+            {currentN>0.01 ? t.friendOwes(fmtAmt(currentN, displayCurrency))
+              : currentN<-0.01 ? t.owesFriend(fmtAmt(-currentN, displayCurrency))
+              : t.allClear}
           </div>
-       </div>
+        </div>
+      </div>
 
-       {grossSettles.length>0 && <div className="sec-card" style={{background:'var(--bg-pink)'}}>
-          <div className="lbl" style={{color:'var(--ink-dark)', fontSize:14, marginBottom:16}}>💸 รายการต้องโอน / รับโอน ({displayCurrency})</div>
-          
+      {grossSettles.length>0 && (
+        <div className="sec-card" style={{background:'var(--bg-pink)'}}>
+          <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,marginBottom:16}}>
+            {t.settleHeader} ({displayCurrency})
+          </div>
           {grossSettles.map((s,i)=>{
-            const isFrom = s.from === member;
-            
-            const relatedSettlements = expenses.filter(e => e.category === 'Settlement' && e.currency === displayCurrency && e.payer === s.from && e.splits[s.to]);
-            const paidAmt = relatedSettlements.reduce((sum, e) => sum + (e.splits[s.to] || 0), 0);
+            const isFrom = s.from===member;
+            const related = expenses.filter(e=>e.category==='Settlement'&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to]);
+            const paidAmt = related.reduce((sum,e)=>sum+(e.splits[s.to]||0),0);
             const isPaid = paidAmt >= (s.amount - 0.01);
 
-            return <div key={i} style={{background:'var(--surface)', padding:'16px', borderRadius:16, marginBottom:12, border: isPaid? '2px solid var(--accent)':'2px solid transparent'}}>
-               <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12}}>
-                  <div style={{fontSize:14, fontWeight:600, display:'flex', alignItems:'center', gap:6}}>
-                    {isFrom ? (
-                        <span style={{color:'var(--ink-dark)', display:'flex', alignItems:'center', gap: 6}}>
-                            จ่ายให้ <NewArrowIcon color="var(--ink-dark)" /> {s.to}
-                        </span>
-                    ) : (
-                        <span style={{color:'var(--ink-dark)', display:'flex', alignItems:'center', gap: 6}}>
-                            รับจาก <NewArrowIcon color="var(--ink-dark)" /> {s.from}
-                        </span>
-                    )}
-                  </div>
-                  <div style={{fontSize:18, fontWeight:800, color:'var(--ink-dark)'}}>{fmtAmt(s.amount, displayCurrency)}</div>
-               </div>
-               
-               <div className={`split-chip ${isPaid ? 'on' : 'off'}`} style={{width:'100%', border: isPaid?'none':'1.5px solid rgba(119,5,35,0.1)'}} onClick={()=>togglePaid(s)}>
-                  {isPaid && <HandCoinIcon />}
-                  {isPaid ? (isFrom ? 'คุณโอนเงินแล้ว' : 'ได้รับเงินแล้ว') : (isFrom ? 'กดเมื่อโอนเงินแล้ว' : 'กดเมื่อได้รับเงินแล้ว')}
-               </div>
-            </div>
+            return <div key={i} style={{background:'var(--surface)',padding:'16px',borderRadius:16,marginBottom:12,border:isPaid?'2px solid var(--accent)':'2px solid transparent'}}>
+              <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}>
+                <div style={{fontSize:14,fontWeight:600,display:'flex',alignItems:'center',gap:6}}>
+                  {isFrom
+                    ? <span style={{color:'var(--ink-dark)',display:'flex',alignItems:'center',gap:6}}>{t.payTo} <NewArrowIcon color="var(--ink-dark)"/> {s.to}</span>
+                    : <span style={{color:'var(--ink-dark)',display:'flex',alignItems:'center',gap:6}}>{t.receiveFrom} <NewArrowIcon color="var(--ink-dark)"/> {s.from}</span>
+                  }
+                </div>
+                <div style={{fontSize:18,fontWeight:800,color:'var(--ink-dark)'}}>{fmtAmt(s.amount, displayCurrency)}</div>
+              </div>
+              <div className={`split-chip ${isPaid?'on':'off'}`} style={{width:'100%',border:isPaid?'none':'1.5px solid rgba(119,5,35,0.1)'}} onClick={()=>togglePaid(s)}>
+                {isPaid && <HandCoinIcon/>}
+                {isPaid
+                  ? (isFrom ? t.alreadySent : t.alreadyReceived)
+                  : (isFrom ? t.tapWhenSent : t.tapWhenReceived)
+                }
+              </div>
+            </div>;
           })}
-       </div>}
+        </div>
+      )}
     </div>
   </div>;
 }
 
-/* ── Settings Tab ── */
-function SettingsTab({data, upd, goBack, myName, onChangeName, toast}){
+// ═══════════════════════════════════════════════════
+// SETTINGS TAB
+// ═══════════════════════════════════════════════════
+function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setLang, t}){
   const {displayCurrency} = data;
-  
+
   const handleCurChange = (newCur) => {
-    if(newCur === displayCurrency) return;
-    if(confirm(`คุณต้องการแปลงยอดเงินของ "ทุกรายการ" เป็น ${newCur} ด้วยอัตราแลกเปลี่ยนโดยประมาณหรือไม่?\n\n*หากยกเลิก จะเปลี่ยนแค่สัญลักษณ์ แต่ไม่แปลงตัวเลข*`)){
-       const rateFrom = RATES[displayCurrency] || 1;
-       const rateTo = RATES[newCur] || 1;
-       upd(d=>{
-         d.expenses = d.expenses.map(exp => {
-            const convert = amt => (amt / rateFrom) * rateTo;
-            const newSplits = {};
-            Object.keys(exp.splits).forEach(k => newSplits[k] = convert(exp.splits[k]));
-            return {...exp, currency: newCur, amount: convert(exp.amount), splits: newSplits};
-         });
-         d.displayCurrency = newCur;
-         return d;
-       });
-       toast(`แปลงทุกยอดเป็น ${newCur} แล้ว`);
+    if(newCur===displayCurrency) return;
+    if(confirm(t.convertConfirm(newCur))){
+      const rateFrom = RATES[displayCurrency]||1;
+      const rateTo   = RATES[newCur]||1;
+      upd(d=>{
+        d.expenses = d.expenses.map(exp=>{
+          const convert = amt => (amt/rateFrom)*rateTo;
+          const newSplits={};
+          Object.keys(exp.splits).forEach(k=>newSplits[k]=convert(exp.splits[k]));
+          return {...exp, currency:newCur, amount:convert(exp.amount), splits:newSplits};
+        });
+        d.displayCurrency = newCur;
+        return d;
+      });
+      toast(t.converted(newCur));
     } else {
-       upd(d=>{ d.displayCurrency = newCur; return d; });
+      upd(d=>{ d.displayCurrency=newCur; return d; });
     }
   };
 
-  return <div className="app-container" style={{background:'var(--bg-pink)', zIndex:200, position:'absolute', top:0, left:0, right:0, bottom:0}}>
+  const handleLangChange = (newLang) => {
+    setLang(newLang);
+    localStorage.setItem(LANG_KEY, newLang);
+  };
+
+  return <div className="app-container" style={{background:'var(--bg-pink)',zIndex:200,position:'absolute',top:0,left:0,right:0,bottom:0}}>
     <div className="top-header" style={{alignItems:'center', background:'transparent'}}>
-      <button className="pill-btn" style={{display:'flex',gap:6,alignItems:'center'}} onClick={goBack}>{I.back} Back</button>
-      <div style={{fontWeight:800, fontSize:20, color:'var(--ink-dark)'}}>ตั้งค่า</div>
+      <button className="pill-btn" style={{display:'flex',gap:6,alignItems:'center'}} onClick={goBack}>{I.back} {t.back}</button>
+      <div style={{fontWeight:800,fontSize:20,color:'var(--ink-dark)'}}>{t.settings}</div>
       <div style={{width:80}}></div>
     </div>
 
     <div style={{padding:'0 20px 40px'}}>
-       
-       <div className="settings-card">
-          <div className="lbl" style={{color:'var(--ink-dark)', fontSize:14, display:'flex', alignItems:'center', gap:6}}>👤 ชื่อของฉัน</div>
-          <div style={{display:'flex', alignItems:'center', gap:12, marginTop:10}}>
-             <div className="av-sq" style={{background:'#EAF5F0', color:'#2E7D5E'}}>{(myName||'?')[0].toUpperCase()}</div>
-             <div style={{flex:1}}>
-                <InlineEdit text={myName} onSave={onChangeName} placeholder="แตะเพื่อตั้งชื่อ" className="bubble-hi" style={{color:'var(--ink-dark)'}}/>
-                <div style={{fontSize:12, color:'var(--ink-light)'}}>ชื่อนี้จะแสดงยอดของคุณบนหน้าแรก</div>
-             </div>
-          </div>
-       </div>
 
-       <div className="settings-card">
-          <div className="lbl" style={{color:'var(--ink-dark)', fontSize:14}}>💱 สกุลเงินที่แสดงผลหลัก</div>
-          <div style={{fontSize:12, color:'var(--ink-light)', marginBottom:12}}>ยอดรวม ยอดค้าง และแบนเนอร์หน้าแรก จะแสดงเป็นสกุลเงินนี้</div>
-          <div className="curr-grid">
-             {CURRENCIES.map(c=>(
-               <div key={c.code} className={`curr-item ${displayCurrency===c.code?'active':''}`} onClick={()=>handleCurChange(c.code)}>
-                  <div style={{fontWeight:800, fontSize:16, width:24}}>{c.sym}</div>
-                  <div>
-                    <div style={{fontWeight:700, fontSize:13, color:'var(--ink-dark)'}}>{c.code}</div>
-                    <div style={{fontSize:10, color:'var(--ink-light)'}}>{c.name}</div>
-                  </div>
-               </div>
-             ))}
-          </div>
-       </div>
+      {/* Language Toggle */}
+      <div className="settings-card">
+        <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,marginBottom:12}}>{t.language}</div>
+        <div className="lang-toggle">
+          <button className={`lang-btn ${lang==='th'?'active':''}`} onClick={()=>handleLangChange('th')}>{T.th.langTH}</button>
+          <button className={`lang-btn ${lang==='en'?'active':''}`} onClick={()=>handleLangChange('en')}>{T.en.langEN}</button>
+        </div>
+      </div>
 
-       <div className="settings-card">
-          <div className="lbl" style={{color:'var(--ink-dark)', fontSize:14}}>⚠️ รีเซ็ต (ระวัง: ลบข้อมูลของทุกคน)</div>
-          <button className="pill-btn" style={{width:'100%', padding:'12px', marginTop:10, background:'#F9E8EC', color:'#770523', border:'none'}} onClick={()=>{if(confirm('ลบข้อมูลทริปทั้งหมดของทุกคน?')) upd(()=>initData()); goBack();}}>
-             ลบข้อมูลทั้งหมด
-          </button>
-       </div>
+      {/* My Name */}
+      <div className="settings-card">
+        <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,display:'flex',alignItems:'center',gap:6}}>{t.myName}</div>
+        <div style={{display:'flex',alignItems:'center',gap:12,marginTop:10}}>
+          <div className="av-sq" style={{background:'#EAF5F0',color:'#2E7D5E'}}>{(myName||'?')[0].toUpperCase()}</div>
+          <div style={{flex:1}}>
+            <InlineEdit text={myName} onSave={onChangeName} placeholder={t.myNamePlaceholder} className="bubble-hi" style={{color:'var(--ink-dark)'}}/>
+            <div style={{fontSize:12,color:'var(--ink-light)'}}>{t.myNameSub}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Currency */}
+      <div className="settings-card">
+        <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14}}>{t.currency}</div>
+        <div style={{fontSize:12,color:'var(--ink-light)',marginBottom:12}}>{t.currencySub}</div>
+        <div className="curr-grid">
+          {CURRENCIES.map(c=>(
+            <div key={c.code} className={`curr-item ${displayCurrency===c.code?'active':''}`} onClick={()=>handleCurChange(c.code)}>
+              <div style={{fontWeight:800,fontSize:16,width:24}}>{c.sym}</div>
+              <div>
+                <div style={{fontWeight:700,fontSize:13,color:'var(--ink-dark)'}}>{c.code}</div>
+                <div style={{fontSize:10,color:'var(--ink-light)'}}>{c.name}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Danger Zone */}
+      <div className="settings-card">
+        <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14}}>{t.dangerZone}</div>
+        <button className="pill-btn" style={{width:'100%',padding:'12px',marginTop:10,background:'#F9E8EC',color:'#770523',border:'none'}}
+          onClick={()=>{ if(confirm(t.resetConfirm)){ upd(()=>initData()); goBack(); } }}>
+          {t.resetBtn}
+        </button>
+      </div>
 
     </div>
   </div>;
 }
 
-/* ── App Container ── */
+// ═══════════════════════════════════════════════════
+// APP ROOT
+// ═══════════════════════════════════════════════════
 function App(){
-  const [data,setData]=useState(loadData);
-  const [tab,setTab]=useState('home'); 
-  const [memberDetail,setMemberDetail]=useState(null); 
-  const [editingExp, setEditingExp]=useState(null);
-  const [myName,setMyName]=useState(()=>localStorage.getItem(MY_KEY)||'');
-  const [toast,showToast]=useToast();
+  const [data,   setData]  = useState(loadData);
+  const [tab,    setTab]   = useState('home');
+  const [memberDetail, setMemberDetail] = useState(null);
+  const [editingExp,   setEditingExp]   = useState(null);
+  const [myName, setMyName] = useState(()=>localStorage.getItem(MY_KEY)||'');
+  const [lang,   setLang]   = useState(()=>localStorage.getItem(LANG_KEY)||'th');
+  const [toast,  showToast] = useToast();
 
-  // ซิงค์ข้อมูลแค่ตอนกดปุ่ม Refresh เท่านั้น (ลบ Auto-load ตอนเปิดแอปออก)
+  // Active translations
+  const t = T[lang] || T['th'];
+
   const syncData = useCallback(() => {
     if(!WEB_APP_URL) return;
-    showToast('กำลังซิงค์ข้อมูล...');
+    showToast(t.syncing);
     fetch(WEB_APP_URL)
       .then(r=>r.json())
-      .then(d=>{
-        if(d && d.members) {
-          setData(d);
-          showToast('ซิงค์ข้อมูลล่าสุดแล้ว ✓');
-        }
-      })
-      .catch(e=>{
-         console.error(e);
-         showToast('⚠️ เชื่อมต่อล้มเหลว');
-      });
-  }, [showToast]);
+      .then(d=>{ if(d&&d.members){ setData(d); showToast(t.syncDone); } })
+      .catch(()=>showToast(t.syncFail));
+  }, [t]);
 
   useEffect(()=>persist(data),[data]);
-  useEffect(()=>localStorage.setItem(MY_KEY,myName),[myName]);
+  useEffect(()=>localStorage.setItem(MY_KEY, myName),[myName]);
+  useEffect(()=>localStorage.setItem(LANG_KEY, lang),[lang]);
 
-  const upd=fn=>{
+  const upd = fn => {
     setData(prev=>{
-      const nd=fn({...prev});
-      if(WEB_APP_URL) {
-        fetch(WEB_APP_URL, {
-          method:'POST',
-          headers:{'Content-Type':'text/plain;charset=utf-8'},
-          body:JSON.stringify(nd)
-        }).catch(()=>showToast('⚠️ บันทึกขึ้น Cloud ไม่สำเร็จ'));
+      const nd = fn({...prev});
+      if(WEB_APP_URL){
+        fetch(WEB_APP_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(nd)})
+          .catch(()=>showToast(t.cloudFail));
       }
       return nd;
     });
   };
 
   return <div id="root">
-    {tab==='home' && !memberDetail && <HomeTab data={data} upd={upd} toast={showToast} myName={myName} onChangeName={setMyName} setTab={setTab} onSelectMember={setMemberDetail} syncData={syncData}/>}
-    {tab==='add' && <AddTab data={data} upd={upd} toast={showToast} goBack={()=>setTab('home')} editingExp={null}/>}
-    {tab==='edit' && <AddTab data={data} upd={upd} toast={showToast} goBack={()=>{setTab('list'); setEditingExp(null)}} editingExp={editingExp}/>}
-    {tab==='list' && <ListTab data={data} setEditingExp={e=>{setEditingExp(e); setTab('edit');}}/>}
-    
-    {memberDetail && <MemberDetail member={memberDetail} data={data} upd={upd} toast={showToast} goBack={()=>setMemberDetail(null)}/>}
-    {tab==='settings' && <SettingsTab data={data} upd={upd} goBack={()=>setTab('home')} myName={myName} onChangeName={setMyName} toast={showToast}/>}
+    {tab==='home' && !memberDetail && (
+      <HomeTab data={data} upd={upd} toast={showToast} myName={myName} onChangeName={setMyName} setTab={setTab} onSelectMember={setMemberDetail} syncData={syncData} t={t}/>
+    )}
+    {tab==='add' && (
+      <AddTab data={data} upd={upd} toast={showToast} goBack={()=>setTab('home')} editingExp={null} t={t}/>
+    )}
+    {tab==='edit' && (
+      <AddTab data={data} upd={upd} toast={showToast} goBack={()=>{setTab('list'); setEditingExp(null);}} editingExp={editingExp} t={t}/>
+    )}
+    {tab==='list' && (
+      <ListTab data={data} setEditingExp={e=>{setEditingExp(e); setTab('edit');}} t={t}/>
+    )}
+
+    {memberDetail && (
+      <MemberDetail member={memberDetail} data={data} upd={upd} toast={showToast} goBack={()=>setMemberDetail(null)} t={t}/>
+    )}
+    {tab==='settings' && (
+      <SettingsTab data={data} upd={upd} goBack={()=>setTab('home')} myName={myName} onChangeName={setMyName} toast={showToast} lang={lang} setLang={setLang} t={t}/>
+    )}
 
     {toast && <div className="toast">{toast}</div>}
 
-   {(tab==='home' || tab==='list') && !memberDetail && (
+    {(tab==='home'||tab==='list') && !memberDetail && (
       <nav className="bottom-nav">
-        <button className={`nav-item ${tab==='home'?'active':''}`} onClick={()=>setTab('home')}>{I.home}<span>Home</span></button>
-        
+        <button className={`nav-item ${tab==='home'?'active':''}`} onClick={()=>setTab('home')}>
+          {I.home}<span>{t.navHome}</span>
+        </button>
+
         <div className="fab-container">
           <button className="fab-btn" onClick={()=>{
-             // เช็คเงื่อนไขสมาชิกตรงนี้
-             if (data.members.length < 2) {
-                showToast('ต้องมีสมาชิกอย่างน้อย 2 คนก่อน 👥');
-             } else {
-                setTab('add');
-             }
+            if(data.members.length<2){ showToast(t.needMoreMembers); }
+            else { setTab('add'); }
           }}>
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
           </button>
         </div>
 
-        <button className={`nav-item ${tab==='list'?'active':''}`} onClick={()=>setTab('list')}>{I.list}<span>Transactions</span></button>
+        <button className={`nav-item ${tab==='list'?'active':''}`} onClick={()=>setTab('list')}>
+          {I.list}<span>{t.navTransactions}</span>
+        </button>
       </nav>
     )}
   </div>;

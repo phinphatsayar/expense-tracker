@@ -91,6 +91,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);}
 .curr-item.active{border-color:var(--accent);background:#FCF4F6;}
 
 .lbl{font-size:13px;font-weight:700;color:var(--ink-light);margin-bottom:6px;}
+.debt-banner{background:var(--accent);border-radius:var(--r);padding:16px 20px;margin-bottom:16px;animation:slide-up .3s ease;overflow:hidden;position:relative;}
+.debt-banner::before{content:'';position:absolute;top:-20px;right:-20px;width:90px;height:90px;background:rgba(255,255,255,0.07);border-radius:50%;}
+.debt-banner::after{content:'';position:absolute;bottom:-30px;right:20px;width:70px;height:70px;background:rgba(255,255,255,0.05);border-radius:50%;}
+.debt-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.12);}
+.debt-row:last-of-type{border-bottom:none;}
+.pay-now-btn{width:100%;padding:12px;border-radius:30px;border:2px solid rgba(255,255,255,0.5);background:transparent;color:#fff;font-family:'Kanit';font-size:15px;font-weight:800;cursor:pointer;margin-top:12px;letter-spacing:0.02em;transition:all 0.15s;}
+.pay-now-btn:active{background:rgba(255,255,255,0.15);}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink-dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:500;z-index:999;animation:pop .2s ease;white-space:nowrap;}
 @keyframes pop{0%{opacity:0;transform:scale(0.9) translateX(-50%);}100%{opacity:1;transform:scale(1) translateX(-50%);}}
 @keyframes slide-up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
@@ -199,6 +206,9 @@ const T = {
     dangerZone: '⚠️ รีเซ็ต (ระวัง: ลบข้อมูลของทุกคน)',
     resetBtn: 'ลบข้อมูลทั้งหมด',
     resetConfirm: 'ลบข้อมูลทริปทั้งหมดของทุกคน?',
+    debtAlertTitle: (amt) => `คุณค้างจ่ายอยู่ ${amt}`,
+    debtAlertSub: 'อย่าลืมโอนให้เพื่อนนะ! 👀',
+    payNow: 'Pay Now! 💸',
     language: '🌐 ภาษา / Language',
     langTH: 'ไทย',
     langEN: 'English',
@@ -289,6 +299,9 @@ const T = {
     dangerZone: '⚠️ Reset (Warning: deletes everyone\'s data)',
     resetBtn: 'Delete All Data',
     resetConfirm: 'Delete all trip data for everyone?',
+    debtAlertTitle: (amt) => `You owe ${amt}`,
+    debtAlertSub: "Don't forget to pay your friends! 👀",
+    payNow: 'Pay Now! 💸',
     language: '🌐 Language / ภาษา',
     langTH: 'ไทย',
     langEN: 'English',
@@ -330,38 +343,82 @@ const fmtAmt = (n,code) => {
   return c.sym + Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
 };
 
+// round to 2 decimal places using integer arithmetic to avoid float drift
+const r2 = n => Math.round(n * 100) / 100;
+
+/**
+ * makeSplits — หารยอดให้ครบ 2 ทศนิยมโดยไม่มีเศษตกหล่น
+ * - หารฐาน: floor ทุกคน
+ * - เศษที่เหลือ (ทศนิยม 2 หลัก) ยกให้คนแรก (มักเป็น 0.01 บาท)
+ * ผลรวม splits จะเท่ากับ amount เสมอ
+ */
+function makeSplits(amount, members) {
+  if (!members.length) return {};
+  const totalCents = Math.round(amount * 100);           // ทำงานด้วยสตางค์เต็มจำนวน
+  const baseCents  = Math.floor(totalCents / members.length);
+  const extraCents = totalCents - baseCents * members.length; // เศษที่เหลือ (0 ถึง n-1 สตางค์)
+  const splits = {};
+  members.forEach((m, i) => {
+    // คนแรก i===0 รับเศษที่เหลือทั้งหมด (สูงสุด n-1 สตางค์ ≈ ไม่กี่ตังค์)
+    splits[m] = r2((baseCents + (i === 0 ? extraCents : 0)) / 100);
+  });
+  return splits;
+}
+
+/**
+ * calcBal — คำนวณ paid / owe / net ด้วย r2 ทุก step
+ * net = เงินที่จ่ายแทนคนอื่นไป (บวก = คนอื่นค้างคุณ, ลบ = คุณค้างคนอื่น)
+ */
+function calcBal(members, expenses, displayCurrency) {
+  const paid = {}, owe = {}, net = {};
+  members.forEach(m => { paid[m] = 0; owe[m] = 0; net[m] = 0; });
+
+  expenses.forEach(e => {
+    if ((e.currency || 'THB') !== displayCurrency) return;
+    // สะสมยอดจ่าย
+    if (paid[e.payer] !== undefined) paid[e.payer] = r2(paid[e.payer] + e.amount);
+    // สะสมยอดที่ต้องจ่ายคืน
+    Object.entries(e.splits).forEach(([n, v]) => {
+      if (owe[n] !== undefined) owe[n] = r2(owe[n] + v);
+    });
+  });
+
+  members.forEach(m => { net[m] = r2((paid[m] || 0) - (owe[m] || 0)); });
+  return { paid, owe, net };
+}
+
+/**
+ * calcSettle — หาลำดับโอนเงินที่น้อยที่สุด
+ * ใช้ epsilon = 0.005 (ครึ่งสตางค์) เพื่อตัดเศษที่เกิดจากการแปลงสกุลเงิน
+ */
+function calcSettle(net) {
+  const EPS = 0.005;
+  const cr = [], db = [];
+  Object.entries(net).forEach(([n, v]) => {
+    const val = r2(v);
+    if (val >  EPS) cr.push({ n, a: val });
+    if (val < -EPS) db.push({ n, a: -val });
+  });
+  cr.sort((a, b) => b.a - a.a);
+  db.sort((a, b) => b.a - a.a);
+
+  const result = [];
+  let ci = 0, di = 0;
+  while (ci < cr.length && di < db.length) {
+    const amt = r2(Math.min(cr[ci].a, db[di].a));
+    if (amt >= EPS) result.push({ from: db[di].n, to: cr[ci].n, amount: amt });
+    cr[ci].a = r2(cr[ci].a - amt);
+    db[di].a = r2(db[di].a - amt);
+    if (cr[ci].a < EPS) ci++;
+    if (db[di].a < EPS) di++;
+  }
+  return result;
+}
+
 const initData = () => ({ tripName:"Where's the squad wandering next...?", members:[], expenses:[], displayCurrency:'THB' });
 const loadData = () => JSON.parse(localStorage.getItem(KEY)) || initData();
 const persist = d => localStorage.setItem(KEY, JSON.stringify(d));
 const today = () => new Date().toISOString().slice(0,10);
-
-function calcBal(members, expenses, displayCurrency){
-  const paid={}, owe={}, net={};
-  members.forEach(m=>{paid[m]=0;owe[m]=0;net[m]=0});
-  expenses.forEach(e=>{
-    if((e.currency||'THB')!==displayCurrency) return;
-    if(paid[e.payer]!==undefined) paid[e.payer]+=e.amount;
-    Object.entries(e.splits).forEach(([n,v])=>{if(owe[n]!==undefined)owe[n]+=v});
-  });
-  members.forEach(m=>{net[m]=(paid[m]||0)-(owe[m]||0)});
-  return {paid,owe,net};
-}
-
-function calcSettle(net){
-  const cr=[],db=[];
-  Object.entries(net).forEach(([n,v])=>{ const val=Math.round(v*100)/100; if(val>0)cr.push({n,a:val}); if(val<0)db.push({n,a:-val}); });
-  cr.sort((a,b)=>b.a-a.a); db.sort((a,b)=>b.a-a.a);
-  const r=[]; let ci=0,di=0;
-  while(ci<cr.length&&di<db.length){
-    const amt=Math.min(cr[ci].a,db[di].a);
-    if(amt>0) r.push({from:db[di].n, to:cr[ci].n, amount:Math.round(amt*100)/100});
-    cr[ci].a-=amt; db[di].a-=amt;
-    if(cr[ci].a<=0.01)ci++; if(db[di].a<=0.01)di++;
-  }
-  return r;
-}
-
-// Icons
 const I = {
   gear: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
   paw: <svg viewBox="0 0 24 24"><path d="M12 8.5c-1.5 0-2.7-1.4-2.7-3.2S10.5 2 12 2s2.7 1.4 2.7 3.2-1.2 3.3-2.7 3.3zM6.5 12c-1.4 0-2.5-1.5-2.5-3.5S5.1 5 6.5 5 9 6.5 9 8.5 7.9 12 6.5 12zm11 0c-1.4 0-2.5-1.5-2.5-3.5S16.1 5 17.5 5 20 6.5 20 8.5 18.9 12 17.5 12zm-5.5 10c-3.8 0-5.5-2-6-4.5-.3-1.5.5-2.5 1.5-3.5 1.5-1.5 3-2 4.5-2s3 .5 4.5 2c1 1 1.8 2 1.5 3.5-.5 2.5-2.2 4.5-6 4.5z"/></svg>,
@@ -416,6 +473,53 @@ function useToast(){
 }
 
 // ═══════════════════════════════════════════════════
+// DEBT BANNER — แสดงยอดค้างจ่ายของ myName
+// ═══════════════════════════════════════════════════
+function DebtBanner({data, myName, onSelectMember, t}){
+  const {members, expenses, displayCurrency} = data;
+  if(!myName || !members.includes(myName)) return null;
+
+  // หายอดค้างจาก real expenses เท่านั้น
+  const realExp = expenses.filter(e=>e.category!=='Settlement');
+  const {net: grossNet} = calcBal(members, realExp, displayCurrency);
+  const settles = calcSettle(grossNet).filter(s => s.from === myName);
+  if(settles.length === 0) return null;
+
+  const totalOwed = r2(settles.reduce((s,x)=>s+x.amount, 0));
+
+  return (
+    <div className="debt-banner">
+      {/* Header */}
+      <div style={{marginBottom:8}}>
+        <div style={{fontSize:13,fontWeight:700,color:'rgba(255,255,255,0.75)',marginBottom:2}}>{t.debtAlertSub}</div>
+        <div style={{fontSize:22,fontWeight:900,color:'#fff'}}>{t.debtAlertTitle(fmtAmt(totalOwed, displayCurrency))}</div>
+      </div>
+
+      {/* Each creditor row */}
+      {settles.map((s,i)=>(
+        <div key={i} className="debt-row">
+          <div style={{display:'flex',alignItems:'center',gap:10}}>
+            <div style={{width:34,height:34,borderRadius:8,background:'rgba(255,255,255,0.15)',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:15,color:'#fff'}}>
+              {s.to[0].toUpperCase()}
+            </div>
+            <div>
+              <div style={{fontWeight:700,fontSize:15,color:'#fff'}}>{s.to}</div>
+              <div style={{fontSize:12,color:'rgba(255,255,255,0.65)'}}>→ {t.payTo}</div>
+            </div>
+          </div>
+          <div style={{fontWeight:900,fontSize:17,color:'#fff'}}>{fmtAmt(s.amount, displayCurrency)}</div>
+        </div>
+      ))}
+
+      {/* Pay Now button */}
+      <button className="pay-now-btn" onClick={()=>onSelectMember(myName)}>
+        {t.payNow}
+      </button>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════
 // HOME TAB
 // ═══════════════════════════════════════════════════
 function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember, syncData, t}){
@@ -455,6 +559,8 @@ function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember
         <InlineEdit text={tripName} onSave={v=>upd(d=>{d.tripName=v; return d;})} isTitle={true} className="trip-title"/>
         <div className="trip-sub">{t.memberCount(members.length)} · {t.transactionCount(expenses.length)}</div>
       </div>
+
+      <DebtBanner data={data} myName={myName} onSelectMember={onSelectMember} t={t}/>
 
       <div className="sec-card">
         <div className="total-label">{t.total}</div>
@@ -533,10 +639,11 @@ function AddTab({data, upd, toast, goBack, editingExp, t}){
     if(!payer)       return toast(t.needPayer);
     if(active.length===0) return toast(t.needSplit);
 
-    const each = a / active.length;
-    const splits = {}; active.forEach(m=>splits[m]=each);
+    // ใช้ makeSplits เพื่อการหารที่แม่นยำ (ผลรวม splits = amount เสมอ)
+    const roundedAmt = r2(a);
+    const splits = makeSplits(roundedAmt, active);
 
-    const expObj = { id:isEdit?editingExp.id:Date.now(), desc:desc.trim(), amount:a, currency:displayCurrency, category:cat, payer, splits, note:note.trim(), date:today() };
+    const expObj = { id:isEdit?editingExp.id:Date.now(), desc:desc.trim(), amount:roundedAmt, currency:displayCurrency, category:cat, payer, splits, note:note.trim(), date:today() };
 
     if(isEdit){
       upd(d=>{ d.expenses=d.expenses.map(e=>e.id===expObj.id?expObj:e); return d; });

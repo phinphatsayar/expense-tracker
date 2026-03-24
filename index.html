@@ -477,12 +477,16 @@ function useToast(){
 // ═══════════════════════════════════════════════════
 function DebtBanner({data, myName, onSelectMember, t}){
   const {members, expenses, displayCurrency} = data;
-  if(!myName || !members.includes(myName)) return null;
+  if(!myName) return null;
+
+  // จับคู่ชื่อแบบ case-insensitive — หาชื่อจริงใน members ที่ตรงกับที่กรอก
+  const resolvedName = members.find(m => m.toLowerCase() === myName.trim().toLowerCase());
+  if(!resolvedName) return null;
 
   // หายอดค้างจาก real expenses เท่านั้น
   const realExp = expenses.filter(e=>e.category!=='Settlement');
   const {net: grossNet} = calcBal(members, realExp, displayCurrency);
-  const settles = calcSettle(grossNet).filter(s => s.from === myName);
+  const settles = calcSettle(grossNet).filter(s => s.from === resolvedName);
   if(settles.length === 0) return null;
 
   const totalOwed = r2(settles.reduce((s,x)=>s+x.amount, 0));
@@ -512,7 +516,7 @@ function DebtBanner({data, myName, onSelectMember, t}){
       ))}
 
       {/* Pay Now button */}
-      <button className="pay-now-btn" onClick={()=>onSelectMember(myName)}>
+      <button className="pay-now-btn" onClick={()=>onSelectMember(resolvedName)}>
         {t.payNow}
       </button>
     </div>
@@ -529,6 +533,8 @@ function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember
 
   const {paid} = calcBal(members, expenses, displayCurrency);
   const totalAmt = expenses.filter(e=>e.category!=='Settlement').reduce((s,e)=>s+e.amount, 0);
+  // resolve ชื่อจริงจาก members (case-insensitive) เพื่อ highlight สมาชิก
+  const resolvedMyName = members.find(m => m.toLowerCase() === (myName||'').trim().toLowerCase()) || '';
 
   const addM = () => {
     const n = nm.trim(); if(!n) return;
@@ -595,7 +601,7 @@ function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember
 
         {members.map(m=>(
           <div key={m} className="mem-item" onClick={()=>onSelectMember(m)}>
-            <div className="av-sq" style={{background:m===myName?'var(--accent-light)':'#FBF6F2', color:m===myName?'var(--accent)':'var(--ink-light)'}}>{m[0].toUpperCase()}</div>
+            <div className="av-sq" style={{background:m===resolvedMyName?'var(--accent-light)':'#FBF6F2', color:m===resolvedMyName?'var(--accent)':'var(--ink-light)'}}>{m[0].toUpperCase()}</div>
             <div style={{flex:1}}>
               <div style={{fontWeight:700, fontSize:15, color:'var(--ink-dark)'}}>{m}</div>
               <div style={{fontSize:12, color:'var(--ink-light)'}}>{t.spent(fmtAmt(paid[m]||0, displayCurrency))}</div>

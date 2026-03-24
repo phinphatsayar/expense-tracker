@@ -660,13 +660,24 @@ function App(){
 
     {toast && <div className="toast">{toast}</div>}
 
-    {(tab==='home' || tab==='list') && !memberDetail && (
+   {(tab==='home' || tab==='list') && !memberDetail && (
       <nav className="bottom-nav">
-        <button className="nav-item" onClick={()=>setTab('home')}>{I.home}<span>Home</span></button>
-        <div className="fab-container"><button className="fab-btn" onClick={()=>setTab('add')}>
-           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button></div>
-        <button className="nav-item" onClick={()=>setTab('list')}>{I.list}<span>Transactions</span></button>
+        <button className={`nav-item ${tab==='home'?'active':''}`} onClick={()=>setTab('home')}>{I.home}<span>Home</span></button>
+        
+        <div className="fab-container">
+          <button className="fab-btn" onClick={()=>{
+             // เช็คเงื่อนไขสมาชิกตรงนี้
+             if (data.members.length < 2) {
+                showToast('ต้องมีสมาชิกอย่างน้อย 2 คนก่อน 👥');
+             } else {
+                setTab('add');
+             }
+          }}>
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+
+        <button className={`nav-item ${tab==='list'?'active':''}`} onClick={()=>setTab('list')}>{I.list}<span>Transactions</span></button>
       </nav>
     )}
   </div>;

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <title>NoMorePaylater</title>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Mitr:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Mitr:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden;font-family:'Kanit',sans-serif;background:#FFFFFF;color:#770523}
@@ -66,7 +66,6 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);}
 .paw-btn{width:44px;height:44px;border-radius:12px;background:#FBF6F2;border:1.5px solid rgba(119,5,35,0.15);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(--accent);flex-shrink:0;}
 .paw-btn svg{width:22px;height:22px;fill:currentColor;}
 
-/* Language Toggle */
 .lang-toggle{display:flex;background:#F0E6EA;border-radius:30px;padding:4px;gap:2px;}
 .lang-btn{padding:6px 14px;border-radius:24px;border:none;font-family:'Kanit';font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--ink-light);}
 .lang-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 6px rgba(119,5,35,0.25);}
@@ -100,146 +99,106 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);}
 .pay-now-btn:active{background:rgba(255,255,255,0.15);}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink-dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:500;z-index:999;animation:pop .2s ease;white-space:nowrap;}
 
-/* ── Welcome Screen ───────────────────────────────── */
-.welcome-root{
-  height:100%; width:100%; display:flex; flex-direction:column;
-  background:linear-gradient(to bottom,#FAD2E1,#F8B9D0);
-  position:relative; overflow:hidden; font-family:'Mitr',sans-serif;
-}
-.welcome-pink{
-  flex:1; min-height:0; padding:clamp(32px,8vw,56px) clamp(24px,7vw,40px) 0;
-  position:relative; z-index:1;
-}
-.welcome-to{
-  font-size:clamp(28px,7.5vw,42px); font-weight:500; color:#0B1009; line-height:1.15; margin-bottom:4px;
-}
-.welcome-title{
-  font-size:clamp(40px,11vw,58px); font-weight:600; color:#fff; line-height:1.08;
-  text-shadow:0 0 28px rgba(255,255,255,0.85),0 0 56px rgba(255,255,255,0.5),0 0 90px rgba(255,255,255,0.25);
-  margin-bottom:14px;
-}
-.welcome-tagline{
-  font-size:clamp(12px,3.2vw,14px); font-weight:500; color:#770523; line-height:1.65;
-}
-/* Cream wave section */
-.welcome-cream{
-  position:relative; z-index:2;
-  background:#FBF6F2;
-  border-radius:52% 48% 0 0 / clamp(36px,9vw,52px) clamp(36px,9vw,52px) 0 0;
-  box-shadow:0 -12px 36px rgba(200,90,120,0.13);
-  padding:clamp(78px,21vw,115px) clamp(24px,7vw,40px) clamp(36px,8vw,52px);
-}
-/* Mascot — sits on the wave boundary */
-.welcome-mascot{
-  position:absolute;
-  left:50%; top:0;
-  /* translateX centers, translateY(-65%) puts 65% of img ABOVE the wave line */
-  transform:translateX(-50%) translateY(-63%);
-  width:clamp(150px,58%,240px);
-  filter:drop-shadow(0 10px 32px rgba(119,5,35,0.18));
-  animation:mascotBounce 0.95s cubic-bezier(0.34,1.56,0.64,1) 0.15s both;
-  z-index:10; /* above cream */
-}
-@keyframes mascotBounce{
-  0%{transform:translateX(-50%) translateY(40%);opacity:0;}
-  55%{transform:translateX(-50%) translateY(-68%);opacity:1;}
-  72%{transform:translateX(-50%) translateY(-59%);}
-  85%{transform:translateX(-50%) translateY(-65%);}
-  100%{transform:translateX(-50%) translateY(-63%);opacity:1;}
-}
-/* Input pill */
-.welcome-input-wrap{position:relative;margin-bottom:clamp(12px,3vw,18px);}
-.welcome-input{
-  width:100%; padding:clamp(13px,3.5vw,17px) clamp(20px,5vw,28px);
-  border-radius:100px; border:1.5px solid #FAD2E1;
-  box-shadow:0 2px 16px rgba(250,210,225,0.55);
-  background:#fff; font-size:clamp(14px,3.8vw,16px);
-  font-family:'Kanit',sans-serif; color:#111; outline:none;
-  text-align:center; caret-color:#770523;
-  transition:border-color .2s, box-shadow .2s;
-}
-.welcome-input:focus{border-color:#F8B9D0; box-shadow:0 2px 20px rgba(248,185,208,0.55);}
-.welcome-placeholder{
-  position:absolute; top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  pointer-events:none; white-space:nowrap;
-  font-family:'Kanit',sans-serif; font-size:clamp(14px,3.8vw,16px);
-  color:#C4A4B4;
-}
-/* CTA button */
-.welcome-btn{
-  display:flex; align-items:center; justify-content:center; gap:clamp(8px,2vw,12px);
-  margin:0 auto;
-  padding:clamp(13px,3.5vw,17px) clamp(36px,9vw,52px);
-  border-radius:100px; border:none; cursor:pointer;
-  background:#0B1009; color:#FAD2E1;
-  font-family:'Mitr',sans-serif; font-size:clamp(16px,4.2vw,20px); font-weight:500;
-  letter-spacing:0.01em;
-  transition:transform 0.18s ease, box-shadow 0.18s ease;
-  box-shadow:0 4px 20px rgba(11,16,9,0.22);
-}
-.welcome-btn:hover{transform:scale(1.055); box-shadow:0 6px 28px rgba(11,16,9,0.3);}
-.welcome-btn:active{transform:scale(0.97);}
-.welcome-btn img{width:clamp(18px,4.5vw,22px); height:auto;}
+/* ═══════════════════════════════════════════════════ */
+/* 🌟 WELCOME SCREEN STYLES (เป๊ะ 100%) 🌟 */
+/* ═══════════════════════════════════════════════════ */
+.welcome-root { height:100%; width:100%; display:flex; flex-direction:column; background:#FBF6F2; position:relative; overflow-x:hidden; }
 
+/* ท่อนบนสีชมพู */
+.welcome-pink {
+  flex: 1; min-height: 48vh;
+  background: linear-gradient(180deg, #FAD2E1 0%, #F8B9D0 100%);
+  display: flex; flex-direction: column; justify-content: flex-start;
+  padding-top: 12vh; position: relative; z-index: 1;
+}
 
-/* ── Returning user: Hello animation ─────────────── */
-.hello-wrap{
-  text-align:center;
-  margin-bottom:clamp(20px,5vw,32px);
-  line-height:1.15;
+/* กล่องข้อความให้อยู่ตรงกลางจอ แต่จัด Text ชิดซ้าย */
+.w-text-container { display: flex; justify-content: center; width: 100%; }
+.w-text-content { display: flex; flex-direction: column; align-items: flex-start; }
+
+.w-welcome-to { font-family: 'Mitr', sans-serif; font-size: clamp(32px, 9vw, 36px); font-weight: 500; color: #0B1009; line-height: 1; margin-bottom: 4px; }
+.w-no-more { 
+  font-family: 'Mitr', sans-serif; font-size: clamp(48px, 13vw, 56px); font-weight: 600; color: #FFFFFF; 
+  line-height: 1.05; text-shadow: 0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.3);
 }
-.hello-line{
-  display:block;
-  font-family:'Mitr',sans-serif;
-  font-weight:600;
-  color:#0B1009;
-  font-size:clamp(36px,10vw,52px);
-  overflow:hidden;
+.w-sub { font-family: 'Mitr', sans-serif; font-size: clamp(12px, 3.5vw, 13px); font-weight: 500; color: #770523; line-height: 1.4; margin-top: 12px; }
+
+/* ท่อนลอยต่อ: คลื่นและน้องหมา */
+.welcome-wave-zone {
+  position: relative; width: 100%; z-index: 2;
+  background: #FBF6F2;
 }
-/* each letter span */
-.hello-char{
-  display:inline-block;
-  opacity:0;
-  transform:translateY(28px) scale(0.8);
-  animation:charPop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards;
+
+/* คลื่น SVG วาดใหม่ให้องศาเป๊ะตามรูป */
+.w-wave-svg {
+  position: absolute; bottom: 100%; left: 0; width: 100%; height: auto; display: block;
+  filter: drop-shadow(0px -8px 12px rgba(119,5,35,0.06)); /* เงาใต้คลื่น */
 }
-@keyframes charPop{
-  to{opacity:1;transform:translateY(0) scale(1);}
+
+/* น้องหมาเด้งดึ๋ง */
+.w-mascot {
+  position: absolute;
+  bottom: 8%; /* ให้ตีนน้องหมาจมเกาะคลื่นพอดี */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72%; max-width: 290px;
+  z-index: 3;
+  filter: drop-shadow(0 12px 20px rgba(119,5,35,0.15));
+  animation: mascotEnter 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
-/* "Hello," fades in as a whole first */
-.hello-greet{
-  font-size:clamp(32px,9vw,46px);
-  font-weight:500;
-  color:#0B1009;
-  opacity:0;
-  animation:fadeSlideUp 0.5s ease 0.05s forwards;
+
+@keyframes mascotEnter {
+  0% { transform: translate(-50%, 40%); opacity: 0; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
 }
-@keyframes fadeSlideUp{
-  from{opacity:0;transform:translateY(16px);}
-  to{opacity:1;transform:translateY(0);}
+
+/* ท่อนล่างสีครีม (Input / Hello Name) */
+.welcome-cream {
+  background: #FBF6F2; padding: 30px 20px 60px;
+  display: flex; flex-direction: column; align-items: center; min-height: 38vh;
+  z-index: 2; position: relative;
 }
-/* name pops letter by letter after the greeting */
-.hello-name-char{
-  display:inline-block;
-  opacity:0;
-  transform:translateY(30px) rotate(-4deg) scale(0.7);
-  animation:charBounce 0.5s cubic-bezier(0.34,1.62,0.64,1) forwards;
+
+/* Hello Name (หน้า 2) */
+.w-hello-text {
+  font-family: 'Mitr', sans-serif; font-weight: 700; font-size: clamp(40px, 11vw, 48px); color: #0B1009;
+  text-align: center; margin-bottom: 24px;
 }
-@keyframes charBounce{
-  to{opacity:1;transform:translateY(0) rotate(0deg) scale(1);}
+
+/* Input (หน้า 1) */
+.w-input-wrap { position: relative; width: 100%; max-width: 320px; margin-bottom: 20px; }
+.w-input {
+  width: 100%; padding: 16px 24px; border-radius: 50px;
+  border: 1.5px solid #FAD2E1; box-shadow: 0 4px 16px rgba(250,210,225,0.4);
+  background: #FFFFFF; font-family: 'Kanit', sans-serif; font-size: 16px;
+  text-align: center; color: #111; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
 }
-/* exclamation mark special: bigger bounce */
-.hello-exclaim{
-  display:inline-block;
-  color:#770523;
-  opacity:0;
-  transform:scale(0) rotate(12deg);
-  animation:exclaimPop 0.5s cubic-bezier(0.34,1.8,0.64,1) forwards;
+.w-input:focus { border-color: #F8B9D0; box-shadow: 0 4px 20px rgba(248,185,208,0.5); }
+.w-placeholder {
+  position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
+  pointer-events: none; text-align: center; color: #D5B4C2;
+  font-family: 'Kanit', sans-serif; font-size: 16px;
 }
-@keyframes exclaimPop{
-  to{opacity:1;transform:scale(1) rotate(0deg);}
+.w-placeholder span { font-weight: 600; }
+
+/* ปุ่ม Let's Pay */
+.w-btn {
+  background: #0B1009; color: #FAD2E1; font-family: 'Mitr', sans-serif;
+  font-weight: 500; font-size: 18px; padding: 14px 36px; border-radius: 50px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  border: none; cursor: pointer; transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 6px 20px rgba(11, 16, 9, 0.2); margin: 0 auto;
 }
+.w-btn:hover { transform: scale(1.05); }
+.w-btn:active { transform: scale(0.97); }
+.w-btn img { width: 22px; display: block; }
+
+/* แอนิเมชันข้อความแบบเฟดขึ้น */
+.fade-up-1 { animation: fadeUp 0.6s ease forwards; opacity: 0; }
+.fade-up-2 { animation: fadeUp 0.6s ease 0.15s forwards; opacity: 0; }
+.fade-up-3 { animation: fadeUp 0.6s ease 0.3s forwards; opacity: 0; }
+.fade-up-4 { animation: fadeUp 0.6s ease 0.45s forwards; opacity: 0; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 @keyframes pop{0%{opacity:0;transform:scale(0.9) translateX(-50%);}100%{opacity:1;transform:scale(1) translateX(-50%);}}
 @keyframes slide-up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
@@ -259,211 +218,87 @@ const KEY = 'splittrip-v6';
 const MY_KEY = 'splittrip-myname-v6';
 const LANG_KEY = 'splittrip-lang-v1';
 
-// ═══════════════════════════════════════════════════
-// 🌐 TRANSLATIONS
-// ═══════════════════════════════════════════════════
 const T = {
   th: {
-    // App / Global
-    appName: 'NoMorePaylater',
-    save: 'บันทึก',
-    cancel: 'ยกเลิก',
-    back: 'กลับ',
-    add: '+ เพิ่ม',
-    delete: 'ลบรายการนี้',
-    confirmDelete: 'ลบรายการนี้?',
-    edit: 'แก้ไข',
-
-    // Nav
-    navHome: 'หน้าหลัก',
-    navTransactions: 'รายการ',
-
-    // Home
-    hello: 'สวัสดี!',
-    nicknamePlaceholder: 'ใส่ชื่อเล่นของคุณที่นี่!',
+    appName: 'NoMorePaylater', save: 'บันทึก', cancel: 'ยกเลิก', back: 'กลับ', add: '+ เพิ่ม',
+    delete: 'ลบรายการนี้', confirmDelete: 'ลบรายการนี้?', edit: 'แก้ไข',
+    navHome: 'หน้าหลัก', navTransactions: 'รายการ',
+    hello: 'สวัสดี!', nicknamePlaceholder: 'ใส่ชื่อเล่นของคุณที่นี่!',
     defaultTripName: "Where's the squad wandering next...?",
-    memberCount: (n) => `${n} คน`,
-    transactionCount: (n) => `${n} รายการ`,
-    total: 'ยอดรวม',
-    member: 'สมาชิก',
-    memberNamePlaceholder: 'ชื่อสมาชิก',
-    memberDuplicate: 'มีชื่อนี้แล้ว!',
-    memberAdded: (n) => `เพิ่ม ${n} แล้ว ✓`,
-    spent: (amt) => `จ่ายไป ${amt}`,
-    noMembers: `เพิ่มสมาชิกเพื่อเริ่มต้น`,
+    memberCount: (n) => `${n} คน`, transactionCount: (n) => `${n} รายการ`,
+    total: 'ยอดรวม', member: 'สมาชิก', memberNamePlaceholder: 'ชื่อสมาชิก',
+    memberDuplicate: 'มีชื่อนี้แล้ว!', memberAdded: (n) => `เพิ่ม ${n} แล้ว ✓`,
+    spent: (amt) => `จ่ายไป ${amt}`, noMembers: `เพิ่มสมาชิกเพื่อเริ่มต้น`,
     needMoreMembers: 'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน 👥',
-    syncDone: 'ซิงค์ข้อมูลล่าสุดแล้ว ✓',
-    syncFail: '⚠️ เชื่อมต่อล้มเหลว',
-    syncing: 'กำลังซิงค์ข้อมูล...',
-    cloudFail: '⚠️ บันทึกขึ้น Cloud ไม่สำเร็จ',
-
-    // Add/Edit Expense
-    addTransaction: 'เพิ่มรายการ',
-    editTransaction: 'แก้ไขรายการ',
-    category: 'หมวดหมู่ (Category)',
-    detail: 'รายละเอียด',
-    detailPlaceholder: 'เช่น ค่าอาหาร...',
-    amount: (cur) => `จำนวนเงิน (${cur})`,
-    note: 'หมายเหตุ (Note)',
-    notePlaceholder: 'รายละเอียดเพิ่มเติม...',
-    whoPayQuestion: 'ใครเป็นคนจ่าย?',
-    splitWithQuestion: 'หารกับใครบ้าง?',
-    needDetail: 'กรุณาใส่รายละเอียด',
-    needAmount: 'ใส่จำนวนเงิน',
-    needPayer: 'เลือกคนจ่าย',
-    needSplit: 'เลือกคนหารด้วย',
-    saved: 'บันทึกแล้ว',
-    edited: 'แก้ไขรายการแล้ว',
-    deleted: 'ลบแล้ว',
-    needMinMembers: 'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน',
-
-    // Transactions
-    transactions: 'รายการ',
-    noTransactions: 'ยังไม่มีรายการ',
-    paidBy: (name) => `${name} จ่าย`,
-
-    // Member Detail
-    settleHeader: '💸 รายการต้องโอน / รับโอน',
-    payTo: 'จ่ายให้',
-    receiveFrom: 'รับจาก',
-    alreadySent: 'คุณโอนเงินแล้ว',
-    alreadyReceived: 'ได้รับเงินแล้ว',
-    tapWhenSent: 'กดเมื่อโอนเงินแล้ว',
-    tapWhenReceived: 'กดเมื่อได้รับเงินแล้ว',
-    owesFriend: (amt) => `ต้องจ่ายเพื่อน ${amt}`,
-    friendOwes: (amt) => `คนอื่นค้างอยู่ ${amt}`,
-    allClear: 'เคลียร์หนี้หมดแล้ว 🎉',
-    settleSaved: 'บันทึกการชำระเงินแล้ว ✓',
-    settleCancel: 'ยกเลิกการชำระเงินแล้ว',
-
-    // Settings
-    settings: 'ตั้งค่า',
-    myName: '👤 ชื่อของฉัน',
-    myNameSub: 'ชื่อนี้จะแสดงยอดของคุณบนหน้าแรก',
-    myNamePlaceholder: 'แตะเพื่อตั้งชื่อ',
-    currency: '💱 สกุลเงินที่แสดงผลหลัก',
+    syncDone: 'ซิงค์ข้อมูลล่าสุดแล้ว ✓', syncFail: '⚠️ เชื่อมต่อล้มเหลว',
+    syncing: 'กำลังซิงค์ข้อมูล...', cloudFail: '⚠️ บันทึกขึ้น Cloud ไม่สำเร็จ',
+    addTransaction: 'เพิ่มรายการ', editTransaction: 'แก้ไขรายการ', category: 'หมวดหมู่ (Category)',
+    detail: 'รายละเอียด', detailPlaceholder: 'เช่น ค่าอาหาร...', amount: (cur) => `จำนวนเงิน (${cur})`,
+    note: 'หมายเหตุ (Note)', notePlaceholder: 'รายละเอียดเพิ่มเติม...',
+    whoPayQuestion: 'ใครเป็นคนจ่าย?', splitWithQuestion: 'หารกับใครบ้าง?',
+    needDetail: 'กรุณาใส่รายละเอียด', needAmount: 'ใส่จำนวนเงิน', needPayer: 'เลือกคนจ่าย',
+    needSplit: 'เลือกคนหารด้วย', saved: 'บันทึกแล้ว', edited: 'แก้ไขรายการแล้ว', deleted: 'ลบแล้ว',
+    needMinMembers: 'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน', transactions: 'รายการ',
+    noTransactions: 'ยังไม่มีรายการ', paidBy: (name) => `${name} จ่าย`,
+    settleHeader: '💸 รายการต้องโอน / รับโอน', payTo: 'จ่ายให้', receiveFrom: 'รับจาก',
+    alreadySent: 'คุณโอนเงินแล้ว', alreadyReceived: 'ได้รับเงินแล้ว', tapWhenSent: 'กดเมื่อโอนเงินแล้ว',
+    tapWhenReceived: 'กดเมื่อได้รับเงินแล้ว', owesFriend: (amt) => `ต้องจ่ายเพื่อน ${amt}`,
+    friendOwes: (amt) => `คนอื่นค้างอยู่ ${amt}`, allClear: 'เคลียร์หนี้หมดแล้ว 🎉',
+    settleSaved: 'บันทึกการชำระเงินแล้ว ✓', settleCancel: 'ยกเลิกการชำระเงินแล้ว',
+    settings: 'ตั้งค่า', myName: '👤 ชื่อของฉัน', myNameSub: 'ชื่อนี้จะแสดงยอดของคุณบนหน้าแรก',
+    myNamePlaceholder: 'แตะเพื่อตั้งชื่อ', currency: '💱 สกุลเงินที่แสดงผลหลัก',
     currencySub: 'ยอดรวม ยอดค้าง และแบนเนอร์หน้าแรก จะแสดงเป็นสกุลเงินนี้',
     convertConfirm: (to) => `คุณต้องการแปลงยอดเงินของ "ทุกรายการ" เป็น ${to} ด้วยอัตราแลกเปลี่ยนโดยประมาณหรือไม่?\n\n*หากยกเลิก จะเปลี่ยนแค่สัญลักษณ์ แต่ไม่แปลงตัวเลข*`,
-    converted: (cur) => `แปลงทุกยอดเป็น ${cur} แล้ว`,
-    dangerZone: '⚠️ รีเซ็ต (ระวัง: ลบข้อมูลของทุกคน)',
-    resetBtn: 'ลบข้อมูลทั้งหมด',
-    resetConfirm: 'ลบข้อมูลทริปทั้งหมดของทุกคน?',
-    debtAlertTitle: (amt) => `คุณค้างจ่ายอยู่ ${amt}`,
-    debtAlertSub: 'อย่าลืมโอนให้เพื่อนนะ! 👀',
-    payNow: 'Pay Now! 💸',
-    language: '🌐 ภาษา / Language',
-    langTH: 'ไทย',
-    langEN: 'English',
+    converted: (cur) => `แปลงทุกยอดเป็น ${cur} แล้ว`, dangerZone: '⚠️ รีเซ็ต (ระวัง: ลบข้อมูลของทุกคน)',
+    resetBtn: 'ลบข้อมูลทั้งหมด', resetConfirm: 'ลบข้อมูลทริปทั้งหมดของทุกคน?',
+    debtAlertTitle: (amt) => `คุณค้างจ่ายอยู่ ${amt}`, debtAlertSub: 'อย่าลืมโอนให้เพื่อนนะ! 👀',
+    payNow: 'Pay Now! 💸', language: '🌐 ภาษา / Language', langTH: 'ไทย', langEN: 'English',
   },
-
   en: {
-    // App / Global
-    appName: 'NoMorePaylater',
-    save: 'Save',
-    cancel: 'Cancel',
-    back: 'Back',
-    add: '+ Add',
-    delete: 'Delete this item',
-    confirmDelete: 'Delete this item?',
-    edit: 'Edit',
-
-    // Nav
-    navHome: 'Home',
-    navTransactions: 'Transactions',
-
-    // Home
-    hello: 'Hello!',
-    nicknamePlaceholder: 'Pop your nickname here!',
+    appName: 'NoMorePaylater', save: 'Save', cancel: 'Cancel', back: 'Back', add: '+ Add',
+    delete: 'Delete this item', confirmDelete: 'Delete this item?', edit: 'Edit',
+    navHome: 'Home', navTransactions: 'Transactions',
+    hello: 'Hello!', nicknamePlaceholder: 'Pop your nickname here!',
     defaultTripName: "Where's the squad wandering next...?",
-    memberCount: (n) => `${n} member${n !== 1 ? 's' : ''}`,
-    transactionCount: (n) => `${n} transaction${n !== 1 ? 's' : ''}`,
-    total: 'Total',
-    member: 'Member',
-    memberNamePlaceholder: 'Member name',
-    memberDuplicate: 'Name already exists!',
-    memberAdded: (n) => `Added ${n} ✓`,
-    spent: (amt) => `spent ${amt}`,
-    noMembers: 'Add members to get started',
+    memberCount: (n) => `${n} member${n !== 1 ? 's' : ''}`, transactionCount: (n) => `${n} transaction${n !== 1 ? 's' : ''}`,
+    total: 'Total', member: 'Member', memberNamePlaceholder: 'Member name',
+    memberDuplicate: 'Name already exists!', memberAdded: (n) => `Added ${n} ✓`,
+    spent: (amt) => `spent ${amt}`, noMembers: 'Add members to get started',
     needMoreMembers: 'Need at least 2 members first 👥',
-    syncDone: 'Synced latest data ✓',
-    syncFail: '⚠️ Connection failed',
-    syncing: 'Syncing data...',
-    cloudFail: '⚠️ Could not save to Cloud',
-
-    // Add/Edit Expense
-    addTransaction: 'Add Transaction',
-    editTransaction: 'Edit Transaction',
-    category: 'Category',
-    detail: 'Description',
-    detailPlaceholder: 'e.g. Dinner, taxi...',
-    amount: (cur) => `Amount (${cur})`,
-    note: 'Note',
-    notePlaceholder: 'Additional details...',
-    whoPayQuestion: 'Who paid?',
-    splitWithQuestion: 'Split with?',
-    needDetail: 'Please enter a description',
-    needAmount: 'Enter an amount',
-    needPayer: 'Select who paid',
-    needSplit: 'Select who to split with',
-    saved: 'Saved!',
-    edited: 'Item updated',
-    deleted: 'Deleted',
-    needMinMembers: 'Need at least 2 members first',
-
-    // Transactions
-    transactions: 'Transactions',
-    noTransactions: 'No transactions yet',
-    paidBy: (name) => `${name} paid`,
-
-    // Member Detail
-    settleHeader: '💸 Transfers to make / receive',
-    payTo: 'Pay to',
-    receiveFrom: 'Receive from',
-    alreadySent: 'Transfer sent',
-    alreadyReceived: 'Payment received',
-    tapWhenSent: 'Tap when sent',
-    tapWhenReceived: 'Tap when received',
-    owesFriend: (amt) => `Owes ${amt}`,
-    friendOwes: (amt) => `Is owed ${amt}`,
-    allClear: 'All settled up 🎉',
-    settleSaved: 'Payment recorded ✓',
-    settleCancel: 'Payment undone',
-
-    // Settings
-    settings: 'Settings',
-    myName: '👤 My Name',
-    myNameSub: 'This name shows your balance on the home screen',
-    myNamePlaceholder: 'Tap to set name',
-    currency: '💱 Display Currency',
+    syncDone: 'Synced latest data ✓', syncFail: '⚠️ Connection failed',
+    syncing: 'Syncing data...', cloudFail: '⚠️ Could not save to Cloud',
+    addTransaction: 'Add Transaction', editTransaction: 'Edit Transaction', category: 'Category',
+    detail: 'Description', detailPlaceholder: 'e.g. Dinner, taxi...', amount: (cur) => `Amount (${cur})`,
+    note: 'Note', notePlaceholder: 'Additional details...',
+    whoPayQuestion: 'Who paid?', splitWithQuestion: 'Split with?',
+    needDetail: 'Please enter a description', needAmount: 'Enter an amount', needPayer: 'Select who paid',
+    needSplit: 'Select who to split with', saved: 'Saved!', edited: 'Item updated', deleted: 'Deleted',
+    needMinMembers: 'Need at least 2 members first', transactions: 'Transactions',
+    noTransactions: 'No transactions yet', paidBy: (name) => `${name} paid`,
+    settleHeader: '💸 Transfers to make / receive', payTo: 'Pay to', receiveFrom: 'Receive from',
+    alreadySent: 'Transfer sent', alreadyReceived: 'Payment received', tapWhenSent: 'Tap when sent',
+    tapWhenReceived: 'Tap when received', owesFriend: (amt) => `Owes ${amt}`,
+    friendOwes: (amt) => `Is owed ${amt}`, allClear: 'All settled up 🎉',
+    settleSaved: 'Payment recorded ✓', settleCancel: 'Payment undone',
+    settings: 'Settings', myName: '👤 My Name', myNameSub: 'This name shows your balance on the home screen',
+    myNamePlaceholder: 'Tap to set name', currency: '💱 Display Currency',
     currencySub: 'Totals, balances, and the home banner will show in this currency',
     convertConfirm: (to) => `Convert ALL expense amounts to ${to} using approximate exchange rates?\n\n*Cancel to only change the symbol without converting numbers.*`,
-    converted: (cur) => `All amounts converted to ${cur}`,
-    dangerZone: '⚠️ Reset (Warning: deletes everyone\'s data)',
-    resetBtn: 'Delete All Data',
-    resetConfirm: 'Delete all trip data for everyone?',
-    debtAlertTitle: (amt) => `You owe ${amt}`,
-    debtAlertSub: "Don't forget to pay your friends! 👀",
-    payNow: 'Pay Now! 💸',
-    language: '🌐 Language / ภาษา',
-    langTH: 'ไทย',
-    langEN: 'English',
+    converted: (cur) => `All amounts converted to ${cur}`, dangerZone: '⚠️ Reset (Warning: deletes everyone\'s data)',
+    resetBtn: 'Delete All Data', resetConfirm: 'Delete all trip data for everyone?',
+    debtAlertTitle: (amt) => `You owe ${amt}`, debtAlertSub: "Don't forget to pay your friends! 👀",
+    payNow: 'Pay Now! 💸', language: '🌐 Language / ภาษา', langTH: 'ไทย', langEN: 'English',
   }
 };
 
-// ═══════════════════════════════════════════════════
 const RATES = { THB: 35, USD: 1, EUR: 0.92, JPY: 150, SGD: 1.34, GBP: 0.79, CNY: 7.2, KRW: 1330, AUD: 1.52, MYR: 4.7 };
 
 const CURRENCIES = [
-  {code:'THB',sym:'฿',name:'บาทไทย / Thai Baht'},
-  {code:'USD',sym:'$',name:'ดอลลาร์สหรัฐ / US Dollar'},
-  {code:'EUR',sym:'€',name:'ยูโร / Euro'},
-  {code:'JPY',sym:'¥',name:'เยน / Japanese Yen'},
-  {code:'SGD',sym:'S$',name:'ดอลลาร์สิงคโปร์ / SGD'},
-  {code:'GBP',sym:'£',name:'ปอนด์ / British Pound'},
-  {code:'CNY',sym:'¥',name:'หยวน / Chinese Yuan'},
-  {code:'KRW',sym:'₩',name:'วอน / Korean Won'},
-  {code:'AUD',sym:'A$',name:'ดอลลาร์ออสเตรเลีย / AUD'},
-  {code:'MYR',sym:'RM',name:'ริงกิต / Malaysian Ringgit'}
+  {code:'THB',sym:'฿',name:'บาทไทย / Thai Baht'},{code:'USD',sym:'$',name:'ดอลลาร์สหรัฐ / US Dollar'},
+  {code:'EUR',sym:'€',name:'ยูโร / Euro'},{code:'JPY',sym:'¥',name:'เยน / Japanese Yen'},
+  {code:'SGD',sym:'S$',name:'ดอลลาร์สิงคโปร์ / SGD'},{code:'GBP',sym:'£',name:'ปอนด์ / British Pound'},
+  {code:'CNY',sym:'¥',name:'หยวน / Chinese Yuan'},{code:'KRW',sym:'₩',name:'วอน / Korean Won'},
+  {code:'AUD',sym:'A$',name:'ดอลลาร์ออสเตรเลีย / AUD'},{code:'MYR',sym:'RM',name:'ริงกิต / Malaysian Ringgit'}
 ];
 
 const CATEGORIES = ['Food', 'Accommodation', 'Transport', 'Ticket', 'Shopping', 'Settlement', 'Other'];
@@ -480,79 +315,44 @@ const CAT_COLORS = {
 
 const getCur = code => CURRENCIES.find(x=>x.code===code)||CURRENCIES[0];
 const fmtAmt = (n,code) => {
-  const c = getCur(code);
-  const dec = (code==='JPY'||code==='KRW') ? 0 : 2;
+  const c = getCur(code); const dec = (code==='JPY'||code==='KRW') ? 0 : 2;
   return c.sym + Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
 };
 
-// round to 2 decimal places using integer arithmetic to avoid float drift
 const r2 = n => Math.round(n * 100) / 100;
 
-/**
- * makeSplits — หารยอดให้ครบ 2 ทศนิยมโดยไม่มีเศษตกหล่น
- * - หารฐาน: floor ทุกคน
- * - เศษที่เหลือ (ทศนิยม 2 หลัก) ยกให้คนแรก (มักเป็น 0.01 บาท)
- * ผลรวม splits จะเท่ากับ amount เสมอ
- */
 function makeSplits(amount, members) {
   if (!members.length) return {};
-  const totalCents = Math.round(amount * 100);           // ทำงานด้วยสตางค์เต็มจำนวน
+  const totalCents = Math.round(amount * 100);          
   const baseCents  = Math.floor(totalCents / members.length);
-  const extraCents = totalCents - baseCents * members.length; // เศษที่เหลือ (0 ถึง n-1 สตางค์)
+  const extraCents = totalCents - baseCents * members.length; 
   const splits = {};
-  members.forEach((m, i) => {
-    // คนแรก i===0 รับเศษที่เหลือทั้งหมด (สูงสุด n-1 สตางค์ ≈ ไม่กี่ตังค์)
-    splits[m] = r2((baseCents + (i === 0 ? extraCents : 0)) / 100);
-  });
+  members.forEach((m, i) => { splits[m] = r2((baseCents + (i === 0 ? extraCents : 0)) / 100); });
   return splits;
 }
 
-/**
- * calcBal — คำนวณ paid / owe / net ด้วย r2 ทุก step
- * net = เงินที่จ่ายแทนคนอื่นไป (บวก = คนอื่นค้างคุณ, ลบ = คุณค้างคนอื่น)
- */
 function calcBal(members, expenses, displayCurrency) {
   const paid = {}, owe = {}, net = {};
   members.forEach(m => { paid[m] = 0; owe[m] = 0; net[m] = 0; });
-
   expenses.forEach(e => {
     if ((e.currency || 'THB') !== displayCurrency) return;
-    // สะสมยอดจ่าย
     if (paid[e.payer] !== undefined) paid[e.payer] = r2(paid[e.payer] + e.amount);
-    // สะสมยอดที่ต้องจ่ายคืน
-    Object.entries(e.splits).forEach(([n, v]) => {
-      if (owe[n] !== undefined) owe[n] = r2(owe[n] + v);
-    });
+    Object.entries(e.splits).forEach(([n, v]) => { if (owe[n] !== undefined) owe[n] = r2(owe[n] + v); });
   });
-
   members.forEach(m => { net[m] = r2((paid[m] || 0) - (owe[m] || 0)); });
   return { paid, owe, net };
 }
 
-/**
- * calcSettle — หาลำดับโอนเงินที่น้อยที่สุด
- * ใช้ epsilon = 0.005 (ครึ่งสตางค์) เพื่อตัดเศษที่เกิดจากการแปลงสกุลเงิน
- */
 function calcSettle(net) {
-  const EPS = 0.005;
-  const cr = [], db = [];
-  Object.entries(net).forEach(([n, v]) => {
-    const val = r2(v);
-    if (val >  EPS) cr.push({ n, a: val });
-    if (val < -EPS) db.push({ n, a: -val });
-  });
-  cr.sort((a, b) => b.a - a.a);
-  db.sort((a, b) => b.a - a.a);
-
-  const result = [];
-  let ci = 0, di = 0;
+  const EPS = 0.005; const cr = [], db = [];
+  Object.entries(net).forEach(([n, v]) => { const val = r2(v); if (val > EPS) cr.push({ n, a: val }); if (val < -EPS) db.push({ n, a: -val }); });
+  cr.sort((a, b) => b.a - a.a); db.sort((a, b) => b.a - a.a);
+  const result = []; let ci = 0, di = 0;
   while (ci < cr.length && di < db.length) {
     const amt = r2(Math.min(cr[ci].a, db[di].a));
     if (amt >= EPS) result.push({ from: db[di].n, to: cr[ci].n, amount: amt });
-    cr[ci].a = r2(cr[ci].a - amt);
-    db[di].a = r2(db[di].a - amt);
-    if (cr[ci].a < EPS) ci++;
-    if (db[di].a < EPS) di++;
+    cr[ci].a = r2(cr[ci].a - amt); db[di].a = r2(db[di].a - amt);
+    if (cr[ci].a < EPS) ci++; if (db[di].a < EPS) di++;
   }
   return result;
 }
@@ -615,17 +415,74 @@ function useToast(){
 }
 
 // ═══════════════════════════════════════════════════
-// DEBT BANNER — แสดงยอดค้างจ่ายของ myName
+// 🌟 WELCOME SCREEN (หน้า Welcome และ Hello Name) 🌟
+// ═══════════════════════════════════════════════════
+function WelcomeScreen({ onEnter, initialName }) {
+  const isReturning = !!(initialName && initialName.trim());
+  const [nick, setNick] = useState(initialName || '');
+
+  const go = () => { if(nick.trim()) onEnter(nick.trim()); else alert('Please enter your nickname!'); };
+
+  return (
+    <div className="welcome-root">
+      
+      <div className="welcome-pink">
+        <div className="w-text-container">
+          <div className="w-text-content">
+            <div className="w-welcome-to fade-up-1">Welcome to</div>
+            <div className="w-no-more fade-up-2">No More<br/>PayLater</div>
+            <div className="w-sub fade-up-3">where we all know you're gonna<br/>PayLater anyway</div>
+          </div>
+        </div>
+      </div>
+
+      {/* โซนรอยต่อคลื่นและน้องหมา - วาดคลื่นด้วย SVG ให้เอียงและโค้งเป๊ะๆ */}
+      <div className="welcome-wave-zone">
+        <img src="./Mascot Welcome Page.png" alt="Mascot" className="w-mascot" />
+        <svg viewBox="0 0 375 100" className="w-wave-svg" preserveAspectRatio="none">
+          <path d="M0,45 C120,90 220,90 375,15 L375,100 L0,100 Z" fill="#FBF6F2"/>
+        </svg>
+      </div>
+
+      <div className="welcome-cream">
+        {isReturning ? (
+          /* ── สำหรับคนเคยเข้าแล้ว (Hello, Name!) ── */
+          <div style={{width:'100%', display:'flex', flexDirection:'column', alignItems:'center'}}>
+            <div className="w-hello-text fade-up-1">Hello, {initialName}!</div>
+            <button className="w-btn fade-up-2" onClick={go} style={{marginTop: '10px'}}>
+              Let's Pay <img src="./Arrow Right.png" alt="→"/>
+            </button>
+          </div>
+        ) : (
+          /* ── สำหรับคนเข้าครั้งแรก (Input Field) ── */
+          <div style={{width:'100%', display:'flex', flexDirection:'column', alignItems:'center'}}>
+            <div className="w-input-wrap fade-up-1">
+              {!nick && (
+                <div className="w-placeholder">Pop your <span>nickname</span> here!</div>
+              )}
+              <input className="w-input" value={nick} onChange={e=>setNick(e.target.value)} onKeyDown={e=>{if(e.key==='Enter')go();}} />
+            </div>
+            <button className="w-btn fade-up-2" onClick={go}>
+              Let's Pay <img src="./Arrow Right.png" alt="→"/>
+            </button>
+          </div>
+        )}
+      </div>
+
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════
+// DEBT BANNER 
 // ═══════════════════════════════════════════════════
 function DebtBanner({data, myName, onSelectMember, t}){
   const {members, expenses, displayCurrency} = data;
   if(!myName) return null;
 
-  // จับคู่ชื่อแบบ case-insensitive — หาชื่อจริงใน members ที่ตรงกับที่กรอก
   const resolvedName = members.find(m => m.toLowerCase() === myName.trim().toLowerCase());
   if(!resolvedName) return null;
 
-  // หายอดค้างจาก real expenses เท่านั้น
   const realExp = expenses.filter(e=>e.category!=='Settlement');
   const {net: grossNet} = calcBal(members, realExp, displayCurrency);
   const settles = calcSettle(grossNet).filter(s => s.from === resolvedName);
@@ -635,13 +492,10 @@ function DebtBanner({data, myName, onSelectMember, t}){
 
   return (
     <div className="debt-banner">
-      {/* Header */}
       <div style={{marginBottom:8}}>
         <div style={{fontSize:13,fontWeight:700,color:'rgba(255,255,255,0.75)',marginBottom:2}}>{t.debtAlertSub}</div>
         <div style={{fontSize:22,fontWeight:900,color:'#fff'}}>{t.debtAlertTitle(fmtAmt(totalOwed, displayCurrency))}</div>
       </div>
-
-      {/* Each creditor row */}
       {settles.map((s,i)=>(
         <div key={i} className="debt-row">
           <div style={{display:'flex',alignItems:'center',gap:10}}>
@@ -656,11 +510,7 @@ function DebtBanner({data, myName, onSelectMember, t}){
           <div style={{fontWeight:900,fontSize:17,color:'#fff'}}>{fmtAmt(s.amount, displayCurrency)}</div>
         </div>
       ))}
-
-      {/* Pay Now button */}
-      <button className="pay-now-btn" onClick={()=>onSelectMember(resolvedName)}>
-        {t.payNow}
-      </button>
+      <button className="pay-now-btn" onClick={()=>onSelectMember(resolvedName)}>{t.payNow}</button>
     </div>
   );
 }
@@ -675,7 +525,6 @@ function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember
 
   const {paid} = calcBal(members, expenses, displayCurrency);
   const totalAmt = expenses.filter(e=>e.category!=='Settlement').reduce((s,e)=>s+e.amount, 0);
-  // resolve ชื่อจริงจาก members (case-insensitive) เพื่อ highlight สมาชิก
   const resolvedMyName = members.find(m => m.toLowerCase() === (myName||'').trim().toLowerCase()) || '';
 
   const addM = () => {
@@ -787,7 +636,6 @@ function AddTab({data, upd, toast, goBack, editingExp, t}){
     if(!payer)       return toast(t.needPayer);
     if(active.length===0) return toast(t.needSplit);
 
-    // ใช้ makeSplits เพื่อการหารที่แม่นยำ (ผลรวม splits = amount เสมอ)
     const roundedAmt = r2(a);
     const splits = makeSplits(roundedAmt, active);
 
@@ -1062,112 +910,37 @@ function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setL
         </button>
       </div>
 
+      {/* ปุ่มรีเซ็ตสำหรับทดสอบกลับหน้าแรก */}
+      <div style={{textAlign:'center', marginTop:24}}>
+        <button style={{background:'none', border:'none', color:'var(--ink-light)', textDecoration:'underline', fontSize:14, fontFamily:'Kanit', cursor:'pointer'}} 
+          onClick={()=>{ 
+            localStorage.removeItem(MY_KEY); 
+            window.location.reload(); 
+          }}>
+          {lang === 'th' ? 'ทดสอบกลับไปหน้า Welcome (Log out)' : 'Log out for testing'}
+        </button>
+      </div>
+
     </div>
   </div>;
 }
 
 
 // ═══════════════════════════════════════════════════
-// WELCOME SCREEN
-// ═══════════════════════════════════════════════════
-
-// Animated greeting — letter by letter bounce for the name
-function AnimatedHello({ name }) {
-  const chars = name.split('');
-  // stagger: "Hello," fades at 0.05s, each name char starts at 0.35s + i*0.06s
-  return (
-    <div className="hello-wrap">
-      <span className="hello-greet">Hello,</span>
-      <br/>
-      <span className="hello-line">
-        {chars.map((ch, i) => (
-          <span
-            key={i}
-            className="hello-name-char"
-            style={{ animationDelay: `${0.35 + i * 0.065}s` }}
-          >{ch === ' ' ? ' ' : ch}</span>
-        ))}
-        <span
-          className="hello-exclaim"
-          style={{ animationDelay: `${0.35 + chars.length * 0.065}s` }}
-        >!</span>
-      </span>
-    </div>
-  );
-}
-
-function WelcomeScreen({ onEnter, initialName }) {
-  const isReturning = !!(initialName && initialName.trim());
-  const [nick, setNick] = useState(initialName || '');
-
-  const go = () => onEnter(nick.trim());
-
-  return (
-    <div className="welcome-root">
-      {/* ── Pink zone: text ── */}
-      <div className="welcome-pink">
-        <div className="welcome-to">Welcome to</div>
-        <div className="welcome-title">No More<br/>PayLater</div>
-        <div className="welcome-tagline">
-          where we all know you're gonna<br/>PayLater anyway
-        </div>
-      </div>
-
-      {/* ── Cream zone ── */}
-      <div className="welcome-cream">
-        <img className="welcome-mascot" src="./Mascot%20Welcome%20Page.png" alt="mascot"/>
-
-        {isReturning ? (
-          /* ── RETURNING USER: animated greeting ── */
-          <>
-            <AnimatedHello name={initialName.trim()} />
-            <button className="welcome-btn" onClick={go}>
-              Let's Pay
-              <img src="./Arrow%20Right.png" alt="→"/>
-            </button>
-          </>
-        ) : (
-          /* ── FIRST TIME: input field ── */
-          <>
-            <div className="welcome-input-wrap">
-              <input
-                className="welcome-input"
-                value={nick}
-                onChange={e => setNick(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && go()}
-                autoComplete="off"
-              />
-              {!nick && (
-                <div className="welcome-placeholder">
-                  Pop your <span style={{fontWeight:600}}>nickname</span> here!
-                </div>
-              )}
-            </div>
-            <button className="welcome-btn" onClick={go}>
-              Let's Pay
-              <img src="./Arrow%20Right.png" alt="→"/>
-            </button>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// ═══════════════════════════════════════════════════
-// APP ROOT
+// APP ROOT (คุมการเปลี่ยนหน้า)
 // ═══════════════════════════════════════════════════
 function App(){
-  const [welcomed, setWelcomed] = useState(false);
   const [data,   setData]  = useState(loadData);
+  const [myName, setMyName] = useState(()=>localStorage.getItem(MY_KEY)||'');
+  
+  // เช็คว่ามีชื่อหรือไม่ ถ้าไม่มีเข้า Welcome ก่อน
+  const [welcomed, setWelcomed] = useState(() => !!myName);
   const [tab,    setTab]   = useState('home');
   const [memberDetail, setMemberDetail] = useState(null);
   const [editingExp,   setEditingExp]   = useState(null);
-  const [myName, setMyName] = useState(()=>localStorage.getItem(MY_KEY)||'');
   const [lang,   setLang]   = useState(()=>localStorage.getItem(LANG_KEY)||'th');
   const [toast,  showToast] = useToast();
 
-  // Active translations
   const t = T[lang] || T['th'];
 
   const syncData = useCallback(() => {
@@ -1195,14 +968,19 @@ function App(){
   };
 
   const handleWelcomeEnter = (name) => {
-    if(name) { setMyName(name); localStorage.setItem(MY_KEY, name); }
+    if(name) { 
+      setMyName(name); 
+      localStorage.setItem(MY_KEY, name); 
+    }
     setWelcomed(true);
   };
 
+  // ถ้ายังไม่เคยกดเข้าสู่ระบบ ให้ค้างหน้า Welcome
   if(!welcomed) {
     return <WelcomeScreen onEnter={handleWelcomeEnter} initialName={myName}/>;
   }
 
+  // ถ้าระบบเปิดแล้ว
   return <div id="root">
     {tab==='home' && !memberDetail && (
       <HomeTab data={data} upd={upd} toast={showToast} myName={myName} onChangeName={setMyName} setTab={setTab} onSelectMember={setMemberDetail} syncData={syncData} t={t}/>
@@ -1228,8 +1006,9 @@ function App(){
 
     {(tab==='home'||tab==='list') && !memberDetail && (
       <nav className="bottom-nav">
-        <button className={`nav-item ${tab==='home'?'active':''}`} onClick={()=>setTab('home')}>
-          {I.home}<span>{t.navHome}</span>
+        <button className="nav-item" onClick={()=>setTab('home')}>
+          <img src="./Home.png" alt="Home" style={{ width: 28, height: 28, display: 'block' }}/>
+          <span>{t.navHome}</span>
         </button>
 
         <div className="fab-container">
@@ -1237,14 +1016,13 @@ function App(){
             if(data.members.length<2){ showToast(t.needMoreMembers); }
             else { setTab('add'); }
           }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
+            <img src="./Add.png" alt="Add" style={{ width: 36, height: 36, display: 'block' }}/>
           </button>
         </div>
 
-        <button className={`nav-item ${tab==='list'?'active':''}`} onClick={()=>setTab('list')}>
-          {I.list}<span>{t.navTransactions}</span>
+        <button className="nav-item" onClick={()=>setTab('list')}>
+          <img src="./Transactions.png" alt="Transactions" style={{ width: 28, height: 28, display: 'block' }}/>
+          <span>{t.navTransactions}</span>
         </button>
       </nav>
     )}

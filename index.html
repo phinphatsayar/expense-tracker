@@ -5,8 +5,38 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <title>NoMorePaylater</title>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Mitr:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Mitr:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          kanit: ['Kanit', 'sans-serif'],
+          mitr: ['Mitr', 'sans-serif'],
+        },
+        colors: {
+          'pink-grad-1': '#FAD2E1',
+          'pink-grad-2': '#F8B9D0',
+          'cream': '#FFFDFB',
+          'dark-btn': '#0B1009',
+          'pink-text': '#BE647C',
+        },
+        animation: {
+          'bounce-up': 'bounceUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+        },
+        keyframes: {
+          bounceUp: {
+            '0%': { opacity: '0', transform: 'translateY(60px) scale(0.95)' },
+            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+          }
+        }
+      }
+    }
+  }
+</script>
 <style>
+/* คง CSS เดิมไว้เพื่อรักษาการทำงานของหน้าหลัก */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden;font-family:'Kanit',sans-serif;background:#FFFFFF;color:#770523}
 
@@ -29,123 +59,6 @@ html,body{height:100%;overflow:hidden;font-family:'Kanit',sans-serif;background:
 .app-container{flex:1;overflow-y:auto;padding-bottom:120px;-webkit-overflow-scrolling:touch;background:var(--bg-main);}
 .app-container::-webkit-scrollbar{display:none}
 
-/* ═══════════════════════════════════════════════════ */
-/* 🎀 WELCOME SCREEN (เป๊ะ 100% ตามกรอบ 375x812) 🎀 */
-/* ═══════════════════════════════════════════════════ */
-.w-screen {
-  height: 100%; width: 100%; display: flex; flex-direction: column;
-  background: #FBF6F2; position: relative; overflow-x: hidden;
-}
-
-/* 1. โซนสีชมพู (ด้านบน) */
-.w-pink-zone {
-  flex: 1; /* ดันเนื้อหาลงมาให้พอดี */
-  background: linear-gradient(180deg, #FAD2E1 0%, #F8B9D0 100%);
-  display: flex; flex-direction: column; align-items: center;
-  padding-top: 14vh; position: relative; z-index: 1;
-}
-
-/* ล็อกขนาดกรอบข้อความให้เป๊ะ 238px */
-.w-text-block {
-  width: 100%; max-width: 238px; 
-  display: flex; flex-direction: column; align-items: flex-start;
-  z-index: 10;
-}
-
-.w-t1 { font-family: 'Mitr', sans-serif; font-size: 32px; font-weight: 500; color: #0B1009; line-height: 1; margin-bottom: 2px; }
-.w-t2 { 
-  font-family: 'Mitr', sans-serif; font-size: 48px; font-weight: 600; color: #FFFFFF; 
-  line-height: 1.05; text-shadow: 0 0 16px rgba(255,255,255,0.8), 0 0 35px rgba(255,255,255,0.4);
-}
-.w-t3 { font-family: 'Mitr', sans-serif; font-size: 12px; font-weight: 500; color: #770523; line-height: 1.4; margin-top: 14px; }
-
-/* 2. โซนรอยต่อคลื่น + น้องหมา */
-.w-wave-wrapper {
-  position: absolute; bottom: 0; left: 0; width: 100%;
-  height: 120px; z-index: 5;
-}
-
-/* ลบปัญหาขอบสีแปลกๆ ด้วยการให้ SVG ล้นลงไป 2px (bottom: -2px) */
-.w-wave-svg {
-  position: absolute; bottom: -2px; left: 0; width: 100%; height: 100%;
-  filter: drop-shadow(0px -4px 12px rgba(119,5,35,0.08));
-}
-
-/* ล็อกขนาดหมาให้เป๊ะ 255px และวางตำแหน่งให้คางเกาะพอดี */
-.w-mascot {
-  position: absolute;
-  bottom: 25px; /* ระยะที่เกาะคลื่นเป๊ะๆ */
-  left: 50%;
-  margin-left: -127.5px; /* ครึ่งหนึ่งของ 255px เพื่อให้อยู่ตรงกลางเป๊ะ */
-  width: 255px; 
-  z-index: 10;
-  filter: drop-shadow(0 12px 20px rgba(119,5,35,0.15));
-  animation: mascotEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-@keyframes mascotEnter {
-  0% { transform: translateY(40px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-/* 3. โซนสีครีม (ด้านล่าง) */
-.w-cream-zone {
-  background: #FBF6F2; 
-  height: 38vh; min-height: 250px;
-  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-  padding: 30px 20px 20px; z-index: 2; position: relative;
-}
-
-/* ----- สำหรับผู้ใช้ใหม่ (กรอกชื่อ) ----- */
-.w-input-wrap { position: relative; width: 100%; max-width: 300px; margin-bottom: 24px; margin-top: 10px; }
-.w-input {
-  width: 100%; padding: 15px 24px; border-radius: 50px;
-  border: 1.5px solid #FAD2E1; box-shadow: 0 4px 16px rgba(250,210,225,0.4);
-  background: #FFFFFF; font-family: 'Kanit', sans-serif; font-size: 16px;
-  text-align: center; color: #111; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-}
-.w-input:focus { border-color: #F8B9D0; box-shadow: 0 4px 20px rgba(248,185,208,0.5); }
-.w-placeholder {
-  position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
-  pointer-events: none; text-align: center; color: #D5B4C2;
-  font-family: 'Kanit', sans-serif; font-size: 16px;
-}
-.w-placeholder span { font-weight: 600; }
-
-/* ----- สำหรับผู้ใช้เก่า (Hello, Name!) ----- */
-.w-hello-text {
-  font-family: 'Mitr', sans-serif; font-weight: 600; font-size: 44px; color: #0B1009;
-  text-align: center; margin-bottom: 24px; margin-top: 10px; line-height: 1;
-}
-.hello-char {
-  display: inline-block; opacity: 0; transform: translateY(20px);
-  animation: helloPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-@keyframes helloPop { to { opacity: 1; transform: translateY(0); } }
-
-/* ปุ่ม Let's Pay ร่วมกัน */
-.w-btn {
-  background: #0B1009; color: #FAD2E1; font-family: 'Mitr', sans-serif;
-  font-weight: 500; font-size: 16px; padding: 12px 32px; border-radius: 50px;
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  border: none; cursor: pointer; transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 6px 20px rgba(11, 16, 9, 0.2); margin: 0 auto;
-}
-.w-btn:hover { transform: scale(1.05); }
-.w-btn:active { transform: scale(0.97); }
-.w-btn img { width: 20px; display: block; }
-
-/* แอนิเมชันข้อความ Fade Up */
-.fade-up-1 { animation: fadeUp 0.6s ease forwards; opacity: 0; }
-.fade-up-2 { animation: fadeUp 0.6s ease 0.15s forwards; opacity: 0; }
-.fade-up-3 { animation: fadeUp 0.6s ease 0.3s forwards; opacity: 0; }
-.fade-up-4 { animation: fadeUp 0.6s ease 0.45s forwards; opacity: 0; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-
-/* ═══════════════════════════════════════════════════ */
-/* GENERAL APP STYLES (สำหรับหน้า Home/Add/List ฯลฯ) */
-/* ═══════════════════════════════════════════════════ */
 .inline-input{border:1px dashed var(--ink-light);background:rgba(255,255,255,0.5);padding:4px 8px;border-radius:8px;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;width:100%;outline:none;}
 .inline-input:focus{border:1px solid var(--accent);background:var(--surface);}
 
@@ -158,6 +71,7 @@ html,body{height:100%;overflow:hidden;font-family:'Kanit',sans-serif;background:
 .settings-btn svg{width:22px;height:22px;stroke-width:2.5;}
 
 .pink-board{background:var(--bg-pink);border-radius:32px 32px 0 0;padding:24px 20px 40px;min-height:100%;}
+
 .trip-header{margin-bottom:20px;}
 .trip-title{font-size:22px;font-weight:800;color:var(--ink-dark);display:flex;align-items:center;gap:8px;cursor:pointer;}
 .trip-sub{font-size:13px;color:var(--ink-dark);font-weight:500;margin-top:4px;opacity:0.8;}
@@ -182,6 +96,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);}
 .paw-btn{width:44px;height:44px;border-radius:12px;background:#FBF6F2;border:1.5px solid rgba(119,5,35,0.15);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(--accent);flex-shrink:0;}
 .paw-btn svg{width:22px;height:22px;fill:currentColor;}
 
+/* Language Toggle */
 .lang-toggle{display:flex;background:#F0E6EA;border-radius:30px;padding:4px;gap:2px;}
 .lang-btn{padding:6px 14px;border-radius:24px;border:none;font-family:'Kanit';font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--ink-light);}
 .lang-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 6px rgba(119,5,35,0.25);}
@@ -232,91 +147,184 @@ const KEY = 'splittrip-v6';
 const MY_KEY = 'splittrip-myname-v6';
 const LANG_KEY = 'splittrip-lang-v1';
 
+// ═══════════════════════════════════════════════════
+// 🌐 TRANSLATIONS
+// ═══════════════════════════════════════════════════
 const T = {
   th: {
-    appName: 'NoMorePaylater', save: 'บันทึก', cancel: 'ยกเลิก', back: 'กลับ', add: '+ เพิ่ม',
-    delete: 'ลบรายการนี้', confirmDelete: 'ลบรายการนี้?', edit: 'แก้ไข',
-    navHome: 'หน้าหลัก', navTransactions: 'รายการ',
-    hello: 'สวัสดี!', nicknamePlaceholder: 'ใส่ชื่อเล่นของคุณที่นี่!',
+    appName: 'NoMorePaylater',
+    save: 'บันทึก',
+    cancel: 'ยกเลิก',
+    back: 'กลับ',
+    add: '+ เพิ่ม',
+    delete: 'ลบรายการนี้',
+    confirmDelete: 'ลบรายการนี้?',
+    edit: 'แก้ไข',
+    navHome: 'หน้าหลัก',
+    navTransactions: 'รายการ',
+    hello: 'สวัสดี!',
+    nicknamePlaceholder: 'ใส่ชื่อเล่นของคุณที่นี่!',
     defaultTripName: "Where's the squad wandering next...?",
-    memberCount: (n) => `${n} คน`, transactionCount: (n) => `${n} รายการ`,
-    total: 'ยอดรวม', member: 'สมาชิก', memberNamePlaceholder: 'ชื่อสมาชิก',
-    memberDuplicate: 'มีชื่อนี้แล้ว!', memberAdded: (n) => `เพิ่ม ${n} แล้ว ✓`,
-    spent: (amt) => `จ่ายไป ${amt}`, noMembers: `เพิ่มสมาชิกเพื่อเริ่มต้น`,
+    memberCount: (n) => `${n} คน`,
+    transactionCount: (n) => `${n} รายการ`,
+    total: 'ยอดรวม',
+    member: 'สมาชิก',
+    memberNamePlaceholder: 'ชื่อสมาชิก',
+    memberDuplicate: 'มีชื่อนี้แล้ว!',
+    memberAdded: (n) => `เพิ่ม ${n} แล้ว ✓`,
+    spent: (amt) => `จ่ายไป ${amt}`,
+    noMembers: `เพิ่มสมาชิกเพื่อเริ่มต้น`,
     needMoreMembers: 'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน 👥',
-    syncDone: 'ซิงค์ข้อมูลล่าสุดแล้ว ✓', syncFail: '⚠️ เชื่อมต่อล้มเหลว',
-    syncing: 'กำลังซิงค์ข้อมูล...', cloudFail: '⚠️ บันทึกขึ้น Cloud ไม่สำเร็จ',
-    addTransaction: 'เพิ่มรายการ', editTransaction: 'แก้ไขรายการ', category: 'หมวดหมู่ (Category)',
-    detail: 'รายละเอียด', detailPlaceholder: 'เช่น ค่าอาหาร...', amount: (cur) => `จำนวนเงิน (${cur})`,
-    note: 'หมายเหตุ (Note)', notePlaceholder: 'รายละเอียดเพิ่มเติม...',
-    whoPayQuestion: 'ใครเป็นคนจ่าย?', splitWithQuestion: 'หารกับใครบ้าง?',
-    needDetail: 'กรุณาใส่รายละเอียด', needAmount: 'ใส่จำนวนเงิน', needPayer: 'เลือกคนจ่าย',
-    needSplit: 'เลือกคนหารด้วย', saved: 'บันทึกแล้ว', edited: 'แก้ไขรายการแล้ว', deleted: 'ลบแล้ว',
-    needMinMembers: 'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน', transactions: 'รายการ',
-    noTransactions: 'ยังไม่มีรายการ', paidBy: (name) => `${name} จ่าย`,
-    settleHeader: '💸 รายการต้องโอน / รับโอน', payTo: 'จ่ายให้', receiveFrom: 'รับจาก',
-    alreadySent: 'คุณโอนเงินแล้ว', alreadyReceived: 'ได้รับเงินแล้ว', tapWhenSent: 'กดเมื่อโอนเงินแล้ว',
-    tapWhenReceived: 'กดเมื่อได้รับเงินแล้ว', owesFriend: (amt) => `ต้องจ่ายเพื่อน ${amt}`,
-    friendOwes: (amt) => `คนอื่นค้างอยู่ ${amt}`, allClear: 'เคลียร์หนี้หมดแล้ว 🎉',
-    settleSaved: 'บันทึกการชำระเงินแล้ว ✓', settleCancel: 'ยกเลิกการชำระเงินแล้ว',
-    settings: 'ตั้งค่า', myName: '👤 ชื่อของฉัน', myNameSub: 'ชื่อนี้จะแสดงยอดของคุณบนหน้าแรก',
-    myNamePlaceholder: 'แตะเพื่อตั้งชื่อ', currency: '💱 สกุลเงินที่แสดงผลหลัก',
+    syncDone: 'ซิงค์ข้อมูลล่าสุดแล้ว ✓',
+    syncFail: '⚠️ เชื่อมต่อล้มเหลว',
+    syncing: 'กำลังซิงค์ข้อมูล...',
+    cloudFail: '⚠️ บันทึกขึ้น Cloud ไม่สำเร็จ',
+    addTransaction: 'เพิ่มรายการ',
+    editTransaction: 'แก้ไขรายการ',
+    category: 'หมวดหมู่ (Category)',
+    detail: 'รายละเอียด',
+    detailPlaceholder: 'เช่น ค่าอาหาร...',
+    amount: (cur) => `จำนวนเงิน (${cur})`,
+    note: 'หมายเหตุ (Note)',
+    notePlaceholder: 'รายละเอียดเพิ่มเติม...',
+    whoPayQuestion: 'ใครเป็นคนจ่าย?',
+    splitWithQuestion: 'หารกับใครบ้าง?',
+    needDetail: 'กรุณาใส่รายละเอียด',
+    needAmount: 'ใส่จำนวนเงิน',
+    needPayer: 'เลือกคนจ่าย',
+    needSplit: 'เลือกคนหารด้วย',
+    saved: 'บันทึกแล้ว',
+    edited: 'แก้ไขรายการแล้ว',
+    deleted: 'ลบแล้ว',
+    needMinMembers: 'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน',
+    transactions: 'รายการ',
+    noTransactions: 'ยังไม่มีรายการ',
+    paidBy: (name) => `${name} จ่าย`,
+    settleHeader: '💸 รายการต้องโอน / รับโอน',
+    payTo: 'จ่ายให้',
+    receiveFrom: 'รับจาก',
+    alreadySent: 'คุณโอนเงินแล้ว',
+    alreadyReceived: 'ได้รับเงินแล้ว',
+    tapWhenSent: 'กดเมื่อโอนเงินแล้ว',
+    tapWhenReceived: 'กดเมื่อได้รับเงินแล้ว',
+    owesFriend: (amt) => `ต้องจ่ายเพื่อน ${amt}`,
+    friendOwes: (amt) => `คนอื่นค้างอยู่ ${amt}`,
+    allClear: 'เคลียร์หนี้หมดแล้ว 🎉',
+    settleSaved: 'บันทึกการชำระเงินแล้ว ✓',
+    settleCancel: 'ยกเลิกการชำระเงินแล้ว',
+    settings: 'ตั้งค่า',
+    myName: '👤 ชื่อของฉัน',
+    myNameSub: 'ชื่อนี้จะแสดงยอดของคุณบนหน้าแรก',
+    myNamePlaceholder: 'แตะเพื่อตั้งชื่อ',
+    currency: '💱 สกุลเงินที่แสดงผลหลัก',
     currencySub: 'ยอดรวม ยอดค้าง และแบนเนอร์หน้าแรก จะแสดงเป็นสกุลเงินนี้',
     convertConfirm: (to) => `คุณต้องการแปลงยอดเงินของ "ทุกรายการ" เป็น ${to} ด้วยอัตราแลกเปลี่ยนโดยประมาณหรือไม่?\n\n*หากยกเลิก จะเปลี่ยนแค่สัญลักษณ์ แต่ไม่แปลงตัวเลข*`,
-    converted: (cur) => `แปลงทุกยอดเป็น ${cur} แล้ว`, dangerZone: '⚠️ รีเซ็ต (ระวัง: ลบข้อมูลของทุกคน)',
-    resetBtn: 'ลบข้อมูลทั้งหมด', resetConfirm: 'ลบข้อมูลทริปทั้งหมดของทุกคน?',
-    debtAlertTitle: (amt) => `คุณค้างจ่ายอยู่ ${amt}`, debtAlertSub: 'อย่าลืมโอนให้เพื่อนนะ! 👀',
-    payNow: 'Pay Now! 💸', language: '🌐 ภาษา / Language', langTH: 'ไทย', langEN: 'English',
+    converted: (cur) => `แปลงทุกยอดเป็น ${cur} แล้ว`,
+    dangerZone: '⚠️ รีเซ็ต (ระวัง: ลบข้อมูลของทุกคน)',
+    resetBtn: 'ลบข้อมูลทั้งหมด',
+    resetConfirm: 'ลบข้อมูลทริปทั้งหมดของทุกคน?',
+    debtAlertTitle: (amt) => `คุณค้างจ่ายอยู่ ${amt}`,
+    debtAlertSub: 'อย่าลืมโอนให้เพื่อนนะ! 👀',
+    payNow: 'Pay Now! 💸',
+    language: '🌐 ภาษา / Language',
+    langTH: 'ไทย',
+    langEN: 'English',
   },
   en: {
-    appName: 'NoMorePaylater', save: 'Save', cancel: 'Cancel', back: 'Back', add: '+ Add',
-    delete: 'Delete this item', confirmDelete: 'Delete this item?', edit: 'Edit',
-    navHome: 'Home', navTransactions: 'Transactions',
-    hello: 'Hello!', nicknamePlaceholder: 'Pop your nickname here!',
+    appName: 'NoMorePaylater',
+    save: 'Save',
+    cancel: 'Cancel',
+    back: 'Back',
+    add: '+ Add',
+    delete: 'Delete this item',
+    confirmDelete: 'Delete this item?',
+    edit: 'Edit',
+    navHome: 'Home',
+    navTransactions: 'Transactions',
+    hello: 'Hello!',
+    nicknamePlaceholder: 'Pop your nickname here!',
     defaultTripName: "Where's the squad wandering next...?",
-    memberCount: (n) => `${n} member${n !== 1 ? 's' : ''}`, transactionCount: (n) => `${n} transaction${n !== 1 ? 's' : ''}`,
-    total: 'Total', member: 'Member', memberNamePlaceholder: 'Member name',
-    memberDuplicate: 'Name already exists!', memberAdded: (n) => `Added ${n} ✓`,
-    spent: (amt) => `spent ${amt}`, noMembers: 'Add members to get started',
+    memberCount: (n) => `${n} member${n !== 1 ? 's' : ''}`,
+    transactionCount: (n) => `${n} transaction${n !== 1 ? 's' : ''}`,
+    total: 'Total',
+    member: 'Member',
+    memberNamePlaceholder: 'Member name',
+    memberDuplicate: 'Name already exists!',
+    memberAdded: (n) => `Added ${n} ✓`,
+    spent: (amt) => `spent ${amt}`,
+    noMembers: 'Add members to get started',
     needMoreMembers: 'Need at least 2 members first 👥',
-    syncDone: 'Synced latest data ✓', syncFail: '⚠️ Connection failed',
-    syncing: 'Syncing data...', cloudFail: '⚠️ Could not save to Cloud',
-    addTransaction: 'Add Transaction', editTransaction: 'Edit Transaction', category: 'Category',
-    detail: 'Description', detailPlaceholder: 'e.g. Dinner, taxi...', amount: (cur) => `Amount (${cur})`,
-    note: 'Note', notePlaceholder: 'Additional details...',
-    whoPayQuestion: 'Who paid?', splitWithQuestion: 'Split with?',
-    needDetail: 'Please enter a description', needAmount: 'Enter an amount', needPayer: 'Select who paid',
-    needSplit: 'Select who to split with', saved: 'Saved!', edited: 'Item updated', deleted: 'Deleted',
-    needMinMembers: 'Need at least 2 members first', transactions: 'Transactions',
-    noTransactions: 'No transactions yet', paidBy: (name) => `${name} paid`,
-    settleHeader: '💸 Transfers to make / receive', payTo: 'Pay to', receiveFrom: 'Receive from',
-    alreadySent: 'Transfer sent', alreadyReceived: 'Payment received', tapWhenSent: 'Tap when sent',
-    tapWhenReceived: 'Tap when received', owesFriend: (amt) => `Owes ${amt}`,
-    friendOwes: (amt) => `Is owed ${amt}`, allClear: 'All settled up 🎉',
-    settleSaved: 'Payment recorded ✓', settleCancel: 'Payment undone',
-    settings: 'Settings', myName: '👤 My Name', myNameSub: 'This name shows your balance on the home screen',
-    myNamePlaceholder: 'Tap to set name', currency: '💱 Display Currency',
+    syncDone: 'Synced latest data ✓',
+    syncFail: '⚠️ Connection failed',
+    syncing: 'Syncing data...',
+    cloudFail: '⚠️ Could not save to Cloud',
+    addTransaction: 'Add Transaction',
+    editTransaction: 'Edit Transaction',
+    category: 'Category',
+    detail: 'Description',
+    detailPlaceholder: 'e.g. Dinner, taxi...',
+    amount: (cur) => `Amount (${cur})`,
+    note: 'Note',
+    notePlaceholder: 'Additional details...',
+    whoPayQuestion: 'Who paid?',
+    splitWithQuestion: 'Split with?',
+    needDetail: 'Please enter a description',
+    needAmount: 'Enter an amount',
+    needPayer: 'Select who paid',
+    needSplit: 'Select who to split with',
+    saved: 'Saved!',
+    edited: 'Item updated',
+    deleted: 'Deleted',
+    needMinMembers: 'Need at least 2 members first',
+    transactions: 'Transactions',
+    noTransactions: 'No transactions yet',
+    paidBy: (name) => `${name} paid`,
+    settleHeader: '💸 Transfers to make / receive',
+    payTo: 'Pay to',
+    receiveFrom: 'Receive from',
+    alreadySent: 'Transfer sent',
+    alreadyReceived: 'Payment received',
+    tapWhenSent: 'Tap when sent',
+    tapWhenReceived: 'Tap when received',
+    owesFriend: (amt) => `Owes ${amt}`,
+    friendOwes: (amt) => `Is owed ${amt}`,
+    allClear: 'All settled up 🎉',
+    settleSaved: 'Payment recorded ✓',
+    settleCancel: 'Payment undone',
+    settings: 'Settings',
+    myName: '👤 My Name',
+    myNameSub: 'This name shows your balance on the home screen',
+    myNamePlaceholder: 'Tap to set name',
+    currency: '💱 Display Currency',
     currencySub: 'Totals, balances, and the home banner will show in this currency',
     convertConfirm: (to) => `Convert ALL expense amounts to ${to} using approximate exchange rates?\n\n*Cancel to only change the symbol without converting numbers.*`,
-    converted: (cur) => `All amounts converted to ${cur}`, dangerZone: '⚠️ Reset (Warning: deletes everyone\'s data)',
-    resetBtn: 'Delete All Data', resetConfirm: 'Delete all trip data for everyone?',
-    debtAlertTitle: (amt) => `You owe ${amt}`, debtAlertSub: "Don't forget to pay your friends! 👀",
-    payNow: 'Pay Now! 💸', language: '🌐 Language / ภาษา', langTH: 'ไทย', langEN: 'English',
+    converted: (cur) => `All amounts converted to ${cur}`,
+    dangerZone: '⚠️ Reset (Warning: deletes everyone\'s data)',
+    resetBtn: 'Delete All Data',
+    resetConfirm: 'Delete all trip data for everyone?',
+    debtAlertTitle: (amt) => `You owe ${amt}`,
+    debtAlertSub: "Don't forget to pay your friends! 👀",
+    payNow: 'Pay Now! 💸',
+    language: '🌐 Language / ภาษา',
+    langTH: 'ไทย',
+    langEN: 'English',
   }
 };
 
 const RATES = { THB: 35, USD: 1, EUR: 0.92, JPY: 150, SGD: 1.34, GBP: 0.79, CNY: 7.2, KRW: 1330, AUD: 1.52, MYR: 4.7 };
-
 const CURRENCIES = [
-  {code:'THB',sym:'฿',name:'บาทไทย / Thai Baht'},{code:'USD',sym:'$',name:'ดอลลาร์สหรัฐ / US Dollar'},
-  {code:'EUR',sym:'€',name:'ยูโร / Euro'},{code:'JPY',sym:'¥',name:'เยน / Japanese Yen'},
-  {code:'SGD',sym:'S$',name:'ดอลลาร์สิงคโปร์ / SGD'},{code:'GBP',sym:'£',name:'ปอนด์ / British Pound'},
-  {code:'CNY',sym:'¥',name:'หยวน / Chinese Yuan'},{code:'KRW',sym:'₩',name:'วอน / Korean Won'},
-  {code:'AUD',sym:'A$',name:'ดอลลาร์ออสเตรเลีย / AUD'},{code:'MYR',sym:'RM',name:'ริงกิต / Malaysian Ringgit'}
+  {code:'THB',sym:'฿',name:'บาทไทย / Thai Baht'},
+  {code:'USD',sym:'$',name:'ดอลลาร์สหรัฐ / US Dollar'},
+  {code:'EUR',sym:'€',name:'ยูโร / Euro'},
+  {code:'JPY',sym:'¥',name:'เยน / Japanese Yen'},
+  {code:'SGD',sym:'S$',name:'ดอลลาร์สิงคโปร์ / SGD'},
+  {code:'GBP',sym:'£',name:'ปอนด์ / British Pound'},
+  {code:'CNY',sym:'¥',name:'หยวน / Chinese Yuan'},
+  {code:'KRW',sym:'₩',name:'วอน / Korean Won'},
+  {code:'AUD',sym:'A$',name:'ดอลลาร์ออสเตรเลีย / AUD'},
+  {code:'MYR',sym:'RM',name:'ริงกิต / Malaysian Ringgit'}
 ];
-
 const CATEGORIES = ['Food', 'Accommodation', 'Transport', 'Ticket', 'Shopping', 'Settlement', 'Other'];
-
 const CAT_COLORS = {
   'Food':          { bg:'#FFED9E', text:'#111111' },
   'Accommodation': { bg:'#A6CFF2', text:'#111111' },
@@ -329,19 +337,21 @@ const CAT_COLORS = {
 
 const getCur = code => CURRENCIES.find(x=>x.code===code)||CURRENCIES[0];
 const fmtAmt = (n,code) => {
-  const c = getCur(code); const dec = (code==='JPY'||code==='KRW') ? 0 : 2;
+  const c = getCur(code);
+  const dec = (code==='JPY'||code==='KRW') ? 0 : 2;
   return c.sym + Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
 };
 
 const r2 = n => Math.round(n * 100) / 100;
-
 function makeSplits(amount, members) {
   if (!members.length) return {};
-  const totalCents = Math.round(amount * 100);          
+  const totalCents = Math.round(amount * 100);
   const baseCents  = Math.floor(totalCents / members.length);
-  const extraCents = totalCents - baseCents * members.length; 
+  const extraCents = totalCents - baseCents * members.length;
   const splits = {};
-  members.forEach((m, i) => { splits[m] = r2((baseCents + (i === 0 ? extraCents : 0)) / 100); });
+  members.forEach((m, i) => {
+    splits[m] = r2((baseCents + (i === 0 ? extraCents : 0)) / 100);
+  });
   return splits;
 }
 
@@ -351,22 +361,33 @@ function calcBal(members, expenses, displayCurrency) {
   expenses.forEach(e => {
     if ((e.currency || 'THB') !== displayCurrency) return;
     if (paid[e.payer] !== undefined) paid[e.payer] = r2(paid[e.payer] + e.amount);
-    Object.entries(e.splits).forEach(([n, v]) => { if (owe[n] !== undefined) owe[n] = r2(owe[n] + v); });
+    Object.entries(e.splits).forEach(([n, v]) => {
+      if (owe[n] !== undefined) owe[n] = r2(owe[n] + v);
+    });
   });
   members.forEach(m => { net[m] = r2((paid[m] || 0) - (owe[m] || 0)); });
   return { paid, owe, net };
 }
 
 function calcSettle(net) {
-  const EPS = 0.005; const cr = [], db = [];
-  Object.entries(net).forEach(([n, v]) => { const val = r2(v); if (val > EPS) cr.push({ n, a: val }); if (val < -EPS) db.push({ n, a: -val }); });
-  cr.sort((a, b) => b.a - a.a); db.sort((a, b) => b.a - a.a);
-  const result = []; let ci = 0, di = 0;
+  const EPS = 0.005;
+  const cr = [], db = [];
+  Object.entries(net).forEach(([n, v]) => {
+    const val = r2(v);
+    if (val >  EPS) cr.push({ n, a: val });
+    if (val < -EPS) db.push({ n, a: -val });
+  });
+  cr.sort((a, b) => b.a - a.a);
+  db.sort((a, b) => b.a - a.a);
+  const result = [];
+  let ci = 0, di = 0;
   while (ci < cr.length && di < db.length) {
     const amt = r2(Math.min(cr[ci].a, db[di].a));
     if (amt >= EPS) result.push({ from: db[di].n, to: cr[ci].n, amount: amt });
-    cr[ci].a = r2(cr[ci].a - amt); db[di].a = r2(db[di].a - amt);
-    if (cr[ci].a < EPS) ci++; if (db[di].a < EPS) di++;
+    cr[ci].a = r2(cr[ci].a - amt);
+    db[di].a = r2(db[di].a - amt);
+    if (cr[ci].a < EPS) ci++;
+    if (db[di].a < EPS) di++;
   }
   return result;
 }
@@ -375,9 +396,12 @@ const initData = () => ({ tripName:"Where's the squad wandering next...?", membe
 const loadData = () => JSON.parse(localStorage.getItem(KEY)) || initData();
 const persist = d => localStorage.setItem(KEY, JSON.stringify(d));
 const today = () => new Date().toISOString().slice(0,10);
+
 const I = {
-  gear: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
+  gear: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
   paw: <svg viewBox="0 0 24 24"><path d="M12 8.5c-1.5 0-2.7-1.4-2.7-3.2S10.5 2 12 2s2.7 1.4 2.7 3.2-1.2 3.3-2.7 3.3zM6.5 12c-1.4 0-2.5-1.5-2.5-3.5S5.1 5 6.5 5 9 6.5 9 8.5 7.9 12 6.5 12zm11 0c-1.4 0-2.5-1.5-2.5-3.5S16.1 5 17.5 5 20 6.5 20 8.5 18.9 12 17.5 12zm-5.5 10c-3.8 0-5.5-2-6-4.5-.3-1.5.5-2.5 1.5-3.5 1.5-1.5 3-2 4.5-2s3 .5 4.5 2c1 1 1.8 2 1.5 3.5-.5 2.5-2.2 4.5-6 4.5z"/></svg>,
+  home: <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9.5L12 3l9 6.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5z"/><path d="M9 22V12h6v10"/></svg>,
+  list: <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M15 4H8a2 2 0 0 0-2 2v14l3-3 3 3 3-3 3 3V6a2 2 0 0 0-2-2z"/><line x1="9" y1="9" x2="14" y2="9"/><line x1="9" y1="13" x2="14" y2="13"/><line x1="9" y1="17" x2="14" y2="17"/></svg>,
   back: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"/></svg>,
   edit: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style={{width:16,height:16}}><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
   refresh: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
@@ -410,11 +434,8 @@ function InlineEdit({ text, onSave, className, placeholder, isTitle, style }) {
   const [isEditing, setIsEditing] = useState(false);
   const [val, setVal] = useState(text);
   const inputRef = useRef(null);
-
   useEffect(() => { if(isEditing) inputRef.current?.focus(); }, [isEditing]);
-
   const handleSave = () => { setIsEditing(false); if(val.trim()) onSave(val.trim()); else setVal(text); };
-
   if (isEditing) {
     return <input ref={inputRef} value={val} onChange={e=>setVal(e.target.value)} onBlur={handleSave} onKeyDown={e=>{if(e.key==='Enter')handleSave()}} className="inline-input" style={{fontSize:isTitle?22:16,fontWeight:isTitle?800:600,...style}}/>
   }
@@ -427,89 +448,92 @@ function useToast(){
 }
 
 // ═══════════════════════════════════════════════════
-// 🌟 WELCOME SCREEN COMPONENT (เป๊ะที่สุด) 🌟
+// NEW WELCOME SCREEN COMPONENT
 // ═══════════════════════════════════════════════════
-function WelcomeScreen({ onEnter, initialName }) {
-  const isReturning = !!(initialName && initialName.trim());
-  const [nick, setNick] = useState(initialName || '');
-
-  const go = () => { if(nick.trim()) onEnter(nick.trim()); else alert('Please enter your nickname!'); };
+function WelcomeScreen({ onStart }) {
+  const [name, setName] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <div className="w-screen">
+    <div className="w-full h-screen relative overflow-hidden bg-gradient-to-b from-pink-grad-1 from-0% via-pink-grad-2 via-28% to-pink-grad-2 font-mitr">
       
-      {/* ท่อนบนสีชมพู */}
-      <div className="w-pink-zone">
-        <div className="w-text-block">
-          <div className="w-t1 fade-up-1">Welcome to</div>
-          <div className="w-t2 fade-up-2">No More<br/>PayLater</div>
-          <div className="w-t3 fade-up-3">where we all know you're gonna<br/>PayLater anyway</div>
+      {/* Background White Wave Layer (45% height) */}
+      <div className="absolute bottom-0 w-full h-[45%] flex flex-col z-0">
+        <div className="w-full relative h-[40px] -mt-[39px]">
+          {/* SVG Wave Shape + Drop Shadow */}
+          <svg className="absolute bottom-0 left-0 w-full h-full drop-shadow-[0_-4px_6px_rgba(248,185,208,0.6)]" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path fill="#FFFDFB" d="M0,60 C320,120 420,0 720,60 C1020,120 1120,0 1440,60 L1440,120 L0,120 Z" />
+          </svg>
         </div>
+        <div className="w-full flex-grow bg-cream"></div>
       </div>
 
-      {/* โซนรอยต่อคลื่นและน้องหมา (วาดคลื่น SVG S-Curve โค้งเอียงเป๊ะๆ) */}
-      <div className="w-wave-wrapper">
-        <svg viewBox="0 0 375 120" preserveAspectRatio="none" className="w-wave-svg">
-          <path d="M0,70 C100,110 200,35 375,45 L375,120 L0,120 Z" fill="#FBF6F2"/>
-        </svg>
-        <img src="./Mascot Welcome Page.png" alt="Mascot" className="w-mascot" />
-      </div>
+      {/* Main Content Layout Container */}
+      <div className="relative z-10 w-full h-full flex flex-col justify-between pt-[10vh] pb-[6vh] lg:pt-[90px] lg:pb-[100px]">
+        
+        {/* Typography Section */}
+        <div className="flex flex-col items-center text-center">
+          <h2 className="text-[40px] text-5xl font-medium text-black leading-none">Welcome to</h2>
+          <h1 className="text-[52px] text-6xl font-semibold text-black leading-tight mt-[10px]">No More</h1>
+          <h1 className="text-[52px] text-6xl font-semibold text-black leading-none mt-[-6px]">PayLater</h1>
+          <p className="text-[13px] font-medium text-black mt-[12px]">where we all know...</p>
+          <p className="text-[13px] font-medium text-black mt-[4px]">PayLater anyway</p>
+        </div>
 
-      {/* ท่อนล่างสีครีม */}
-      <div className="w-cream-zone">
-        {isReturning ? (
-          /* ── สำหรับคนเคยเข้าแล้ว (Hello, Name!) ── */
-          <div style={{width:'100%', display:'flex', flexDirection:'column', alignItems:'center'}}>
-            
-            {/* แอนิเมชั่นตัวหนังสือเด้งทีละตัว */}
-            <div className="w-hello-text">
-               {`Hello,${initialName}!`.split('').map((char, i) => (
-                 <span key={i} className="hello-char" style={{animationDelay: `${i * 0.05}s`}}>
-                   {char}
-                 </span>
-               ))}
-            </div>
+        {/* Mascot Section */}
+        <div className="flex-1 flex justify-center items-end pb-4 mt-[40px]">
+          <img src="/Mascot%20Welcome%20Page.png" alt="Mascot" className="w-[254px] h-[213px] object-contain animate-bounce-up" />
+        </div>
 
-            <button className="w-btn fade-up-2" onClick={go} style={{marginTop: '10px'}}>
-              Let's Pay <img src="./Arrow Right.png" alt="→"/>
-            </button>
+        {/* Interactive Bottom Section */}
+        <div className="flex flex-col items-center mt-[43px]">
+          {/* Input Field */}
+          <div className="relative w-[280px] h-[48px]">
+            <input
+              type="text"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              className="w-full h-full rounded-full border-2 border-[#FAD2E1] bg-white text-center text-black font-mitr font-semibold focus:outline-none shadow-[0_0_4px_#FAD2E1]"
+            />
+            {/* Fake Placeholder (to support multiple font weights/opacity) */}
+            {!name && !isFocused && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-pink-text opacity-40 text-[14px]">
+                <span className="font-medium">Pop your&nbsp;</span>
+                <span className="font-semibold">nickname</span>
+                <span className="font-medium">&nbsp;here!</span>
+              </div>
+            )}
           </div>
-        ) : (
-          /* ── สำหรับคนเข้าครั้งแรก (Input Field) ── */
-          <div style={{width:'100%', display:'flex', flexDirection:'column', alignItems:'center'}}>
-            <div className="w-input-wrap fade-up-1">
-              {!nick && (
-                <div className="w-placeholder">Pop your <span>nickname</span> here!</div>
-              )}
-              <input className="w-input" value={nick} onChange={e=>setNick(e.target.value)} onKeyDown={e=>{if(e.key==='Enter')go();}} />
-            </div>
-            <button className="w-btn fade-up-2" onClick={go}>
-              Let's Pay <img src="./Arrow Right.png" alt="→"/>
-            </button>
-          </div>
-        )}
-      </div>
 
+          {/* Button */}
+          <button
+            onClick={() => onStart(name)}
+            className="mt-[34px] w-[162px] h-[46px] bg-dark-btn rounded-full flex items-center justify-center gap-2 text-[#FAD2E1] font-mitr font-medium hover:scale-105 transition-transform"
+          >
+            Let’s Pay
+            <img src="/Arrow%20Right.png" alt="Arrow" className="w-[16px] h-[16px] object-contain" />
+          </button>
+        </div>
+
+      </div>
     </div>
   );
 }
 
-
 // ═══════════════════════════════════════════════════
-// DEBT BANNER 
+// EXISTING UI COMPONENTS
 // ═══════════════════════════════════════════════════
 function DebtBanner({data, myName, onSelectMember, t}){
   const {members, expenses, displayCurrency} = data;
   if(!myName) return null;
-
   const resolvedName = members.find(m => m.toLowerCase() === myName.trim().toLowerCase());
   if(!resolvedName) return null;
-
   const realExp = expenses.filter(e=>e.category!=='Settlement');
   const {net: grossNet} = calcBal(members, realExp, displayCurrency);
   const settles = calcSettle(grossNet).filter(s => s.from === resolvedName);
   if(settles.length === 0) return null;
-
   const totalOwed = r2(settles.reduce((s,x)=>s+x.amount, 0));
 
   return (
@@ -532,19 +556,17 @@ function DebtBanner({data, myName, onSelectMember, t}){
           <div style={{fontWeight:900,fontSize:17,color:'#fff'}}>{fmtAmt(s.amount, displayCurrency)}</div>
         </div>
       ))}
-      <button className="pay-now-btn" onClick={()=>onSelectMember(resolvedName)}>{t.payNow}</button>
+      <button className="pay-now-btn" onClick={()=>onSelectMember(resolvedName)}>
+        {t.payNow}
+      </button>
     </div>
   );
 }
 
-// ═══════════════════════════════════════════════════
-// HOME TAB
-// ═══════════════════════════════════════════════════
 function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember, syncData, t}){
   const [addMode, setAdd] = useState(false);
   const [nm, setNm] = useState('');
   const {members, expenses, displayCurrency, tripName} = data;
-
   const {paid} = calcBal(members, expenses, displayCurrency);
   const totalAmt = expenses.filter(e=>e.category!=='Settlement').reduce((s,e)=>s+e.amount, 0);
   const resolvedMyName = members.find(m => m.toLowerCase() === (myName||'').trim().toLowerCase()) || '';
@@ -572,15 +594,12 @@ function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember
         <button className="settings-btn" onClick={()=>setTab('settings')}>{I.gear}</button>
       </div>
     </div>
-
     <div className="pink-board">
       <div className="trip-header">
         <InlineEdit text={tripName} onSave={v=>upd(d=>{d.tripName=v; return d;})} isTitle={true} className="trip-title"/>
         <div className="trip-sub">{t.memberCount(members.length)} · {t.transactionCount(expenses.length)}</div>
       </div>
-
       <DebtBanner data={data} myName={myName} onSelectMember={onSelectMember} t={t}/>
-
       <div className="sec-card">
         <div className="total-label">{t.total}</div>
         <div className="total-row">
@@ -588,7 +607,6 @@ function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember
           <span style={{fontSize:20, fontWeight:800, color:'var(--ink-dark)'}}>{fmtAmt(totalAmt, displayCurrency)}</span>
         </div>
       </div>
-
       <div className="sec-card">
         <div className="add-mem-row">
           <div style={{fontWeight:800, fontSize:16, color:'var(--ink-dark)'}}>{t.member}</div>
@@ -597,21 +615,18 @@ function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember
             : <button className="pill-btn" onClick={()=>setAdd(true)}>{t.add}</button>
           }
         </div>
-
         {addMode && (
           <div className="input-group" style={{marginBottom:16}}>
             <input placeholder={t.memberNamePlaceholder} value={nm} onChange={e=>setNm(e.target.value)} onKeyDown={e=>e.key==='Enter'&&addM()} autoFocus/>
             <button className="paw-btn" onClick={addM}>{I.paw}</button>
           </div>
         )}
-
         {members.length===0 && !addMode && (
           <div style={{textAlign:'center', padding:'20px 0', color:'var(--ink-light)', fontSize:13}}>
             <center><PlaceholderImage size={80} rounded="10px" style={{marginBottom:10}}/></center>
             <div style={{opacity:0.6}}>{t.noMembers}</div>
           </div>
         )}
-
         {members.map(m=>(
           <div key={m} className="mem-item" onClick={()=>onSelectMember(m)}>
             <div className="av-sq" style={{background:m===resolvedMyName?'var(--accent-light)':'#FBF6F2', color:m===resolvedMyName?'var(--accent)':'var(--ink-light)'}}>{m[0].toUpperCase()}</div>
@@ -627,13 +642,9 @@ function HomeTab({data, upd, toast, myName, onChangeName, setTab, onSelectMember
   </div>;
 }
 
-// ═══════════════════════════════════════════════════
-// ADD / EDIT EXPENSE TAB
-// ═══════════════════════════════════════════════════
 function AddTab({data, upd, toast, goBack, editingExp, t}){
   const {members, displayCurrency} = data;
   const isEdit = !!editingExp;
-
   const [desc, setDesc] = useState(isEdit?editingExp.desc:'');
   const [amt,  setAmt]  = useState(isEdit?editingExp.amount:'');
   const [cat,  setCat]  = useState(isEdit?editingExp.category:'Food');
@@ -660,7 +671,6 @@ function AddTab({data, upd, toast, goBack, editingExp, t}){
 
     const roundedAmt = r2(a);
     const splits = makeSplits(roundedAmt, active);
-
     const expObj = { id:isEdit?editingExp.id:Date.now(), desc:desc.trim(), amount:roundedAmt, currency:displayCurrency, category:cat, payer, splits, note:note.trim(), date:today() };
 
     if(isEdit){
@@ -686,30 +696,23 @@ function AddTab({data, upd, toast, goBack, editingExp, t}){
       <div style={{fontWeight:800, fontSize:18, color:'var(--ink-dark)'}}>{isEdit?t.editTransaction:t.addTransaction}</div>
       <div style={{width:80}}></div>
     </div>
-
     <div style={{padding:'0 20px 40px'}}>
       <div className="sec-card">
         <center><PlaceholderImage size={60} rounded="10px" style={{marginBottom:16}}/></center>
-
         <div className="lbl">{t.category}</div>
         <select value={cat} onChange={e=>setCat(e.target.value)} style={{marginBottom:16}}>
           {CATEGORIES.filter(c=>c!=='Settlement').map(c=><option key={c} value={c}>{c}</option>)}
         </select>
-
         <div className="lbl">{t.detail}</div>
         <input placeholder={t.detailPlaceholder} value={desc} onChange={e=>setDesc(e.target.value)} style={{marginBottom:16}}/>
-
         <div className="lbl">{t.amount(displayCurrency)}</div>
         <input type="number" inputMode="decimal" placeholder="0.00" value={amt} onChange={e=>setAmt(e.target.value)} style={{marginBottom:16}}/>
-
         <div className="lbl">{t.note}</div>
         <textarea rows="2" placeholder={t.notePlaceholder} value={note} onChange={e=>setNote(e.target.value)} style={{marginBottom:16,resize:'none'}}/>
-
         <div className="lbl">{t.whoPayQuestion}</div>
         <select value={payer} onChange={e=>setPayer(e.target.value)} style={{marginBottom:24}}>
           {members.map(m=><option key={m} value={m}>{m}</option>)}
         </select>
-
         <div className="lbl">{t.splitWithQuestion}</div>
         <div className="split-chip-group">
           {members.map(m=>(
@@ -719,7 +722,6 @@ function AddTab({data, upd, toast, goBack, editingExp, t}){
             </div>
           ))}
         </div>
-
         <button className="btn-main" onClick={submit}>{t.save}</button>
         {isEdit && <button className="pill-btn" style={{width:'100%',marginTop:12,color:'white',background:'#A65368',border:'none'}} onClick={del}>{t.delete}</button>}
       </div>
@@ -727,13 +729,9 @@ function AddTab({data, upd, toast, goBack, editingExp, t}){
   </div>;
 }
 
-// ═══════════════════════════════════════════════════
-// TRANSACTION LIST TAB
-// ═══════════════════════════════════════════════════
 function ListTab({data, setEditingExp, t}){
   const {expenses, displayCurrency} = data;
   const exps = expenses.filter(e=>e.category!=='Settlement');
-
   return <div className="app-container" style={{background:'var(--bg-pink)'}}>
     <div className="top-header" style={{background:'transparent'}}>
       <div style={{fontWeight:800, fontSize:24, color:'var(--ink-dark)'}}>{t.transactions}</div>
@@ -760,16 +758,11 @@ function ListTab({data, setEditingExp, t}){
   </div>;
 }
 
-// ═══════════════════════════════════════════════════
-// MEMBER DETAIL
-// ═══════════════════════════════════════════════════
 function MemberDetail({member, data, upd, toast, goBack, t}){
   const {members, expenses, displayCurrency} = data;
-
   const realExpenses = expenses.filter(e=>e.category!=='Settlement');
   const {net: grossNet} = calcBal(members, realExpenses, displayCurrency);
   const grossSettles = calcSettle(grossNet).filter(s=>s.from===member||s.to===member);
-
   const {net: actualNet} = calcBal(members, expenses, displayCurrency);
   const currentN = actualNet[member] || 0;
 
@@ -777,7 +770,6 @@ function MemberDetail({member, data, upd, toast, goBack, t}){
     const related = expenses.filter(e=>e.category==='Settlement'&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to]);
     const paidAmt = related.reduce((sum,e)=>sum+(e.splits[s.to]||0),0);
     const isPaid = paidAmt >= (s.amount - 0.01);
-
     if(isPaid){
       upd(d=>{d.expenses=d.expenses.filter(e=>!(e.category==='Settlement'&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to])); return d;});
       toast(t.settleCancel);
@@ -801,40 +793,29 @@ function MemberDetail({member, data, upd, toast, goBack, t}){
         <div>
           <div style={{fontSize:24,fontWeight:800,color:'var(--ink-dark)'}}>{member}</div>
           <div style={{fontSize:14,fontWeight:600,color:currentN>0.01?'var(--green)':currentN<-0.01?'var(--accent)':'var(--ink-light)'}}>
-            {currentN>0.01 ? t.friendOwes(fmtAmt(currentN, displayCurrency))
-              : currentN<-0.01 ? t.owesFriend(fmtAmt(-currentN, displayCurrency))
-              : t.allClear}
+            {currentN>0.01 ? t.friendOwes(fmtAmt(currentN, displayCurrency)) : currentN<-0.01 ? t.owesFriend(fmtAmt(-currentN, displayCurrency)) : t.allClear}
           </div>
         </div>
       </div>
-
       {grossSettles.length>0 && (
         <div className="sec-card" style={{background:'var(--bg-pink)'}}>
-          <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,marginBottom:16}}>
-            {t.settleHeader} ({displayCurrency})
-          </div>
+          <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,marginBottom:16}}>{t.settleHeader} ({displayCurrency})</div>
           {grossSettles.map((s,i)=>{
             const isFrom = s.from===member;
             const related = expenses.filter(e=>e.category==='Settlement'&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to]);
             const paidAmt = related.reduce((sum,e)=>sum+(e.splits[s.to]||0),0);
             const isPaid = paidAmt >= (s.amount - 0.01);
-
             return <div key={i} style={{background:'var(--surface)',padding:'16px',borderRadius:16,marginBottom:12,border:isPaid?'2px solid var(--accent)':'2px solid transparent'}}>
               <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}>
                 <div style={{fontSize:14,fontWeight:600,display:'flex',alignItems:'center',gap:6}}>
-                  {isFrom
-                    ? <span style={{color:'var(--ink-dark)',display:'flex',alignItems:'center',gap:6}}>{t.payTo} <NewArrowIcon color="var(--ink-dark)"/> {s.to}</span>
-                    : <span style={{color:'var(--ink-dark)',display:'flex',alignItems:'center',gap:6}}>{t.receiveFrom} <NewArrowIcon color="var(--ink-dark)"/> {s.from}</span>
-                  }
+                  {isFrom ? <span style={{color:'var(--ink-dark)',display:'flex',alignItems:'center',gap:6}}>{t.payTo} <NewArrowIcon color="var(--ink-dark)"/> {s.to}</span>
+                          : <span style={{color:'var(--ink-dark)',display:'flex',alignItems:'center',gap:6}}>{t.receiveFrom} <NewArrowIcon color="var(--ink-dark)"/> {s.from}</span>}
                 </div>
                 <div style={{fontSize:18,fontWeight:800,color:'var(--ink-dark)'}}>{fmtAmt(s.amount, displayCurrency)}</div>
               </div>
               <div className={`split-chip ${isPaid?'on':'off'}`} style={{width:'100%',border:isPaid?'none':'1.5px solid rgba(119,5,35,0.1)'}} onClick={()=>togglePaid(s)}>
                 {isPaid && <HandCoinIcon/>}
-                {isPaid
-                  ? (isFrom ? t.alreadySent : t.alreadyReceived)
-                  : (isFrom ? t.tapWhenSent : t.tapWhenReceived)
-                }
+                {isPaid ? (isFrom ? t.alreadySent : t.alreadyReceived) : (isFrom ? t.tapWhenSent : t.tapWhenReceived)}
               </div>
             </div>;
           })}
@@ -844,12 +825,8 @@ function MemberDetail({member, data, upd, toast, goBack, t}){
   </div>;
 }
 
-// ═══════════════════════════════════════════════════
-// SETTINGS TAB
-// ═══════════════════════════════════════════════════
 function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setLang, t}){
   const {displayCurrency} = data;
-
   const handleCurChange = (newCur) => {
     if(newCur===displayCurrency) return;
     if(confirm(t.convertConfirm(newCur))){
@@ -866,15 +843,9 @@ function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setL
         return d;
       });
       toast(t.converted(newCur));
-    } else {
-      upd(d=>{ d.displayCurrency=newCur; return d; });
-    }
+    } else { upd(d=>{ d.displayCurrency=newCur; return d; }); }
   };
-
-  const handleLangChange = (newLang) => {
-    setLang(newLang);
-    localStorage.setItem(LANG_KEY, newLang);
-  };
+  const handleLangChange = (newLang) => { setLang(newLang); localStorage.setItem(LANG_KEY, newLang); };
 
   return <div className="app-container" style={{background:'var(--bg-pink)',zIndex:200,position:'absolute',top:0,left:0,right:0,bottom:0}}>
     <div className="top-header" style={{alignItems:'center', background:'transparent'}}>
@@ -882,9 +853,7 @@ function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setL
       <div style={{fontWeight:800,fontSize:20,color:'var(--ink-dark)'}}>{t.settings}</div>
       <div style={{width:80}}></div>
     </div>
-
     <div style={{padding:'0 20px 40px'}}>
-
       <div className="settings-card">
         <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,marginBottom:12}}>{t.language}</div>
         <div className="lang-toggle">
@@ -892,7 +861,6 @@ function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setL
           <button className={`lang-btn ${lang==='en'?'active':''}`} onClick={()=>handleLangChange('en')}>{T.en.langEN}</button>
         </div>
       </div>
-
       <div className="settings-card">
         <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,display:'flex',alignItems:'center',gap:6}}>{t.myName}</div>
         <div style={{display:'flex',alignItems:'center',gap:12,marginTop:10}}>
@@ -903,7 +871,6 @@ function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setL
           </div>
         </div>
       </div>
-
       <div className="settings-card">
         <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14}}>{t.currency}</div>
         <div style={{fontSize:12,color:'var(--ink-light)',marginBottom:12}}>{t.currencySub}</div>
@@ -919,55 +886,35 @@ function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setL
           ))}
         </div>
       </div>
-
       <div className="settings-card">
         <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14}}>{t.dangerZone}</div>
-        <button className="pill-btn" style={{width:'100%',padding:'12px',marginTop:10,background:'#F9E8EC',color:'#770523',border:'none'}}
-          onClick={()=>{ if(confirm(t.resetConfirm)){ upd(()=>initData()); goBack(); } }}>
-          {t.resetBtn}
-        </button>
+        <button className="pill-btn" style={{width:'100%',padding:'12px',marginTop:10,background:'#F9E8EC',color:'#770523',border:'none'}} onClick={()=>{ if(confirm(t.resetConfirm)){ upd(()=>initData()); goBack(); } }}>{t.resetBtn}</button>
       </div>
-
-      {/* ปุ่มรีเซ็ตสำหรับทดสอบกลับหน้าแรก */}
-      <div style={{textAlign:'center', marginTop:24}}>
-        <button style={{background:'none', border:'none', color:'var(--ink-light)', textDecoration:'underline', fontSize:14, fontFamily:'Kanit', cursor:'pointer'}} 
-          onClick={()=>{ 
-            localStorage.removeItem(MY_KEY); 
-            window.location.reload(); 
-          }}>
-          {lang === 'th' ? 'ทดสอบกลับไปหน้า Welcome (Log out)' : 'Log out for testing'}
-        </button>
-      </div>
-
     </div>
   </div>;
 }
 
-
 // ═══════════════════════════════════════════════════
-// APP ROOT (คุมการเปลี่ยนหน้า)
+// APP ROOT
 // ═══════════════════════════════════════════════════
 function App(){
-  const [data,   setData]  = useState(loadData);
-  const [myName, setMyName] = useState(()=>localStorage.getItem(MY_KEY)||'');
-  
-  // เช็คว่ามีชื่อหรือไม่ ถ้าไม่มีเข้า Welcome ก่อน
-  const [welcomed, setWelcomed] = useState(false); // <--- แก้ให้ทุกคนต้องผ่าน Welcome
-  const [tab,    setTab]   = useState('home');
+  const [data, setData] = useState(loadData);
+  const [tab, setTab] = useState('home');
   const [memberDetail, setMemberDetail] = useState(null);
-  const [editingExp,   setEditingExp]   = useState(null);
-  const [lang,   setLang]   = useState(()=>localStorage.getItem(LANG_KEY)||'th');
-  const [toast,  showToast] = useToast();
+  const [editingExp, setEditingExp] = useState(null);
+  const [myName, setMyName] = useState(()=>localStorage.getItem(MY_KEY)||'');
+  const [lang, setLang] = useState(()=>localStorage.getItem(LANG_KEY)||'th');
+  const [toast, showToast] = useToast();
+  
+  // สถานะสำหรับหน้า Welcome Screen
+  const [showWelcome, setShowWelcome] = useState(() => !localStorage.getItem(MY_KEY));
 
   const t = T[lang] || T['th'];
 
   const syncData = useCallback(() => {
     if(!WEB_APP_URL) return;
     showToast(t.syncing);
-    fetch(WEB_APP_URL)
-      .then(r=>r.json())
-      .then(d=>{ if(d&&d.members){ setData(d); showToast(t.syncDone); } })
-      .catch(()=>showToast(t.syncFail));
+    fetch(WEB_APP_URL).then(r=>r.json()).then(d=>{ if(d&&d.members){ setData(d); showToast(t.syncDone); } }).catch(()=>showToast(t.syncFail));
   }, [t]);
 
   useEffect(()=>persist(data),[data]);
@@ -978,69 +925,55 @@ function App(){
     setData(prev=>{
       const nd = fn({...prev});
       if(WEB_APP_URL){
-        fetch(WEB_APP_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(nd)})
-          .catch(()=>showToast(t.cloudFail));
+        fetch(WEB_APP_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(nd)}).catch(()=>showToast(t.cloudFail));
       }
       return nd;
     });
   };
 
-  const handleWelcomeEnter = (name) => {
-    if(name) { 
-      setMyName(name); 
-      localStorage.setItem(MY_KEY, name); 
+  const handleStartWelcome = (nameInput) => {
+    const finalName = nameInput.trim() || 'Me';
+    setMyName(finalName);
+    
+    // ออโต้เพิ่มเข้า members list ถ้ายังไม่มีชื่อคนคนนี้
+    if (!data.members.includes(finalName)) {
+      upd(d => {
+        d.members = [...d.members, finalName];
+        return d;
+      });
     }
-    setWelcomed(true);
+    
+    setShowWelcome(false);
   };
 
-  // ถ้ายังไม่ได้กด Let's Pay ให้โชว์หน้า Welcome
-  if(!welcomed) {
-    return <WelcomeScreen onEnter={handleWelcomeEnter} initialName={myName}/>;
+  // 1) ถ้าพึ่งเข้าครั้งแรกและยังไม่ใส่ชื่อ แสดงหน้า Welcome Page
+  if (showWelcome) {
+    return <WelcomeScreen onStart={handleStartWelcome} />;
   }
 
-  return <div id="root">
-    {tab==='home' && !memberDetail && (
-      <HomeTab data={data} upd={upd} toast={showToast} myName={myName} onChangeName={setMyName} setTab={setTab} onSelectMember={setMemberDetail} syncData={syncData} t={t}/>
-    )}
-    {tab==='add' && (
-      <AddTab data={data} upd={upd} toast={showToast} goBack={()=>setTab('home')} editingExp={null} t={t}/>
-    )}
-    {tab==='edit' && (
-      <AddTab data={data} upd={upd} toast={showToast} goBack={()=>{setTab('list'); setEditingExp(null);}} editingExp={editingExp} t={t}/>
-    )}
-    {tab==='list' && (
-      <ListTab data={data} setEditingExp={e=>{setEditingExp(e); setTab('edit');}} t={t}/>
-    )}
+  // 2) ถ้ามีชื่อแล้ว แสดงแอปปกติ
+  return <div id="root" className="font-kanit">
+    {tab==='home' && !memberDetail && <HomeTab data={data} upd={upd} toast={showToast} myName={myName} onChangeName={setMyName} setTab={setTab} onSelectMember={setMemberDetail} syncData={syncData} t={t}/>}
+    {tab==='add' && <AddTab data={data} upd={upd} toast={showToast} goBack={()=>setTab('home')} editingExp={null} t={t}/>}
+    {tab==='edit' && <AddTab data={data} upd={upd} toast={showToast} goBack={()=>{setTab('list'); setEditingExp(null);}} editingExp={editingExp} t={t}/>}
+    {tab==='list' && <ListTab data={data} setEditingExp={e=>{setEditingExp(e); setTab('edit');}} t={t}/>}
 
-    {memberDetail && (
-      <MemberDetail member={memberDetail} data={data} upd={upd} toast={showToast} goBack={()=>setMemberDetail(null)} t={t}/>
-    )}
-    {tab==='settings' && (
-      <SettingsTab data={data} upd={upd} goBack={()=>setTab('home')} myName={myName} onChangeName={setMyName} toast={showToast} lang={lang} setLang={setLang} t={t}/>
-    )}
+    {memberDetail && <MemberDetail member={memberDetail} data={data} upd={upd} toast={showToast} goBack={()=>setMemberDetail(null)} t={t}/>}
+    {tab==='settings' && <SettingsTab data={data} upd={upd} goBack={()=>setTab('home')} myName={myName} onChangeName={setMyName} toast={showToast} lang={lang} setLang={setLang} t={t}/>}
 
     {toast && <div className="toast">{toast}</div>}
 
     {(tab==='home'||tab==='list') && !memberDetail && (
       <nav className="bottom-nav">
-        <button className="nav-item" onClick={()=>setTab('home')}>
-          <img src="./Home.png" alt="Home" style={{ width: 28, height: 28, display: 'block' }}/>
-          <span>{t.navHome}</span>
-        </button>
-
+        <button className={`nav-item ${tab==='home'?'active':''}`} onClick={()=>setTab('home')}>{I.home}<span>{t.navHome}</span></button>
         <div className="fab-container">
-          <button className="fab-btn" onClick={()=>{
-            if(data.members.length<2){ showToast(t.needMoreMembers); }
-            else { setTab('add'); }
-          }}>
-            <img src="./Add.png" alt="Add" style={{ width: 36, height: 36, display: 'block' }}/>
+          <button className="fab-btn" onClick={()=>{ if(data.members.length<2){ showToast(t.needMoreMembers); } else { setTab('add'); } }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
           </button>
         </div>
-
-        <button className="nav-item" onClick={()=>setTab('list')}>
-          <img src="./Transactions.png" alt="Transactions" style={{ width: 28, height: 28, display: 'block' }}/>
-          <span>{t.navTransactions}</span>
-        </button>
+        <button className={`nav-item ${tab==='list'?'active':''}`} onClick={()=>setTab('list')}>{I.list}<span>{t.navTransactions}</span></button>
       </nav>
     )}
   </div>;

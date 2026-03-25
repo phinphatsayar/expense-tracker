@@ -29,6 +29,118 @@ html,body{height:100%;overflow:hidden;font-family:'Kanit',sans-serif;background:
 .app-container{flex:1;overflow-y:auto;padding-bottom:120px;-webkit-overflow-scrolling:touch;background:var(--bg-main);}
 .app-container::-webkit-scrollbar{display:none}
 
+/* ═══════════════════════════════════════════════════ */
+/* 🎀 WELCOME SCREEN (เป๊ะ 100% ตามรูปที่ 1 และ 2) 🎀 */
+/* ═══════════════════════════════════════════════════ */
+.w-screen {
+  height: 100%; width: 100%; display: flex; flex-direction: column;
+  background: #FBF6F2; position: relative; overflow-x: hidden;
+}
+
+/* 1. โซนสีชมพู (ด้านบน) */
+.w-pink-zone {
+  flex: 1; min-height: 45vh;
+  background: linear-gradient(180deg, #FAD2E1 0%, #F8B9D0 100%);
+  display: flex; flex-direction: column; justify-content: center;
+  padding-top: 4vh; position: relative; z-index: 1;
+}
+
+/* กลุ่มข้อความตรงกลางจอ แต่ชิดซ้ายในบล็อก */
+.w-text-center-wrapper { display: flex; justify-content: center; width: 100%; }
+.w-text-block { display: flex; flex-direction: column; align-items: flex-start; }
+
+.w-t1 { font-family: 'Mitr', sans-serif; font-size: clamp(32px, 9vw, 36px); font-weight: 500; color: #0B1009; line-height: 1; margin-bottom: 4px; }
+.w-t2 { 
+  font-family: 'Mitr', sans-serif; font-size: clamp(48px, 13vw, 54px); font-weight: 600; color: #FFFFFF; 
+  line-height: 1.05; text-shadow: 0 0 24px rgba(255,255,255,0.75), 0 0 40px rgba(255,255,255,0.4);
+}
+.w-t3 { font-family: 'Mitr', sans-serif; font-size: clamp(12px, 3.5vw, 13px); font-weight: 500; color: #770523; line-height: 1.4; margin-top: 16px; }
+
+/* 2. โซนรอยต่อคลื่น + น้องหมา */
+.w-wave-zone {
+  position: relative; width: 100%; background: #FBF6F2;
+  line-height: 0; font-size: 0; z-index: 2;
+}
+
+.w-wave-svg {
+  width: 100%; height: auto; display: block;
+  filter: drop-shadow(0px -6px 12px rgba(119,5,35,0.08));
+}
+
+.w-mascot {
+  position: absolute;
+  /* วางน้องหมาให้ตีนเกาะคลื่นพอดีเป๊ะ (คำนวณจาก S-Curve) */
+  bottom: 45%; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%; max-width: 300px;
+  z-index: 10;
+  filter: drop-shadow(0 12px 20px rgba(119,5,35,0.15));
+  animation: mascotEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes mascotEnter {
+  0% { transform: translate(-50%, 50%); opacity: 0; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* 3. โซนสีครีม (ด้านล่าง) */
+.w-cream-zone {
+  background: #FBF6F2; padding: 20px 20px 60px;
+  display: flex; flex-direction: column; align-items: center;
+  min-height: 35vh; z-index: 2; position: relative;
+}
+
+/* ----- สำหรับผู้ใช้ใหม่ (กรอกชื่อ) ----- */
+.w-input-wrap { position: relative; width: 100%; max-width: 320px; margin-bottom: 24px; margin-top: 10px; }
+.w-input {
+  width: 100%; padding: 16px 24px; border-radius: 50px;
+  border: 1.5px solid #FAD2E1; box-shadow: 0 4px 16px rgba(250,210,225,0.4);
+  background: #FFFFFF; font-family: 'Kanit', sans-serif; font-size: 16px;
+  text-align: center; color: #111; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.w-input:focus { border-color: #F8B9D0; box-shadow: 0 4px 20px rgba(248,185,208,0.5); }
+.w-placeholder {
+  position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
+  pointer-events: none; text-align: center; color: #D5B4C2;
+  font-family: 'Kanit', sans-serif; font-size: 16px;
+}
+.w-placeholder span { font-weight: 600; }
+
+/* ----- สำหรับผู้ใช้เก่า (Hello, Name!) ----- */
+.w-hello-text {
+  font-family: 'Mitr', sans-serif; font-weight: 600; font-size: clamp(38px, 10vw, 46px); color: #0B1009;
+  text-align: center; margin-bottom: 24px; margin-top: 10px;
+}
+.hello-char {
+  display: inline-block; opacity: 0; transform: translateY(20px);
+  animation: helloPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes helloPop { to { opacity: 1; transform: translateY(0); } }
+
+/* ปุ่ม Let's Pay ร่วมกัน */
+.w-btn {
+  background: #0B1009; color: #FAD2E1; font-family: 'Mitr', sans-serif;
+  font-weight: 500; font-size: 18px; padding: 14px 36px; border-radius: 50px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  border: none; cursor: pointer; transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 6px 20px rgba(11, 16, 9, 0.2); margin: 0 auto;
+}
+.w-btn:hover { transform: scale(1.05); }
+.w-btn:active { transform: scale(0.97); }
+.w-btn img { width: 22px; display: block; }
+
+/* แอนิเมชันข้อความ Fade Up */
+.fade-up-1 { animation: fadeUp 0.6s ease forwards; opacity: 0; }
+.fade-up-2 { animation: fadeUp 0.6s ease 0.15s forwards; opacity: 0; }
+.fade-up-3 { animation: fadeUp 0.6s ease 0.3s forwards; opacity: 0; }
+.fade-up-4 { animation: fadeUp 0.6s ease 0.45s forwards; opacity: 0; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+
+/* ═══════════════════════════════════════════════════ */
+/* GENERAL APP STYLES (สำหรับหน้า Home/Add/List ฯลฯ) */
+/* ═══════════════════════════════════════════════════ */
 .inline-input{border:1px dashed var(--ink-light);background:rgba(255,255,255,0.5);padding:4px 8px;border-radius:8px;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;width:100%;outline:none;}
 .inline-input:focus{border:1px solid var(--accent);background:var(--surface);}
 
@@ -41,7 +153,6 @@ html,body{height:100%;overflow:hidden;font-family:'Kanit',sans-serif;background:
 .settings-btn svg{width:22px;height:22px;stroke-width:2.5;}
 
 .pink-board{background:var(--bg-pink);border-radius:32px 32px 0 0;padding:24px 20px 40px;min-height:100%;}
-
 .trip-header{margin-bottom:20px;}
 .trip-title{font-size:22px;font-weight:800;color:var(--ink-dark);display:flex;align-items:center;gap:8px;cursor:pointer;}
 .trip-sub{font-size:13px;color:var(--ink-dark);font-weight:500;margin-top:4px;opacity:0.8;}
@@ -98,108 +209,6 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);}
 .pay-now-btn{width:100%;padding:12px;border-radius:30px;border:2px solid rgba(255,255,255,0.5);background:transparent;color:#fff;font-family:'Kanit';font-size:15px;font-weight:800;cursor:pointer;margin-top:12px;letter-spacing:0.02em;transition:all 0.15s;}
 .pay-now-btn:active{background:rgba(255,255,255,0.15);}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink-dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:500;z-index:999;animation:pop .2s ease;white-space:nowrap;}
-
-/* ═══════════════════════════════════════════════════ */
-/* 🌟 WELCOME SCREEN STYLES (เป๊ะ 100%) 🌟 */
-/* ═══════════════════════════════════════════════════ */
-.welcome-root { height:100%; width:100%; display:flex; flex-direction:column; background:#FBF6F2; position:relative; overflow-x:hidden; }
-
-/* ท่อนบนสีชมพู */
-.welcome-pink {
-  flex: 1; min-height: 48vh;
-  background: linear-gradient(180deg, #FAD2E1 0%, #F8B9D0 100%);
-  display: flex; flex-direction: column; justify-content: flex-start;
-  padding-top: 12vh; position: relative; z-index: 1;
-}
-
-/* กล่องข้อความให้อยู่ตรงกลางจอ แต่จัด Text ชิดซ้าย */
-.w-text-container { display: flex; justify-content: center; width: 100%; }
-.w-text-content { display: flex; flex-direction: column; align-items: flex-start; }
-
-.w-welcome-to { font-family: 'Mitr', sans-serif; font-size: clamp(32px, 9vw, 36px); font-weight: 500; color: #0B1009; line-height: 1; margin-bottom: 4px; }
-.w-no-more { 
-  font-family: 'Mitr', sans-serif; font-size: clamp(48px, 13vw, 56px); font-weight: 600; color: #FFFFFF; 
-  line-height: 1.05; text-shadow: 0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.3);
-}
-.w-sub { font-family: 'Mitr', sans-serif; font-size: clamp(12px, 3.5vw, 13px); font-weight: 500; color: #770523; line-height: 1.4; margin-top: 12px; }
-
-/* ท่อนลอยต่อ: คลื่นและน้องหมา */
-.welcome-wave-zone {
-  position: relative; width: 100%; z-index: 2;
-  background: #FBF6F2;
-}
-
-/* คลื่น SVG วาดใหม่ให้องศาเป๊ะตามรูป */
-.w-wave-svg {
-  position: absolute; bottom: 100%; left: 0; width: 100%; height: auto; display: block;
-  filter: drop-shadow(0px -8px 12px rgba(119,5,35,0.06)); /* เงาใต้คลื่น */
-}
-
-/* น้องหมาเด้งดึ๋ง */
-.w-mascot {
-  position: absolute;
-  bottom: 8%; /* ให้ตีนน้องหมาจมเกาะคลื่นพอดี */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 72%; max-width: 290px;
-  z-index: 3;
-  filter: drop-shadow(0 12px 20px rgba(119,5,35,0.15));
-  animation: mascotEnter 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-@keyframes mascotEnter {
-  0% { transform: translate(-50%, 40%); opacity: 0; }
-  100% { transform: translate(-50%, 0); opacity: 1; }
-}
-
-/* ท่อนล่างสีครีม (Input / Hello Name) */
-.welcome-cream {
-  background: #FBF6F2; padding: 30px 20px 60px;
-  display: flex; flex-direction: column; align-items: center; min-height: 38vh;
-  z-index: 2; position: relative;
-}
-
-/* Hello Name (หน้า 2) */
-.w-hello-text {
-  font-family: 'Mitr', sans-serif; font-weight: 700; font-size: clamp(40px, 11vw, 48px); color: #0B1009;
-  text-align: center; margin-bottom: 24px;
-}
-
-/* Input (หน้า 1) */
-.w-input-wrap { position: relative; width: 100%; max-width: 320px; margin-bottom: 20px; }
-.w-input {
-  width: 100%; padding: 16px 24px; border-radius: 50px;
-  border: 1.5px solid #FAD2E1; box-shadow: 0 4px 16px rgba(250,210,225,0.4);
-  background: #FFFFFF; font-family: 'Kanit', sans-serif; font-size: 16px;
-  text-align: center; color: #111; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-}
-.w-input:focus { border-color: #F8B9D0; box-shadow: 0 4px 20px rgba(248,185,208,0.5); }
-.w-placeholder {
-  position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
-  pointer-events: none; text-align: center; color: #D5B4C2;
-  font-family: 'Kanit', sans-serif; font-size: 16px;
-}
-.w-placeholder span { font-weight: 600; }
-
-/* ปุ่ม Let's Pay */
-.w-btn {
-  background: #0B1009; color: #FAD2E1; font-family: 'Mitr', sans-serif;
-  font-weight: 500; font-size: 18px; padding: 14px 36px; border-radius: 50px;
-  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-  border: none; cursor: pointer; transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 6px 20px rgba(11, 16, 9, 0.2); margin: 0 auto;
-}
-.w-btn:hover { transform: scale(1.05); }
-.w-btn:active { transform: scale(0.97); }
-.w-btn img { width: 22px; display: block; }
-
-/* แอนิเมชันข้อความแบบเฟดขึ้น */
-.fade-up-1 { animation: fadeUp 0.6s ease forwards; opacity: 0; }
-.fade-up-2 { animation: fadeUp 0.6s ease 0.15s forwards; opacity: 0; }
-.fade-up-3 { animation: fadeUp 0.6s ease 0.3s forwards; opacity: 0; }
-.fade-up-4 { animation: fadeUp 0.6s ease 0.45s forwards; opacity: 0; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
 @keyframes pop{0%{opacity:0;transform:scale(0.9) translateX(-50%);}100%{opacity:1;transform:scale(1) translateX(-50%);}}
 @keyframes slide-up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 </style>
@@ -230,7 +239,7 @@ const T = {
     memberDuplicate: 'มีชื่อนี้แล้ว!', memberAdded: (n) => `เพิ่ม ${n} แล้ว ✓`,
     spent: (amt) => `จ่ายไป ${amt}`, noMembers: `เพิ่มสมาชิกเพื่อเริ่มต้น`,
     needMoreMembers: 'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน 👥',
-    syncDone: 'ซิงค์ข้อมูลล่าสุดแล้ว ✓', syncFail: '⚠️ เชื่อมต่อล้มเหลว',
+    syncDone: 'ซิงค์ข้อมูลล่าสุดแล้ว', syncFail: '⚠️ เชื่อมต่อล้มเหลว',
     syncing: 'กำลังซิงค์ข้อมูล...', cloudFail: '⚠️ บันทึกขึ้น Cloud ไม่สำเร็จ',
     addTransaction: 'เพิ่มรายการ', editTransaction: 'แก้ไขรายการ', category: 'หมวดหมู่ (Category)',
     detail: 'รายละเอียด', detailPlaceholder: 'เช่น ค่าอาหาร...', amount: (cur) => `จำนวนเงิน (${cur})`,
@@ -244,7 +253,7 @@ const T = {
     alreadySent: 'คุณโอนเงินแล้ว', alreadyReceived: 'ได้รับเงินแล้ว', tapWhenSent: 'กดเมื่อโอนเงินแล้ว',
     tapWhenReceived: 'กดเมื่อได้รับเงินแล้ว', owesFriend: (amt) => `ต้องจ่ายเพื่อน ${amt}`,
     friendOwes: (amt) => `คนอื่นค้างอยู่ ${amt}`, allClear: 'เคลียร์หนี้หมดแล้ว 🎉',
-    settleSaved: 'บันทึกการชำระเงินแล้ว ✓', settleCancel: 'ยกเลิกการชำระเงินแล้ว',
+    settleSaved: 'บันทึกการชำระเงินแล้ว', settleCancel: 'ยกเลิกการชำระเงินแล้ว',
     settings: 'ตั้งค่า', myName: '👤 ชื่อของฉัน', myNameSub: 'ชื่อนี้จะแสดงยอดของคุณบนหน้าแรก',
     myNamePlaceholder: 'แตะเพื่อตั้งชื่อ', currency: '💱 สกุลเงินที่แสดงผลหลัก',
     currencySub: 'ยอดรวม ยอดค้าง และแบนเนอร์หน้าแรก จะแสดงเป็นสกุลเงินนี้',
@@ -364,8 +373,6 @@ const today = () => new Date().toISOString().slice(0,10);
 const I = {
   gear: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
   paw: <svg viewBox="0 0 24 24"><path d="M12 8.5c-1.5 0-2.7-1.4-2.7-3.2S10.5 2 12 2s2.7 1.4 2.7 3.2-1.2 3.3-2.7 3.3zM6.5 12c-1.4 0-2.5-1.5-2.5-3.5S5.1 5 6.5 5 9 6.5 9 8.5 7.9 12 6.5 12zm11 0c-1.4 0-2.5-1.5-2.5-3.5S16.1 5 17.5 5 20 6.5 20 8.5 18.9 12 17.5 12zm-5.5 10c-3.8 0-5.5-2-6-4.5-.3-1.5.5-2.5 1.5-3.5 1.5-1.5 3-2 4.5-2s3 .5 4.5 2c1 1 1.8 2 1.5 3.5-.5 2.5-2.2 4.5-6 4.5z"/></svg>,
-  home: <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9.5L12 3l9 6.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5z"/><path d="M9 22V12h6v10"/></svg>,
-  list: <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M15 4H8a2 2 0 0 0-2 2v14l3-3 3 3 3-3 3 3V6a2 2 0 0 0-2-2z"/><line x1="9" y1="9" x2="14" y2="9"/><line x1="9" y1="13" x2="14" y2="13"/><line x1="9" y1="17" x2="14" y2="17"/></svg>,
   back: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"/></svg>,
   edit: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style={{width:16,height:16}}><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
   refresh: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
@@ -415,7 +422,7 @@ function useToast(){
 }
 
 // ═══════════════════════════════════════════════════
-// 🌟 WELCOME SCREEN (หน้า Welcome และ Hello Name) 🌟
+// 🌟 WELCOME SCREEN COMPONENT (เป๊ะที่สุด) 🌟
 // ═══════════════════════════════════════════════════
 function WelcomeScreen({ onEnter, initialName }) {
   const isReturning = !!(initialName && initialName.trim());
@@ -424,31 +431,43 @@ function WelcomeScreen({ onEnter, initialName }) {
   const go = () => { if(nick.trim()) onEnter(nick.trim()); else alert('Please enter your nickname!'); };
 
   return (
-    <div className="welcome-root">
+    <div className="w-screen">
       
-      <div className="welcome-pink">
-        <div className="w-text-container">
-          <div className="w-text-content">
-            <div className="w-welcome-to fade-up-1">Welcome to</div>
-            <div className="w-no-more fade-up-2">No More<br/>PayLater</div>
-            <div className="w-sub fade-up-3">where we all know you're gonna<br/>PayLater anyway</div>
+      {/* ท่อนบนสีชมพู */}
+      <div className="w-pink-zone">
+        <div className="w-text-center-wrapper">
+          <div className="w-text-block">
+            <div className="w-t1 fade-up-1">Welcome to</div>
+            <div className="w-t2 fade-up-2">No More<br/>PayLater</div>
+            <div className="w-t3 fade-up-3">where we all know you're gonna<br/>PayLater anyway</div>
           </div>
         </div>
       </div>
 
-      {/* โซนรอยต่อคลื่นและน้องหมา - วาดคลื่นด้วย SVG ให้เอียงและโค้งเป๊ะๆ */}
-      <div className="welcome-wave-zone">
+      {/* โซนรอยต่อคลื่นและน้องหมา (วาดคลื่น SVG S-Curve โค้งเอียงเป๊ะๆ) */}
+      <div className="w-wave-zone">
         <img src="./Mascot Welcome Page.png" alt="Mascot" className="w-mascot" />
-        <svg viewBox="0 0 375 100" className="w-wave-svg" preserveAspectRatio="none">
-          <path d="M0,45 C120,90 220,90 375,15 L375,100 L0,100 Z" fill="#FBF6F2"/>
+        
+        <svg viewBox="0 0 375 120" className="w-wave-svg" preserveAspectRatio="none">
+          <path d="M0,60 C120,105 240,15 375,20 L375,120 L0,120 Z" fill="#FBF6F2"/>
         </svg>
       </div>
 
-      <div className="welcome-cream">
+      {/* ท่อนล่างสีครีม */}
+      <div className="w-cream-zone">
         {isReturning ? (
           /* ── สำหรับคนเคยเข้าแล้ว (Hello, Name!) ── */
           <div style={{width:'100%', display:'flex', flexDirection:'column', alignItems:'center'}}>
-            <div className="w-hello-text fade-up-1">Hello, {initialName}!</div>
+            
+            {/* แอนิเมชั่นตัวหนังสือเด้งทีละตัว */}
+            <div className="w-hello-text">
+               {`Hello,${initialName}!`.split('').map((char, i) => (
+                 <span key={i} className="hello-char" style={{animationDelay: `${i * 0.05}s`}}>
+                   {char}
+                 </span>
+               ))}
+            </div>
+
             <button className="w-btn fade-up-2" onClick={go} style={{marginTop: '10px'}}>
               Let's Pay <img src="./Arrow Right.png" alt="→"/>
             </button>
@@ -472,6 +491,7 @@ function WelcomeScreen({ onEnter, initialName }) {
     </div>
   );
 }
+
 
 // ═══════════════════════════════════════════════════
 // DEBT BANNER 
@@ -863,7 +883,6 @@ function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setL
 
     <div style={{padding:'0 20px 40px'}}>
 
-      {/* Language Toggle */}
       <div className="settings-card">
         <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,marginBottom:12}}>{t.language}</div>
         <div className="lang-toggle">
@@ -872,7 +891,6 @@ function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setL
         </div>
       </div>
 
-      {/* My Name */}
       <div className="settings-card">
         <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,display:'flex',alignItems:'center',gap:6}}>{t.myName}</div>
         <div style={{display:'flex',alignItems:'center',gap:12,marginTop:10}}>
@@ -884,7 +902,6 @@ function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setL
         </div>
       </div>
 
-      {/* Currency */}
       <div className="settings-card">
         <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14}}>{t.currency}</div>
         <div style={{fontSize:12,color:'var(--ink-light)',marginBottom:12}}>{t.currencySub}</div>
@@ -901,7 +918,6 @@ function SettingsTab({data, upd, goBack, myName, onChangeName, toast, lang, setL
         </div>
       </div>
 
-      {/* Danger Zone */}
       <div className="settings-card">
         <div className="lbl" style={{color:'var(--ink-dark)',fontSize:14}}>{t.dangerZone}</div>
         <button className="pill-btn" style={{width:'100%',padding:'12px',marginTop:10,background:'#F9E8EC',color:'#770523',border:'none'}}
@@ -934,7 +950,7 @@ function App(){
   const [myName, setMyName] = useState(()=>localStorage.getItem(MY_KEY)||'');
   
   // เช็คว่ามีชื่อหรือไม่ ถ้าไม่มีเข้า Welcome ก่อน
-  const [welcomed, setWelcomed] = useState(() => !!myName);
+  const [welcomed, setWelcomed] = useState(false); // <--- แก้ให้ทุกคนต้องผ่าน Welcome
   const [tab,    setTab]   = useState('home');
   const [memberDetail, setMemberDetail] = useState(null);
   const [editingExp,   setEditingExp]   = useState(null);
@@ -975,12 +991,11 @@ function App(){
     setWelcomed(true);
   };
 
-  // ถ้ายังไม่เคยกดเข้าสู่ระบบ ให้ค้างหน้า Welcome
+  // ถ้ายังไม่ได้กด Let's Pay ให้โชว์หน้า Welcome
   if(!welcomed) {
     return <WelcomeScreen onEnter={handleWelcomeEnter} initialName={myName}/>;
   }
 
-  // ถ้าระบบเปิดแล้ว
   return <div id="root">
     {tab==='home' && !memberDetail && (
       <HomeTab data={data} upd={upd} toast={showToast} myName={myName} onChangeName={setMyName} setTab={setTab} onSelectMember={setMemberDetail} syncData={syncData} t={t}/>

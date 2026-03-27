@@ -1,90 +1,89 @@
 <!DOCTYPE html>
-
 <html lang="th">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <title>NoMorePaylater</title>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Mitr:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="[https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Mitr:wght@400;500;600&display=swap](https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Mitr:wght@400;500;600&display=swap)" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden;font-family:'Kanit',sans-serif;background:#FFFFFF;color:#770523}
 
 :root{
-–bg-main:#FFFFFF;
-–bg-pink:#FAD2E1;
-–surface:#FFFFFF;
-–accent:#770523;
-–accent-light:#F9E8EC;
-–ink-dark:#111111;
-–ink-mid:#770523;
-–ink-light:#A65368;
-–green:#2E7D5E;
-–green-light:#EAF5F0;
-–shadow:0 4px 16px rgba(119, 5, 35, 0.08);
-–r:24px; –rs:14px;
+--bg-main:#FFFFFF;
+--bg-pink:#FAD2E1;
+--surface:#FFFFFF;
+--accent:#770523;
+--accent-light:#F9E8EC;
+--ink-dark:#111111;
+--ink-mid:#770523;
+--ink-light:#A65368;
+--green:#2E7D5E;
+--green-light:#EAF5F0;
+--shadow:0 4px 16px rgba(119, 5, 35, 0.08);
+--r:24px; --rs:14px;
 }
 
 #root{height:100%;display:flex;flex-direction:column;position:relative}
-.app-container{flex:1;overflow-y:auto;padding-bottom:120px;-webkit-overflow-scrolling:touch;background:var(–bg-main);}
+.app-container{flex:1;overflow-y:auto;padding-bottom:120px;-webkit-overflow-scrolling:touch;background:var(--bg-main);}
 .app-container::-webkit-scrollbar{display:none}
-.inline-input{border:1px dashed var(–ink-light);background:rgba(255,255,255,0.5);padding:4px 8px;border-radius:8px;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;width:100%;outline:none;}
-.inline-input:focus{border:1px solid var(–accent);background:var(–surface);}
-.top-header{padding:24px 20px 20px;display:flex;justify-content:space-between;align-items:flex-start;background:var(–bg-main);}
-.bubble-chat{background:var(–surface);padding:12px 20px;border-radius:30px;border-bottom-left-radius:8px;box-shadow:var(–shadow);cursor:pointer;display:inline-block;animation:pop .3s ease;border:1px solid rgba(119,5,35,0.05);}
-.bubble-hi{font-weight:800;font-size:16px;color:var(–accent);line-height:1.2;}
-.bubble-sub{font-size:13px;color:var(–ink-light);font-weight:500;}
-.settings-btn{width:44px;height:44px;border-radius:50%;background:var(–surface);border:none;box-shadow:var(–shadow);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(–accent);transition:transform .1s;}
+.inline-input{border:1px dashed var(--ink-light);background:rgba(255,255,255,0.5);padding:4px 8px;border-radius:8px;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;width:100%;outline:none;}
+.inline-input:focus{border:1px solid var(--accent);background:var(--surface);}
+.top-header{padding:24px 20px 20px;display:flex;justify-content:space-between;align-items:flex-start;background:var(--bg-main);}
+.bubble-chat{background:var(--surface);padding:12px 20px;border-radius:30px;border-bottom-left-radius:8px;box-shadow:var(--shadow);cursor:pointer;display:inline-block;animation:pop .3s ease;border:1px solid rgba(119,5,35,0.05);}
+.bubble-hi{font-weight:800;font-size:16px;color:var(--accent);line-height:1.2;}
+.bubble-sub{font-size:13px;color:var(--ink-light);font-weight:500;}
+.settings-btn{width:44px;height:44px;border-radius:50%;background:var(--surface);border:none;box-shadow:var(--shadow);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(--accent);transition:transform .1s;}
 .settings-btn:active{transform:scale(0.95);}
 .settings-btn svg{width:22px;height:22px;stroke-width:2.5;}
-.pink-board{background:var(–bg-pink);border-radius:32px 32px 0 0;padding:24px 20px 40px;min-height:100%;}
+.pink-board{background:var(--bg-pink);border-radius:32px 32px 0 0;padding:24px 20px 40px;min-height:100%;}
 .trip-header{margin-bottom:20px;}
-.trip-title{font-size:22px;font-weight:800;color:var(–ink-dark);display:flex;align-items:center;gap:8px;cursor:pointer;}
-.trip-sub{font-size:13px;color:var(–ink-dark);font-weight:500;margin-top:4px;opacity:0.8;}
-.sec-card{background:var(–surface);border-radius:var(–r);box-shadow:var(–shadow);padding:20px;margin-bottom:16px;animation:slide-up .3s ease;}
-.settings-card{background:var(–surface);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
-.pill-btn{background:var(–surface);color:var(–accent);border:1.5px solid rgba(119,5,35,0.1);padding:6px 16px;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer;font-family:‘Kanit’;}
-.pill-btn:active{background:var(–accent-light);}
-.btn-main{background:var(–accent);color:#fff;border:none;padding:14px 20px;border-radius:var(–rs);font-weight:700;font-size:16px;width:100%;cursor:pointer;font-family:‘Kanit’;}
-input,select,textarea{width:100%;padding:12px 16px;border:1.5px solid rgba(119,5,35,0.2);border-radius:var(–rs);font-family:‘Kanit’;font-size:15px;color:var(–ink-dark);outline:none;transition:border-color .2s;}
-input:focus,select:focus,textarea:focus{border-color:var(–accent);}
+.trip-title{font-size:22px;font-weight:800;color:var(--ink-dark);display:flex;align-items:center;gap:8px;cursor:pointer;}
+.trip-sub{font-size:13px;color:var(--ink-dark);font-weight:500;margin-top:4px;opacity:0.8;}
+.sec-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;margin-bottom:16px;animation:slide-up .3s ease;}
+.settings-card{background:var(--surface);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.pill-btn{background:var(--surface);color:var(--accent);border:1.5px solid rgba(119,5,35,0.1);padding:6px 16px;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Kanit';}
+.pill-btn:active{background:var(--accent-light);}
+.btn-main{background:var(--accent);color:#fff;border:none;padding:14px 20px;border-radius:var(--rs);font-weight:700;font-size:16px;width:100%;cursor:pointer;font-family:'Kanit';}
+input,select,textarea{width:100%;padding:12px 16px;border:1.5px solid rgba(119,5,35,0.2);border-radius:var(--rs);font-family:'Kanit';font-size:15px;color:var(--ink-dark);outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);}
 .input-group{display:flex;gap:8px;align-items:center;}
 .split-chip-group{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
-.split-chip{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;border:2px solid transparent;padding:10px 20px;font-family:‘Kanit’;font-size:16px;font-weight:700;cursor:pointer;transition:all 0.2s;background:var(–surface);box-shadow:0 2px 6px rgba(0,0,0,0.04);}
-.split-chip.off{color:var(–ink-dark);border-color:transparent;}
-.split-chip.on{color:var(–accent);border-color:var(–bg-pink);}
-.split-chip svg{width:22px;height:22px;fill:none;stroke:var(–accent);}
+.split-chip{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;border:2px solid transparent;padding:10px 20px;font-family:'Kanit';font-size:16px;font-weight:700;cursor:pointer;transition:all 0.2s;background:var(--surface);box-shadow:0 2px 6px rgba(0,0,0,0.04);}
+.split-chip.off{color:var(--ink-dark);border-color:transparent;}
+.split-chip.on{color:var(--accent);border-color:var(--bg-pink);}
+.split-chip svg{width:22px;height:22px;fill:none;stroke:var(--accent);}
 .add-mem-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
-.paw-btn{width:44px;height:44px;border-radius:12px;background:#FBF6F2;border:1.5px solid rgba(119,5,35,0.15);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(–accent);flex-shrink:0;}
+.paw-btn{width:44px;height:44px;border-radius:12px;background:#FBF6F2;border:1.5px solid rgba(119,5,35,0.15);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(--accent);flex-shrink:0;}
 .paw-btn svg{width:22px;height:22px;fill:currentColor;}
 .lang-toggle{display:flex;background:#F0E6EA;border-radius:30px;padding:4px;gap:2px;}
-.lang-btn{padding:6px 14px;border-radius:24px;border:none;font-family:‘Kanit’;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;background:transparent;color:var(–ink-light);}
-.lang-btn.active{background:var(–accent);color:#fff;box-shadow:0 2px 6px rgba(119,5,35,0.25);}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(–surface);box-shadow:0 -2px 10px rgba(0,0,0,0.03);display:flex;justify-content:space-around;align-items:center;padding:12px 20px 24px;z-index:100;border-top:1px solid rgba(119,5,35,0.05);}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;color:var(–accent);font-family:‘Kanit’;cursor:pointer;width:80px;}
-.nav-item svg{width:28px;height:28px;stroke-width:2.5;stroke:var(–accent);fill:none;}
-.nav-item span{font-size:13px;font-weight:800;color:var(–accent);}
+.lang-btn{padding:6px 14px;border-radius:24px;border:none;font-family:'Kanit';font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--ink-light);}
+.lang-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 6px rgba(119,5,35,0.25);}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);box-shadow:0 -2px 10px rgba(0,0,0,0.03);display:flex;justify-content:space-around;align-items:center;padding:12px 20px 24px;z-index:100;border-top:1px solid rgba(119,5,35,0.05);}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;color:var(--accent);font-family:'Kanit';cursor:pointer;width:80px;}
+.nav-item svg{width:28px;height:28px;stroke-width:2.5;stroke:var(--accent);fill:none;}
+.nav-item span{font-size:13px;font-weight:800;color:var(--accent);}
 .fab-container{position:relative;top:-18px;}
-.fab-btn{width:68px;height:68px;border-radius:50%;background:var(–bg-pink);border:6px solid var(–surface);box-shadow:none;display:flex;justify-content:center;align-items:center;font-size:36px;color:var(–surface);cursor:pointer;font-weight:300;}
+.fab-btn{width:68px;height:68px;border-radius:50%;background:var(--bg-pink);border:6px solid var(--surface);box-shadow:none;display:flex;justify-content:center;align-items:center;font-size:36px;color:var(--surface);cursor:pointer;font-weight:300;}
 .mem-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(119,5,35,0.05);cursor:pointer;}
 .mem-item:last-child{border-bottom:none;padding-bottom:0;}
-.av-sq{width:40px;height:40px;border-radius:10px;background:var(–green-light);color:var(–green);display:flex;justify-content:center;align-items:center;font-weight:700;font-size:18px;}
-.total-label{font-size:16px;font-weight:800;color:var(–accent);margin-bottom:12px;}
+.av-sq{width:40px;height:40px;border-radius:10px;background:var(--green-light);color:var(--green);display:flex;justify-content:center;align-items:center;font-weight:700;font-size:18px;}
+.total-label{font-size:16px;font-weight:800;color:var(--accent);margin-bottom:12px;}
 .total-row{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(119,5,35,0.1);}
 .badge{display:inline-flex;align-items:center;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:0.02em;}
 .curr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.curr-item{border:1px solid #eee;border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer;background:var(–surface);}
-.curr-item.active{border-color:var(–accent);background:#FCF4F6;}
-.lbl{font-size:13px;font-weight:700;color:var(–ink-light);margin-bottom:6px;}
-.debt-banner{background:var(–accent);border-radius:var(–r);padding:16px 20px;margin-bottom:16px;animation:slide-up .3s ease;overflow:hidden;position:relative;}
-.debt-banner::before{content:’’;position:absolute;top:-20px;right:-20px;width:90px;height:90px;background:rgba(255,255,255,0.07);border-radius:50%;}
-.debt-banner::after{content:’’;position:absolute;bottom:-30px;right:20px;width:70px;height:70px;background:rgba(255,255,255,0.05);border-radius:50%;}
+.curr-item{border:1px solid #eee;border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer;background:var(--surface);}
+.curr-item.active{border-color:var(--accent);background:#FCF4F6;}
+.lbl{font-size:13px;font-weight:700;color:var(--ink-light);margin-bottom:6px;}
+.debt-banner{background:var(--accent);border-radius:var(--r);padding:16px 20px;margin-bottom:16px;animation:slide-up .3s ease;overflow:hidden;position:relative;}
+.debt-banner::before{content:'';position:absolute;top:-20px;right:-20px;width:90px;height:90px;background:rgba(255,255,255,0.07);border-radius:50%;}
+.debt-banner::after{content:'';position:absolute;bottom:-30px;right:20px;width:70px;height:70px;background:rgba(255,255,255,0.05);border-radius:50%;}
 .debt-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.12);}
 .debt-row:last-of-type{border-bottom:none;}
-.pay-now-btn{width:100%;padding:12px;border-radius:30px;border:2px solid rgba(255,255,255,0.5);background:transparent;color:#fff;font-family:‘Kanit’;font-size:15px;font-weight:800;cursor:pointer;margin-top:12px;letter-spacing:0.02em;transition:all 0.15s;}
+.pay-now-btn{width:100%;padding:12px;border-radius:30px;border:2px solid rgba(255,255,255,0.5);background:transparent;color:#fff;font-family:'Kanit';font-size:15px;font-weight:800;cursor:pointer;margin-top:12px;letter-spacing:0.02em;transition:all 0.15s;}
 .pay-now-btn:active{background:rgba(255,255,255,0.15);}
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(–ink-dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:500;z-index:999;animation:pop .2s ease;white-space:nowrap;}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink-dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:500;z-index:999;animation:pop .2s ease;white-space:nowrap;}
 
 /* ── Welcome screen keyframes ── */
 @keyframes wMascot{
@@ -117,119 +116,119 @@ to{opacity:1;transform:scale(1) rotate(0deg);}
 </head>
 <body>
 <div id="root"></div>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="[https://unpkg.com/react@18/umd/react.production.min.js](https://unpkg.com/react@18/umd/react.production.min.js)"></script>
+<script src="[https://unpkg.com/react-dom@18/umd/react-dom.production.min.js](https://unpkg.com/react-dom@18/umd/react-dom.production.min.js)"></script>
+<script src="[https://unpkg.com/@babel/standalone/babel.min.js](https://unpkg.com/@babel/standalone/babel.min.js)"></script>
 <script type="text/babel">
 
-const WEB_APP_URL = ‘https://script.google.com/macros/s/AKfycbzLGzE8NeGLHmdp1ySkzoyhgtQ5TFWYwDOzzMEXcl8h_ox_xyuMgn7PHEFXT13DgbIQ/exec’;
+const WEB_APP_URL = '[https://script.google.com/macros/s/AKfycbzLGzE8NeGLHmdp1ySkzoyhgtQ5TFWYwDOzzMEXcl8h_ox_xyuMgn7PHEFXT13DgbIQ/exec](https://script.google.com/macros/s/AKfycbzLGzE8NeGLHmdp1ySkzoyhgtQ5TFWYwDOzzMEXcl8h_ox_xyuMgn7PHEFXT13DgbIQ/exec)';
 
 const {useState, useEffect, useRef, useCallback} = React;
-const KEY = ‘splittrip-v6’;
-const MY_KEY = ‘splittrip-myname-v6’;
-const LANG_KEY = ‘splittrip-lang-v1’;
+const KEY = 'splittrip-v6';
+const MY_KEY = 'splittrip-myname-v6';
+const LANG_KEY = 'splittrip-lang-v1';
 
 const T = {
 th: {
-appName:‘NoMorePaylater’, save:‘บันทึก’, cancel:‘ยกเลิก’, back:‘กลับ’, add:’+ เพิ่ม’,
-delete:‘ลบรายการนี้’, confirmDelete:‘ลบรายการนี้?’, edit:‘แก้ไข’,
-navHome:‘หน้าหลัก’, navTransactions:‘รายการ’,
-hello:‘สวัสดี!’, nicknamePlaceholder:‘ใส่ชื่อเล่นของคุณที่นี่!’,
-defaultTripName:“Where’s the squad wandering next…?”,
+appName:'NoMorePaylater', save:'บันทึก', cancel:'ยกเลิก', back:'กลับ', add:'+ เพิ่ม',
+delete:'ลบรายการนี้', confirmDelete:'ลบรายการนี้?', edit:'แก้ไข',
+navHome:'หน้าหลัก', navTransactions:'รายการ',
+hello:'สวัสดี!', nicknamePlaceholder:'ใส่ชื่อเล่นของคุณที่นี่!',
+defaultTripName:"Where's the squad wandering next...?",
 memberCount:(n)=>`${n} คน`, transactionCount:(n)=>`${n} รายการ`,
-total:‘ยอดรวม’, member:‘สมาชิก’, memberNamePlaceholder:‘ชื่อสมาชิก’,
-memberDuplicate:‘มีชื่อนี้แล้ว!’, memberAdded:(n)=>`เพิ่ม ${n} แล้ว ✓`,
-spent:(amt)=>`จ่ายไป ${amt}`, noMembers:‘เพิ่มสมาชิกเพื่อเริ่มต้น’,
-needMoreMembers:‘ต้องมีสมาชิกอย่างน้อย 2 คนก่อน 👥’,
-syncDone:‘ซิงค์ข้อมูลล่าสุดแล้ว ✓’, syncFail:‘⚠️ เชื่อมต่อล้มเหลว’,
-syncing:‘กำลังซิงค์ข้อมูล…’, cloudFail:‘⚠️ บันทึกขึ้น Cloud ไม่สำเร็จ’,
-addTransaction:‘เพิ่มรายการ’, editTransaction:‘แก้ไขรายการ’,
-category:‘หมวดหมู่ (Category)’, detail:‘รายละเอียด’, detailPlaceholder:‘เช่น ค่าอาหาร…’,
-amount:(cur)=>`จำนวนเงิน (${cur})`, note:‘หมายเหตุ (Note)’, notePlaceholder:‘รายละเอียดเพิ่มเติม…’,
-whoPayQuestion:‘ใครเป็นคนจ่าย?’, splitWithQuestion:‘หารกับใครบ้าง?’,
-needDetail:‘กรุณาใส่รายละเอียด’, needAmount:‘ใส่จำนวนเงิน’,
-needPayer:‘เลือกคนจ่าย’, needSplit:‘เลือกคนหารด้วย’,
-saved:‘บันทึกแล้ว’, edited:‘แก้ไขรายการแล้ว’, deleted:‘ลบแล้ว’,
-needMinMembers:‘ต้องมีสมาชิกอย่างน้อย 2 คนก่อน’,
-transactions:‘รายการ’, noTransactions:‘ยังไม่มีรายการ’, paidBy:(n)=>`${n} จ่าย`,
-settleHeader:‘💸 รายการต้องโอน / รับโอน’, payTo:‘จ่ายให้’, receiveFrom:‘รับจาก’,
-alreadySent:‘คุณโอนเงินแล้ว’, alreadyReceived:‘ได้รับเงินแล้ว’,
-tapWhenSent:‘กดเมื่อโอนเงินแล้ว’, tapWhenReceived:‘กดเมื่อได้รับเงินแล้ว’,
+total:'ยอดรวม', member:'สมาชิก', memberNamePlaceholder:'ชื่อสมาชิก',
+memberDuplicate:'มีชื่อนี้แล้ว!', memberAdded:(n)=>`เพิ่ม ${n} แล้ว ✓`,
+spent:(amt)=>`จ่ายไป ${amt}`, noMembers:'เพิ่มสมาชิกเพื่อเริ่มต้น',
+needMoreMembers:'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน 👥',
+syncDone:'ซิงค์ข้อมูลล่าสุดแล้ว ✓', syncFail:'⚠️ เชื่อมต่อล้มเหลว',
+syncing:'กำลังซิงค์ข้อมูล...', cloudFail:'⚠️ บันทึกขึ้น Cloud ไม่สำเร็จ',
+addTransaction:'เพิ่มรายการ', editTransaction:'แก้ไขรายการ',
+category:'หมวดหมู่ (Category)', detail:'รายละเอียด', detailPlaceholder:'เช่น ค่าอาหาร...',
+amount:(cur)=>`จำนวนเงิน (${cur})`, note:'หมายเหตุ (Note)', notePlaceholder:'รายละเอียดเพิ่มเติม...',
+whoPayQuestion:'ใครเป็นคนจ่าย?', splitWithQuestion:'หารกับใครบ้าง?',
+needDetail:'กรุณาใส่รายละเอียด', needAmount:'ใส่จำนวนเงิน',
+needPayer:'เลือกคนจ่าย', needSplit:'เลือกคนหารด้วย',
+saved:'บันทึกแล้ว', edited:'แก้ไขรายการแล้ว', deleted:'ลบแล้ว',
+needMinMembers:'ต้องมีสมาชิกอย่างน้อย 2 คนก่อน',
+transactions:'รายการ', noTransactions:'ยังไม่มีรายการ', paidBy:(n)=>`${n} จ่าย`,
+settleHeader:'💸 รายการต้องโอน / รับโอน', payTo:'จ่ายให้', receiveFrom:'รับจาก',
+alreadySent:'คุณโอนเงินแล้ว', alreadyReceived:'ได้รับเงินแล้ว',
+tapWhenSent:'กดเมื่อโอนเงินแล้ว', tapWhenReceived:'กดเมื่อได้รับเงินแล้ว',
 owesFriend:(a)=>`ต้องจ่ายเพื่อน ${a}`, friendOwes:(a)=>`คนอื่นค้างอยู่ ${a}`,
-allClear:‘เคลียร์หนี้หมดแล้ว 🎉’, settleSaved:‘บันทึกการชำระเงินแล้ว ✓’, settleCancel:‘ยกเลิกการชำระเงินแล้ว’,
-settings:‘ตั้งค่า’, myName:‘👤 ชื่อของฉัน’, myNameSub:‘ชื่อนี้จะแสดงยอดของคุณบนหน้าแรก’,
-myNamePlaceholder:‘แตะเพื่อตั้งชื่อ’, currency:‘💱 สกุลเงินที่แสดงผลหลัก’,
-currencySub:‘ยอดรวม ยอดค้าง และแบนเนอร์หน้าแรก จะแสดงเป็นสกุลเงินนี้’,
+allClear:'เคลียร์หนี้หมดแล้ว 🎉', settleSaved:'บันทึกการชำระเงินแล้ว ✓', settleCancel:'ยกเลิกการชำระเงินแล้ว',
+settings:'ตั้งค่า', myName:'👤 ชื่อของฉัน', myNameSub:'ชื่อนี้จะแสดงยอดของคุณบนหน้าแรก',
+myNamePlaceholder:'แตะเพื่อตั้งชื่อ', currency:'💱 สกุลเงินที่แสดงผลหลัก',
+currencySub:'ยอดรวม ยอดค้าง และแบนเนอร์หน้าแรก จะแสดงเป็นสกุลเงินนี้',
 convertConfirm:(to)=>`คุณต้องการแปลงยอดเงินของ "ทุกรายการ" เป็น ${to} ด้วยอัตราแลกเปลี่ยนโดยประมาณหรือไม่?\n\n*หากยกเลิก จะเปลี่ยนแค่สัญลักษณ์ แต่ไม่แปลงตัวเลข*`,
-converted:(c)=>`แปลงทุกยอดเป็น ${c} แล้ว`, dangerZone:‘⚠️ รีเซ็ต (ระวัง: ลบข้อมูลของทุกคน)’,
-resetBtn:‘ลบข้อมูลทั้งหมด’, resetConfirm:‘ลบข้อมูลทริปทั้งหมดของทุกคน?’,
-debtAlertTitle:(a)=>`คุณค้างจ่ายอยู่ ${a}`, debtAlertSub:‘อย่าลืมโอนให้เพื่อนนะ! 👀’,
-payNow:‘Pay Now! 💸’, language:‘🌐 ภาษา / Language’, langTH:‘ไทย’, langEN:‘English’,
+converted:(c)=>`แปลงทุกยอดเป็น ${c} แล้ว`, dangerZone:'⚠️ รีเซ็ต (ระวัง: ลบข้อมูลของทุกคน)',
+resetBtn:'ลบข้อมูลทั้งหมด', resetConfirm:'ลบข้อมูลทริปทั้งหมดของทุกคน?',
+debtAlertTitle:(a)=>`คุณค้างจ่ายอยู่ ${a}`, debtAlertSub:'อย่าลืมโอนให้เพื่อนนะ! 👀',
+payNow:'Pay Now! 💸', language:'🌐 ภาษา / Language', langTH:'ไทย', langEN:'English',
 },
 en: {
-appName:‘NoMorePaylater’, save:‘Save’, cancel:‘Cancel’, back:‘Back’, add:’+ Add’,
-delete:‘Delete this item’, confirmDelete:‘Delete this item?’, edit:‘Edit’,
-navHome:‘Home’, navTransactions:‘Transactions’,
-hello:‘Hello!’, nicknamePlaceholder:‘Pop your nickname here!’,
-defaultTripName:“Where’s the squad wandering next…?”,
+appName:'NoMorePaylater', save:'Save', cancel:'Cancel', back:'Back', add:'+ Add',
+delete:'Delete this item', confirmDelete:'Delete this item?', edit:'Edit',
+navHome:'Home', navTransactions:'Transactions',
+hello:'Hello!', nicknamePlaceholder:'Pop your nickname here!',
+defaultTripName:"Where's the squad wandering next...?",
 memberCount:(n)=>`${n} member${n!==1?'s':''}`, transactionCount:(n)=>`${n} transaction${n!==1?'s':''}`,
-total:‘Total’, member:‘Member’, memberNamePlaceholder:‘Member name’,
-memberDuplicate:‘Name already exists!’, memberAdded:(n)=>`Added ${n} ✓`,
-spent:(a)=>`spent ${a}`, noMembers:‘Add members to get started’,
-needMoreMembers:‘Need at least 2 members first 👥’,
-syncDone:‘Synced latest data ✓’, syncFail:‘⚠️ Connection failed’,
-syncing:‘Syncing data…’, cloudFail:‘⚠️ Could not save to Cloud’,
-addTransaction:‘Add Transaction’, editTransaction:‘Edit Transaction’,
-category:‘Category’, detail:‘Description’, detailPlaceholder:‘e.g. Dinner, taxi…’,
-amount:(c)=>`Amount (${c})`, note:‘Note’, notePlaceholder:‘Additional details…’,
-whoPayQuestion:‘Who paid?’, splitWithQuestion:‘Split with?’,
-needDetail:‘Please enter a description’, needAmount:‘Enter an amount’,
-needPayer:‘Select who paid’, needSplit:‘Select who to split with’,
-saved:‘Saved!’, edited:‘Item updated’, deleted:‘Deleted’,
-needMinMembers:‘Need at least 2 members first’,
-transactions:‘Transactions’, noTransactions:‘No transactions yet’, paidBy:(n)=>`${n} paid`,
-settleHeader:‘💸 Transfers to make / receive’, payTo:‘Pay to’, receiveFrom:‘Receive from’,
-alreadySent:‘Transfer sent’, alreadyReceived:‘Payment received’,
-tapWhenSent:‘Tap when sent’, tapWhenReceived:‘Tap when received’,
+total:'Total', member:'Member', memberNamePlaceholder:'Member name',
+memberDuplicate:'Name already exists!', memberAdded:(n)=>`Added ${n} ✓`,
+spent:(a)=>`spent ${a}`, noMembers:'Add members to get started',
+needMoreMembers:'Need at least 2 members first 👥',
+syncDone:'Synced latest data ✓', syncFail:'⚠️ Connection failed',
+syncing:'Syncing data...', cloudFail:'⚠️ Could not save to Cloud',
+addTransaction:'Add Transaction', editTransaction:'Edit Transaction',
+category:'Category', detail:'Description', detailPlaceholder:'e.g. Dinner, taxi...',
+amount:(c)=>`Amount (${c})`, note:'Note', notePlaceholder:'Additional details...',
+whoPayQuestion:'Who paid?', splitWithQuestion:'Split with?',
+needDetail:'Please enter a description', needAmount:'Enter an amount',
+needPayer:'Select who paid', needSplit:'Select who to split with',
+saved:'Saved!', edited:'Item updated', deleted:'Deleted',
+needMinMembers:'Need at least 2 members first',
+transactions:'Transactions', noTransactions:'No transactions yet', paidBy:(n)=>`${n} paid`,
+settleHeader:'💸 Transfers to make / receive', payTo:'Pay to', receiveFrom:'Receive from',
+alreadySent:'Transfer sent', alreadyReceived:'Payment received',
+tapWhenSent:'Tap when sent', tapWhenReceived:'Tap when received',
 owesFriend:(a)=>`Owes ${a}`, friendOwes:(a)=>`Is owed ${a}`,
-allClear:‘All settled up 🎉’, settleSaved:‘Payment recorded ✓’, settleCancel:‘Payment undone’,
-settings:‘Settings’, myName:‘👤 My Name’, myNameSub:‘This name shows your balance on the home screen’,
-myNamePlaceholder:‘Tap to set name’, currency:‘💱 Display Currency’,
-currencySub:‘Totals, balances, and the home banner will show in this currency’,
+allClear:'All settled up 🎉', settleSaved:'Payment recorded ✓', settleCancel:'Payment undone',
+settings:'Settings', myName:'👤 My Name', myNameSub:'This name shows your balance on the home screen',
+myNamePlaceholder:'Tap to set name', currency:'💱 Display Currency',
+currencySub:'Totals, balances, and the home banner will show in this currency',
 convertConfirm:(to)=>`Convert ALL expense amounts to ${to} using approximate exchange rates?\n\n*Cancel to only change the symbol without converting numbers.*`,
 converted:(c)=>`All amounts converted to ${c}`,
-dangerZone:“⚠️ Reset (Warning: deletes everyone’s data)”,
-resetBtn:‘Delete All Data’, resetConfirm:‘Delete all trip data for everyone?’,
-debtAlertTitle:(a)=>`You owe ${a}`, debtAlertSub:“Don’t forget to pay your friends! 👀”,
-payNow:‘Pay Now! 💸’, language:‘🌐 Language / ภาษา’, langTH:‘ไทย’, langEN:‘English’,
+dangerZone:"⚠️ Reset (Warning: deletes everyone's data)",
+resetBtn:'Delete All Data', resetConfirm:'Delete all trip data for everyone?',
+debtAlertTitle:(a)=>`You owe ${a}`, debtAlertSub:"Don't forget to pay your friends! 👀",
+payNow:'Pay Now! 💸', language:'🌐 Language / ภาษา', langTH:'ไทย', langEN:'English',
 }
 };
 
 const RATES = { THB:35,USD:1,EUR:0.92,JPY:150,SGD:1.34,GBP:0.79,CNY:7.2,KRW:1330,AUD:1.52,MYR:4.7 };
 const CURRENCIES = [
-{code:‘THB’,sym:‘฿’,name:‘บาทไทย / Thai Baht’},
-{code:‘USD’,sym:’$’,name:‘ดอลลาร์สหรัฐ / US Dollar’},
-{code:‘EUR’,sym:‘€’,name:‘ยูโร / Euro’},
-{code:‘JPY’,sym:‘¥’,name:‘เยน / Japanese Yen’},
-{code:‘SGD’,sym:‘S$’,name:‘ดอลลาร์สิงคโปร์ / SGD’},
-{code:‘GBP’,sym:‘£’,name:‘ปอนด์ / British Pound’},
-{code:‘CNY’,sym:‘¥’,name:‘หยวน / Chinese Yuan’},
-{code:‘KRW’,sym:‘₩’,name:‘วอน / Korean Won’},
-{code:‘AUD’,sym:‘A$’,name:‘ดอลลาร์ออสเตรเลีย / AUD’},
-{code:‘MYR’,sym:‘RM’,name:‘ริงกิต / Malaysian Ringgit’}
+{code:'THB',sym:'฿',name:'บาทไทย / Thai Baht'},
+{code:'USD',sym:'$',name:'ดอลลาร์สหรัฐ / US Dollar'},
+{code:'EUR',sym:'€',name:'ยูโร / Euro'},
+{code:'JPY',sym:'¥',name:'เยน / Japanese Yen'},
+{code:'SGD',sym:'S$',name:'ดอลลาร์สิงคโปร์ / SGD'},
+{code:'GBP',sym:'£',name:'ปอนด์ / British Pound'},
+{code:'CNY',sym:'¥',name:'หยวน / Chinese Yuan'},
+{code:'KRW',sym:'₩',name:'วอน / Korean Won'},
+{code:'AUD',sym:'A$',name:'ดอลลาร์ออสเตรเลีย / AUD'},
+{code:'MYR',sym:'RM',name:'ริงกิต / Malaysian Ringgit'}
 ];
-const CATEGORIES = [‘Food’,‘Accommodation’,‘Transport’,‘Ticket’,‘Shopping’,‘Settlement’,‘Other’];
+const CATEGORIES = ['Food','Accommodation','Transport','Ticket','Shopping','Settlement','Other'];
 const CAT_COLORS = {
-‘Food’:{bg:’#FFED9E’,text:’#111111’}, ‘Accommodation’:{bg:’#A6CFF2’,text:’#111111’},
-‘Transport’:{bg:’#426BC2’,text:’#FFFFFF’}, ‘Ticket’:{bg:’#F2C0CA’,text:’#111111’},
-‘Shopping’:{bg:’#4A9166’,text:’#FFFFFF’}, ‘Settlement’:{bg:’#EAF5F0’,text:’#2E7D5E’},
-‘Other’:{bg:’#F0F0F0’,text:’#111111’}
+'Food':{bg:'#FFED9E',text:'#111111'}, 'Accommodation':{bg:'#A6CFF2',text:'#111111'},
+'Transport':{bg:'#426BC2',text:'#FFFFFF'}, 'Ticket':{bg:'#F2C0CA',text:'#111111'},
+'Shopping':{bg:'#4A9166',text:'#FFFFFF'}, 'Settlement':{bg:'#EAF5F0',text:'#2E7D5E'},
+'Other':{bg:'#F0F0F0',text:'#111111'}
 };
 
 const getCur = code => CURRENCIES.find(x=>x.code===code)||CURRENCIES[0];
 const fmtAmt = (n,code) => {
-const c=getCur(code); const dec=(code===‘JPY’||code===‘KRW’)?0:2;
-return c.sym+Math.abs(n).toLocaleString(‘en-US’,{minimumFractionDigits:dec,maximumFractionDigits:dec});
+const c=getCur(code); const dec=(code==='JPY'||code==='KRW')?0:2;
+return c.sym+Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
 };
 const r2 = n => Math.round(n*100)/100;
 
@@ -244,7 +243,7 @@ function calcBal(members, expenses, displayCurrency) {
 const paid={},owe={},net={};
 members.forEach(m=>{paid[m]=0;owe[m]=0;net[m]=0;});
 expenses.forEach(e=>{
-if((e.currency||‘THB’)!==displayCurrency) return;
+if((e.currency||'THB')!==displayCurrency) return;
 if(paid[e.payer]!==undefined) paid[e.payer]=r2(paid[e.payer]+e.amount);
 Object.entries(e.splits).forEach(([n,v])=>{if(owe[n]!==undefined)owe[n]=r2(owe[n]+v);});
 });
@@ -267,7 +266,7 @@ if(cr[ci].a<EPS)ci++; if(db[di].a<EPS)di++;
 return result;
 }
 
-const initData = () => ({tripName:“Where’s the squad wandering next…?”,members:[],expenses:[],displayCurrency:‘THB’});
+const initData = () => ({tripName:"Where's the squad wandering next...?",members:[],expenses:[],displayCurrency:'THB'});
 const loadData = () => JSON.parse(localStorage.getItem(KEY))||initData();
 const persist = d => localStorage.setItem(KEY,JSON.stringify(d));
 const today = () => new Date().toISOString().slice(0,10);
@@ -282,13 +281,13 @@ edit:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style={{width:16
 refresh:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
 };
 
-function PlaceholderImage({size=50,rounded=‘var(–rs)’,style}){
-return <div style={{width:size,height:size,borderRadius:rounded,border:‘1.5px solid #2ECC71’,display:‘flex’,alignItems:‘center’,justifyContent:‘center’,color:’#2ECC71’,fontSize:10,fontWeight:600,backgroundColor:‘rgba(46,204,113,0.05)’,…style}}>IMG</div>;
+function PlaceholderImage({size=50,rounded='var(--rs)',style}){
+return <div style={{width:size,height:size,borderRadius:rounded,border:'1.5px solid #2ECC71',display:'flex',alignItems:'center',justifyContent:'center',color:'#2ECC71',fontSize:10,fontWeight:600,backgroundColor:'rgba(46,204,113,0.05)',...style}}>IMG</div>;
 }
 function HandCoinIcon(){
 return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14c2 0 4-1 6-1s3 .5 3 2-2 2-4 2H4"/><path d="M4 18c2 0 4 3 8 3 4 0 7-3 7-5"/><circle cx="15" cy="7" r="4.5"/><text x="15" y="10.5" fontSize="10" fontWeight="900" fill="currentColor" stroke="none" textAnchor="middle" fontFamily="Kanit,sans-serif">S</text></svg>;
 }
-function NewArrowIcon({color=‘currentColor’}){
+function NewArrowIcon({color='currentColor'}){
 return <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M0 6H16.5M16.5 6L11.5 1M16.5 6L11.5 11" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 }
 function InlineEdit({text,onSave,className,placeholder,isTitle,style}){
@@ -297,8 +296,8 @@ const [val,setVal]=useState(text);
 const inputRef=useRef(null);
 useEffect(()=>{if(isEditing)inputRef.current?.focus();},[isEditing]);
 const handleSave=()=>{setIsEditing(false);if(val.trim())onSave(val.trim());else setVal(text);};
-if(isEditing) return <input ref={inputRef} value={val} onChange={e=>setVal(e.target.value)} onBlur={handleSave} onKeyDown={e=>{if(e.key===‘Enter’)handleSave();}} className=“inline-input” style={{fontSize:isTitle?22:16,fontWeight:isTitle?800:600,…style}}/>;
-return <div onClick={()=>{setVal(text);setIsEditing(true);}} className={className} style={{cursor:‘text’,…style}}>{text||placeholder} <span style={{opacity:0.5}}>{I.edit}</span></div>;
+if(isEditing) return <input ref={inputRef} value={val} onChange={e=>setVal(e.target.value)} onBlur={handleSave} onKeyDown={e=>{if(e.key==='Enter')handleSave();}} className="inline-input" style={{fontSize:isTitle?22:16,fontWeight:isTitle?800:600,...style}}/>;
+return <div onClick={()=>{setVal(text);setIsEditing(true);}} className={className} style={{cursor:'text',...style}}>{text||placeholder} <span style={{opacity:0.5}}>{I.edit}</span></div>;
 }
 function useToast(){
 const [t,setT]=useState(null);
@@ -310,17 +309,17 @@ return [t,msg=>{setT(msg);setTimeout(()=>setT(null),2000);}];
 // ═══════════════════════════════════════════════════
 function AnimatedHello({name}){
 const chars=Array.from(name);
-const MS={fontFamily:”‘Mitr’,sans-serif”};
+const MS={fontFamily:"'Mitr',sans-serif"};
 return (
-<div style={{textAlign:‘center’,marginBottom:28}}>
-<span style={{display:‘block’,…MS,fontWeight:500,fontSize:‘clamp(26px,7vw,36px)’,color:’#0B1009’,lineHeight:1.2,opacity:0,animation:‘wFadeUp 0.45s ease 0.05s forwards’}}>Hello,</span>
-<span style={{display:‘block’,…MS,fontWeight:600,fontSize:‘clamp(34px,9.5vw,50px)’,color:’#0B1009’,lineHeight:1.1}}>
+<div style={{textAlign:'center',marginBottom:28}}>
+<span style={{display:'block',...MS,fontWeight:500,fontSize:'clamp(26px,7vw,36px)',color:'#0B1009',lineHeight:1.2,opacity:0,animation:'wFadeUp 0.45s ease 0.05s forwards'}}>Hello,</span>
+<span style={{display:'block',...MS,fontWeight:600,fontSize:'clamp(34px,9.5vw,50px)',color:'#0B1009',lineHeight:1.1}}>
 {chars.map((ch,i)=>(
-<span key={i} style={{display:‘inline-block’,opacity:0,transform:‘translateY(28px) rotate(-4deg) scale(0.7)’,animation:`wCharBounce 0.48s cubic-bezier(0.34,1.62,0.64,1) ${0.3+i*0.065}s forwards`}}>
-{ch===’ ‘?’\u00A0’:ch}
+<span key={i} style={{display:'inline-block',opacity:0,transform:'translateY(28px) rotate(-4deg) scale(0.7)',animation:`wCharBounce 0.48s cubic-bezier(0.34,1.62,0.64,1) ${0.3+i*0.065}s forwards`}}>
+{ch===' '?'\u00A0':ch}
 </span>
 ))}
-<span style={{display:‘inline-block’,color:’#770523’,opacity:0,transform:‘scale(0) rotate(12deg)’,animation:`wExclaim 0.5s cubic-bezier(0.34,1.8,0.64,1) ${0.3+chars.length*0.065}s forwards`}}>!</span>
+<span style={{display:'inline-block',color:'#770523',opacity:0,transform:'scale(0) rotate(12deg)',animation:`wExclaim 0.5s cubic-bezier(0.34,1.8,0.64,1) ${0.3+chars.length*0.065}s forwards`}}>!</span>
 </span>
 </div>
 );
@@ -328,36 +327,33 @@ return (
 
 function WelcomeScreen({onEnter,initialName}){
 const isReturning=!!(initialName&&initialName.trim());
-const [nick,setNick]=useState(initialName||’’);
+const [nick,setNick]=useState(initialName||'');
 const go=()=>onEnter(nick.trim());
-const MF=”‘Mitr’,sans-serif”;
+const MF="'Mitr',sans-serif";
 
 const btnStyle={
-display:‘flex’,alignItems:‘center’,justifyContent:‘center’,gap:10,
-padding:‘13px 44px’,borderRadius:100,border:‘none’,cursor:‘pointer’,
-background:’#0B1009’,color:’#FAD2E1’,
-fontFamily:MF,fontSize:‘clamp(15px,4vw,18px)’,fontWeight:500,
-boxShadow:‘0 4px 20px rgba(11,16,9,0.22)’,
+display:'flex',alignItems:'center',justifyContent:'center',gap:10,
+padding:'13px 44px',borderRadius:100,border:'none',cursor:'pointer',
+background:'#0B1009',color:'#FAD2E1',
+fontFamily:MF,fontSize:'clamp(15px,4vw,18px)',fontWeight:500,
+boxShadow:'0 4px 20px rgba(11,16,9,0.22)',
 };
 
-/* mascot img shared style — uses wMascot keyframe which bakes translateX(-50%) */
 const mascotStyle=(z)=>({
-position:‘absolute’, zIndex:z,
-width:‘clamp(148px,65%,238px)’,
-bottom:‘calc(44vh)’,
-left:‘50%’,
-animation:‘wMascot 0.85s cubic-bezier(0.175,0.885,0.32,1.275) 0.12s both’,
-objectFit:‘contain’,
+position:'absolute', zIndex:z,
+width:'clamp(148px,65%,238px)',
+bottom:'calc(44vh)',
+left:'50%',
+animation:'wMascot 0.85s cubic-bezier(0.175,0.885,0.32,1.275) 0.12s both',
+objectFit:'contain',
 });
 
 return (
 <div style={{
-height:‘100%’,width:‘100%’,display:‘flex’,flexDirection:‘column’,overflow:‘hidden’,
-background:‘linear-gradient(to bottom,#FAD2E1 0%,#F8B9D0 28%,#F8B9D0 100%)’,
-position:‘relative’,fontFamily:MF,
+height:'100%',width:'100%',display:'flex',flexDirection:'column',overflow:'hidden',
+background:'linear-gradient(to bottom,#FAD2E1 0%,#F8B9D0 28%,#F8B9D0 100%)',
+position:'relative',fontFamily:MF,
 }}>
-
-```
   {/* ── Typography ── */}
   <div style={{padding:'clamp(36px,11vh,64px) clamp(22px,6vw,36px) 0',position:'relative',zIndex:3}}>
     <div style={{fontSize:'clamp(26px,7vw,40px)',fontWeight:500,color:'#0B1009',lineHeight:1.15}}>Welcome to</div>
@@ -372,26 +368,18 @@ position:‘relative’,fontFamily:MF,
 
   {/* ── Mascot sandwich layer ── */}
   <div style={{position:'absolute',bottom:0,left:0,right:0,height:'65vh',zIndex:1}}>
-
-    {/* Layer 1: body behind wave */}
     <img src="./Mascot%20Body%201.png" alt=""
       style={{...mascotStyle(0), filter:'drop-shadow(0 8px 22px rgba(119,5,35,0.13))'}}
       onError={e=>{e.target.style.display='none';}}/>
-
-    {/* Layer 2: cream wave div */}
     <div style={{
       position:'absolute',bottom:0,left:0,right:0,height:'44vh',zIndex:2,
       background:'#FBF6F2',
       borderRadius:'52% 48% 0 0 / clamp(30px,8vw,48px) clamp(30px,8vw,48px) 0 0',
       boxShadow:'0 -10px 32px rgba(200,90,120,0.14)',
     }}/>
-
-    {/* Layer 3: hand in front of wave */}
     <img src="./Mascot%20Hand.png" alt=""
       style={{...mascotStyle(5),pointerEvents:'none'}}
       onError={e=>{e.target.style.display='none';}}/>
-
-    {/* Fallback single-file mascot */}
     <img src="./Mascot%20Welcome%20Page.png" alt="mascot"
       style={{...mascotStyle(3), filter:'drop-shadow(0 8px 22px rgba(119,5,35,0.13))'}}/>
   </div>
@@ -436,8 +424,6 @@ position:‘relative’,fontFamily:MF,
     )}
   </div>
 </div>
-```
-
 );
 }
 
@@ -449,7 +435,7 @@ const {members,expenses,displayCurrency}=data;
 if(!myName) return null;
 const resolvedName=members.find(m=>m.toLowerCase()===myName.trim().toLowerCase());
 if(!resolvedName) return null;
-const realExp=expenses.filter(e=>e.category!==‘Settlement’);
+const realExp=expenses.filter(e=>e.category!=='Settlement');
 const {net:grossNet}=calcBal(members,realExp,displayCurrency);
 const settles=calcSettle(grossNet).filter(s=>s.from===resolvedName);
 if(settles.length===0) return null;
@@ -457,22 +443,22 @@ const totalOwed=r2(settles.reduce((s,x)=>s+x.amount,0));
 return (
 <div className="debt-banner">
 <div style={{marginBottom:8}}>
-<div style={{fontSize:13,fontWeight:700,color:‘rgba(255,255,255,0.75)’,marginBottom:2}}>{t.debtAlertSub}</div>
-<div style={{fontSize:22,fontWeight:900,color:’#fff’}}>{t.debtAlertTitle(fmtAmt(totalOwed,displayCurrency))}</div>
+<div style={{fontSize:13,fontWeight:700,color:'rgba(255,255,255,0.75)',marginBottom:2}}>{t.debtAlertSub}</div>
+<div style={{fontSize:22,fontWeight:900,color:'#fff'}}>{t.debtAlertTitle(fmtAmt(totalOwed,displayCurrency))}</div>
 </div>
 {settles.map((s,i)=>(
 <div key={i} className="debt-row">
-<div style={{display:‘flex’,alignItems:‘center’,gap:10}}>
-<div style={{width:34,height:34,borderRadius:8,background:‘rgba(255,255,255,0.15)’,display:‘flex’,alignItems:‘center’,justifyContent:‘center’,fontWeight:800,fontSize:15,color:’#fff’}}>{s.to[0].toUpperCase()}</div>
+<div style={{display:'flex',alignItems:'center',gap:10}}>
+<div style={{width:34,height:34,borderRadius:8,background:'rgba(255,255,255,0.15)',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:15,color:'#fff'}}>{s.to[0].toUpperCase()}</div>
 <div>
-<div style={{fontWeight:700,fontSize:15,color:’#fff’}}>{s.to}</div>
-<div style={{fontSize:12,color:‘rgba(255,255,255,0.65)’}}>→ {t.payTo}</div>
+<div style={{fontWeight:700,fontSize:15,color:'#fff'}}>{s.to}</div>
+<div style={{fontSize:12,color:'rgba(255,255,255,0.65)'}}>→ {t.payTo}</div>
 </div>
 </div>
-<div style={{fontWeight:900,fontSize:17,color:’#fff’}}>{fmtAmt(s.amount,displayCurrency)}</div>
+<div style={{fontWeight:900,fontSize:17,color:'#fff'}}>{fmtAmt(s.amount,displayCurrency)}</div>
 </div>
 ))}
-<button className=“pay-now-btn” onClick={()=>onSelectMember(resolvedName)}>{t.payNow}</button>
+<button className="pay-now-btn" onClick={()=>onSelectMember(resolvedName)}>{t.payNow}</button>
 </div>
 );
 }
@@ -482,65 +468,64 @@ return (
 // ═══════════════════════════════════════════════════
 function HomeTab({data,upd,toast,myName,onChangeName,setTab,onSelectMember,syncData,t}){
 const [addMode,setAdd]=useState(false);
-const [nm,setNm]=useState(’’);
+const [nm,setNm]=useState('');
 const {members,expenses,displayCurrency,tripName}=data;
 const {paid}=calcBal(members,expenses,displayCurrency);
-const totalAmt=expenses.filter(e=>e.category!==‘Settlement’).reduce((s,e)=>s+e.amount,0);
-const resolvedMyName=members.find(m=>m.toLowerCase()===(myName||’’).trim().toLowerCase())||’’;
+const totalAmt=expenses.filter(e=>e.category!=='Settlement').reduce((s,e)=>s+e.amount,0);
+const resolvedMyName=members.find(m=>m.toLowerCase()===(myName||'').trim().toLowerCase())||'';
 const addM=()=>{
 const n=nm.trim(); if(!n) return;
 if(members.includes(n)) return toast(t.memberDuplicate);
-upd(d=>{d.members=[…d.members,n];return d;});
-setNm(’’); setAdd(false); toast(t.memberAdded(n));
+upd(d=>{d.members=[...d.members,n];return d;});
+setNm(''); setAdd(false); toast(t.memberAdded(n));
 };
 return <div className="app-container">
 <div className="top-header">
-<div style={{display:‘flex’,gap:10}}>
+<div style={{display:'flex',gap:10}}>
 <PlaceholderImage size={64} rounded="8px"/>
 <div className="bubble-chat">
 <div className="bubble-hi">{t.hello}</div>
 <div style={{marginTop:2}}><InlineEdit text={myName} onSave={onChangeName} placeholder={t.nicknamePlaceholder} className="bubble-sub"/></div>
 </div>
 </div>
-<div style={{display:‘flex’,gap:8}}>
-<button className=“settings-btn” onClick={syncData} style={{color:‘var(–ink-light)’}}>{I.refresh}</button>
-<button className=“settings-btn” onClick={()=>setTab(‘settings’)}>{I.gear}</button>
+<div style={{display:'flex',gap:8}}>
+<button className="settings-btn" onClick={syncData} style={{color:'var(--ink-light)'}}>{I.refresh}</button>
+<button className="settings-btn" onClick={()=>setTab('settings')}>{I.gear}</button>
 </div>
 </div>
 <div className="pink-board">
 <div className="trip-header">
-<InlineEdit text={tripName} onSave={v=>upd(d=>{d.tripName=v;return d;})} isTitle={true} className=“trip-title”/>
+<InlineEdit text={tripName} onSave={v=>upd(d=>{d.tripName=v;return d;})} isTitle={true} className="trip-title"/>
 <div className="trip-sub">{t.memberCount(members.length)} · {t.transactionCount(expenses.length)}</div>
 </div>
 <DebtBanner data={data} myName={myName} onSelectMember={onSelectMember} t={t}/>
 <div className="sec-card">
 <div className="total-label">{t.total}</div>
 <div className="total-row">
-<span className=“badge” style={{background:‘var(–accent-light)’,color:‘var(–accent)’}}>{displayCurrency}</span>
-<span style={{fontSize:20,fontWeight:800,color:‘var(–ink-dark)’}}>{fmtAmt(totalAmt,displayCurrency)}</span>
+<span className="badge" style={{background:'var(--accent-light)',color:'var(--accent)'}}>{displayCurrency}</span>
+<span style={{fontSize:20,fontWeight:800,color:'var(--ink-dark)'}}>{fmtAmt(totalAmt,displayCurrency)}</span>
 </div>
 </div>
 <div className="sec-card">
 <div className="add-mem-row">
-<div style={{fontWeight:800,fontSize:16,color:‘var(–ink-dark)’}}>{t.member}</div>
-{addMode?<button className=“pill-btn” style={{border:‘none’,color:‘var(–ink-light)’}} onClick={()=>setAdd(false)}>{t.cancel}</button>:<button className=“pill-btn” onClick={()=>setAdd(true)}>{t.add}</button>}
+<div style={{fontWeight:800,fontSize:16,color:'var(--ink-dark)'}}>{t.member}</div>
+{addMode?<button className="pill-btn" style={{border:'none',color:'var(--ink-light)'}} onClick={()=>setAdd(false)}>{t.cancel}</button>:<button className="pill-btn" onClick={()=>setAdd(true)}>{t.add}</button>}
 </div>
-{addMode&&<div className="input-group" style={{marginBottom:16}}><input placeholder={t.memberNamePlaceholder} value={nm} onChange={e=>setNm(e.target.value)} onKeyDown={e=>e.key===‘Enter’&&addM()} autoFocus/><button className="paw-btn" onClick={addM}>{I.paw}</button></div>}
-{members.length===0&&!addMode&&<div style={{textAlign:‘center’,padding:‘20px 0’,color:‘var(–ink-light)’,fontSize:13}}><center><PlaceholderImage size={80} rounded="10px" style={{marginBottom:10}}/></center><div style={{opacity:0.6}}>{t.noMembers}</div></div>}
+{addMode&&<div className="input-group" style={{marginBottom:16}}><input placeholder={t.memberNamePlaceholder} value={nm} onChange={e=>setNm(e.target.value)} onKeyDown={e=>e.key==='Enter'&&addM()} autoFocus/><button className="paw-btn" onClick={addM}>{I.paw}</button></div>}
+{members.length===0&&!addMode&&<div style={{textAlign:'center',padding:'20px 0',color:'var(--ink-light)',fontSize:13}}><center><PlaceholderImage size={80} rounded="10px" style={{marginBottom:10}}/></center><div style={{opacity:0.6}}>{t.noMembers}</div></div>}
 {members.map(m=>(
-<div key={m} className=“mem-item” onClick={()=>onSelectMember(m)}>
-<div className=“av-sq” style={{background:m===resolvedMyName?‘var(–accent-light)’:’#FBF6F2’,color:m===resolvedMyName?‘var(–accent)’:‘var(–ink-light)’}}>{m[0].toUpperCase()}</div>
+<div key={m} className="mem-item" onClick={()=>onSelectMember(m)}>
+<div className="av-sq" style={{background:m===resolvedMyName?'var(--accent-light)':'#FBF6F2',color:m===resolvedMyName?'var(--accent)':'var(--ink-light)'}}>{m[0].toUpperCase()}</div>
 <div style={{flex:1}}>
-<div style={{fontWeight:700,fontSize:15,color:‘var(–ink-dark)’}}>{m}</div>
-<div style={{fontSize:12,color:‘var(–ink-light)’}}>{t.spent(fmtAmt(paid[m]||0,displayCurrency))}</div>
+<div style={{fontWeight:700,fontSize:15,color:'var(--ink-dark)'}}>{m}</div>
+<div style={{fontSize:12,color:'var(--ink-light)'}}>{t.spent(fmtAmt(paid[m]||0,displayCurrency))}</div>
 </div>
-<div style={{color:‘var(–ink-light)’}}>></div>
+<div style={{color:'var(--ink-light)'}}>></div>
 </div>
 ))}
 </div>
 </div>
-
-  </div>;
+</div>;
 }
 
 // ═══════════════════════════════════════════════════
@@ -549,11 +534,11 @@ return <div className="app-container">
 function AddTab({data,upd,toast,goBack,editingExp,t}){
 const {members,displayCurrency}=data;
 const isEdit=!!editingExp;
-const [desc,setDesc]=useState(isEdit?editingExp.desc:’’);
-const [amt,setAmt]=useState(isEdit?editingExp.amount:’’);
-const [cat,setCat]=useState(isEdit?editingExp.category:‘Food’);
-const [payer,setPayer]=useState(isEdit?editingExp.payer:(members[0]||’’));
-const [note,setNote]=useState(isEdit?(editingExp.note||’’):’’);
+const [desc,setDesc]=useState(isEdit?editingExp.desc:'');
+const [amt,setAmt]=useState(isEdit?editingExp.amount:'');
+const [cat,setCat]=useState(isEdit?editingExp.category:'Food');
+const [payer,setPayer]=useState(isEdit?editingExp.payer:(members[0]||''));
+const [note,setNote]=useState(isEdit?(editingExp.note||''):'');
 const [sel,setSel]=useState({});
 useEffect(()=>{
 const s={};
@@ -561,7 +546,7 @@ if(isEdit){members.forEach(m=>{s[m]=!!editingExp.splits[m];});}
 else{members.forEach(m=>{s[m]=true;});}
 setSel(s);
 },[members,isEdit]);
-if(members.length<2) return <div className="app-container"><div style={{marginTop:40,textAlign:‘center’}}>{t.needMinMembers}</div></div>;
+if(members.length<2) return <div className="app-container"><div style={{marginTop:40,textAlign:'center'}}>{t.needMinMembers}</div></div>;
 const submit=()=>{
 const active=members.filter(m=>sel[m]); const a=parseFloat(amt);
 if(!desc.trim()) return toast(t.needDetail);
@@ -571,43 +556,42 @@ if(active.length===0) return toast(t.needSplit);
 const roundedAmt=r2(a); const splits=makeSplits(roundedAmt,active);
 const expObj={id:isEdit?editingExp.id:Date.now(),desc:desc.trim(),amount:roundedAmt,currency:displayCurrency,category:cat,payer,splits,note:note.trim(),date:today()};
 if(isEdit){upd(d=>{d.expenses=d.expenses.map(e=>e.id===expObj.id?expObj:e);return d;});toast(t.edited);}
-else{upd(d=>{d.expenses=[expObj,…d.expenses];return d;});toast(t.saved);}
+else{upd(d=>{d.expenses=[expObj,...d.expenses];return d;});toast(t.saved);}
 goBack();
 };
 const del=()=>{if(confirm(t.confirmDelete)){upd(d=>{d.expenses=d.expenses.filter(e=>e.id!==editingExp.id);return d;});toast(t.deleted);goBack();}};
-return <div className=“app-container” style={{background:‘var(–bg-pink)’}}>
-<div className=“top-header” style={{alignItems:‘center’,background:‘transparent’}}>
-<button className=“pill-btn” style={{display:‘flex’,gap:6,alignItems:‘center’}} onClick={goBack}>{I.back} {t.back}</button>
-<div style={{fontWeight:800,fontSize:18,color:‘var(–ink-dark)’}}>{isEdit?t.editTransaction:t.addTransaction}</div>
+return <div className="app-container" style={{background:'var(--bg-pink)'}}>
+<div className="top-header" style={{alignItems:'center',background:'transparent'}}>
+<button className="pill-btn" style={{display:'flex',gap:6,alignItems:'center'}} onClick={goBack}>{I.back} {t.back}</button>
+<div style={{fontWeight:800,fontSize:18,color:'var(--ink-dark)'}}>{isEdit?t.editTransaction:t.addTransaction}</div>
 <div style={{width:80}}></div>
 </div>
-<div style={{padding:‘0 20px 40px’}}>
+<div style={{padding:'0 20px 40px'}}>
 <div className="sec-card">
 <center><PlaceholderImage size={60} rounded="10px" style={{marginBottom:16}}/></center>
 <div className="lbl">{t.category}</div>
-<select value={cat} onChange={e=>setCat(e.target.value)} style={{marginBottom:16}}>{CATEGORIES.filter(c=>c!==‘Settlement’).map(c=><option key={c} value={c}>{c}</option>)}</select>
+<select value={cat} onChange={e=>setCat(e.target.value)} style={{marginBottom:16}}>{CATEGORIES.filter(c=>c!=='Settlement').map(c=><option key={c} value={c}>{c}</option>)}</select>
 <div className="lbl">{t.detail}</div>
 <input placeholder={t.detailPlaceholder} value={desc} onChange={e=>setDesc(e.target.value)} style={{marginBottom:16}}/>
 <div className="lbl">{t.amount(displayCurrency)}</div>
-<input type=“number” inputMode=“decimal” placeholder=“0.00” value={amt} onChange={e=>setAmt(e.target.value)} style={{marginBottom:16}}/>
+<input type="number" inputMode="decimal" placeholder="0.00" value={amt} onChange={e=>setAmt(e.target.value)} style={{marginBottom:16}}/>
 <div className="lbl">{t.note}</div>
-<textarea rows=“2” placeholder={t.notePlaceholder} value={note} onChange={e=>setNote(e.target.value)} style={{marginBottom:16,resize:‘none’}}/>
+<textarea rows="2" placeholder={t.notePlaceholder} value={note} onChange={e=>setNote(e.target.value)} style={{marginBottom:16,resize:'none'}}/>
 <div className="lbl">{t.whoPayQuestion}</div>
 <select value={payer} onChange={e=>setPayer(e.target.value)} style={{marginBottom:24}}>{members.map(m=><option key={m} value={m}>{m}</option>)}</select>
 <div className="lbl">{t.splitWithQuestion}</div>
 <div className="split-chip-group">
 {members.map(m=>(
-<div key={m} onClick={()=>setSel(s=>({…s,[m]:!s[m]}))} className={`split-chip ${sel[m]?'on':'off'}`}>
+<div key={m} onClick={()=>setSel(s=>({...s,[m]:!s[m]}))} className={`split-chip ${sel[m]?'on':'off'}`}>
 {sel[m]&&<HandCoinIcon/>}{m}
 </div>
 ))}
 </div>
 <button className="btn-main" onClick={submit}>{t.save}</button>
-{isEdit&&<button className=“pill-btn” style={{width:‘100%’,marginTop:12,color:‘white’,background:’#A65368’,border:‘none’}} onClick={del}>{t.delete}</button>}
+{isEdit&&<button className="pill-btn" style={{width:'100%',marginTop:12,color:'white',background:'#A65368',border:'none'}} onClick={del}>{t.delete}</button>}
 </div>
 </div>
-
-  </div>;
+</div>;
 }
 
 // ═══════════════════════════════════════════════════
@@ -615,28 +599,27 @@ return <div className=“app-container” style={{background:‘var(–bg-pink)�
 // ═══════════════════════════════════════════════════
 function ListTab({data,setEditingExp,t}){
 const {expenses}=data;
-const exps=expenses.filter(e=>e.category!==‘Settlement’);
-return <div className=“app-container” style={{background:‘var(–bg-pink)’}}>
-<div className=“top-header” style={{background:‘transparent’}}><div style={{fontWeight:800,fontSize:24,color:‘var(–ink-dark)’}}>{t.transactions}</div></div>
-<div style={{padding:‘0 20px 40px’}}>
-{exps.length===0&&<div style={{textAlign:‘center’,marginTop:40,color:‘var(–ink-light)’}}>{t.noTransactions}</div>}
+const exps=expenses.filter(e=>e.category!=='Settlement');
+return <div className="app-container" style={{background:'var(--bg-pink)'}}>
+<div className="top-header" style={{background:'transparent'}}><div style={{fontWeight:800,fontSize:24,color:'var(--ink-dark)'}}>{t.transactions}</div></div>
+<div style={{padding:'0 20px 40px'}}>
+{exps.length===0&&<div style={{textAlign:'center',marginTop:40,color:'var(--ink-light)'}}>{t.noTransactions}</div>}
 {exps.map(e=>{
-const cs=CAT_COLORS[e.category]||CAT_COLORS[‘Other’];
-return <div key={e.id} className=“sec-card” style={{padding:‘16px’,cursor:‘pointer’}} onClick={()=>setEditingExp(e)}>
-<div style={{display:‘flex’,justifyContent:‘space-between’,marginBottom:8}}>
-<div style={{fontWeight:700,fontSize:16,color:‘var(–ink-dark)’}}>{e.desc}</div>
+const cs=CAT_COLORS[e.category]||CAT_COLORS['Other'];
+return <div key={e.id} className="sec-card" style={{padding:'16px',cursor:'pointer'}} onClick={()=>setEditingExp(e)}>
+<div style={{display:'flex',justifyContent:'space-between',marginBottom:8}}>
+<div style={{fontWeight:700,fontSize:16,color:'var(--ink-dark)'}}>{e.desc}</div>
 <div style={{fontWeight:800,fontSize:16}}>{fmtAmt(e.amount,e.currency)}</div>
 </div>
-<div style={{display:‘flex’,justifyContent:‘space-between’,fontSize:13,color:‘var(–ink-light)’,marginBottom:e.note?6:0,alignItems:‘center’}}>
+<div style={{display:'flex',justifyContent:'space-between',fontSize:13,color:'var(--ink-light)',marginBottom:e.note?6:0,alignItems:'center'}}>
 <div><span className="badge" style={{background:cs.bg,color:cs.text}}>{e.category}</span></div>
 <div>{t.paidBy(e.payer)}</div>
 </div>
-{e.note&&<div style={{fontSize:12,color:‘var(–ink-light)’,background:’#FBF6F2’,padding:‘6px 10px’,borderRadius:8}}>📝 {e.note}</div>}
+{e.note&&<div style={{fontSize:12,color:'var(--ink-light)',background:'#FBF6F2',padding:'6px 10px',borderRadius:8}}>📝 {e.note}</div>}
 </div>;
 })}
 </div>
-
-  </div>;
+</div>;
 }
 
 // ═══════════════════════════════════════════════════
@@ -644,49 +627,49 @@ return <div key={e.id} className=“sec-card” style={{padding:‘16px’,curso
 // ═══════════════════════════════════════════════════
 function MemberDetail({member,data,upd,toast,goBack,t}){
 const {members,expenses,displayCurrency}=data;
-const realExp=expenses.filter(e=>e.category!==‘Settlement’);
+const realExp=expenses.filter(e=>e.category!=='Settlement');
 const {net:grossNet}=calcBal(members,realExp,displayCurrency);
 const grossSettles=calcSettle(grossNet).filter(s=>s.from===member||s.to===member);
 const {net:actualNet}=calcBal(members,expenses,displayCurrency);
 const currentN=actualNet[member]||0;
 const togglePaid=(s)=>{
-const related=expenses.filter(e=>e.category===‘Settlement’&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to]);
+const related=expenses.filter(e=>e.category==='Settlement'&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to]);
 const paidAmt=related.reduce((sum,e)=>sum+(e.splits[s.to]||0),0);
 const isPaid=paidAmt>=(s.amount-0.01);
-if(isPaid){upd(d=>{d.expenses=d.expenses.filter(e=>!(e.category===‘Settlement’&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to]));return d;});toast(t.settleCancel);}
-else{upd(d=>{d.expenses.push({id:Date.now(),desc:`${s.from} ➔ ${s.to}`,amount:s.amount,currency:displayCurrency,category:‘Settlement’,payer:s.from,splits:{[s.to]:s.amount},date:today(),note:’’});return d;});toast(t.settleSaved);}
+if(isPaid){upd(d=>{d.expenses=d.expenses.filter(e=>!(e.category==='Settlement'&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to]));return d;});toast(t.settleCancel);}
+else{upd(d=>{d.expenses.push({id:Date.now(),desc:`${s.from} ➔ ${s.to}`,amount:s.amount,currency:displayCurrency,category:'Settlement',payer:s.from,splits:{[s.to]:s.amount},date:today(),note:''});return d;});toast(t.settleSaved);}
 };
-return <div className=“app-container” style={{background:‘var(–bg-main)’,zIndex:200,position:‘absolute’,top:0,left:0,right:0,bottom:0}}>
-<div className=“top-header” style={{alignItems:‘center’}}>
-<button className=“pill-btn” style={{display:‘flex’,gap:6,alignItems:‘center’}} onClick={goBack}>{I.back} {t.back}</button>
+return <div className="app-container" style={{background:'var(--bg-main)',zIndex:200,position:'absolute',top:0,left:0,right:0,bottom:0}}>
+<div className="top-header" style={{alignItems:'center'}}>
+<button className="pill-btn" style={{display:'flex',gap:6,alignItems:'center'}} onClick={goBack}>{I.back} {t.back}</button>
 <div style={{width:80}}></div>
 </div>
-<div style={{padding:‘0 20px 20px’}}>
-<div style={{display:‘flex’,alignItems:‘center’,gap:16,marginBottom:24}}>
-<div className=“av-sq” style={{width:60,height:60,fontSize:24,background:‘var(–surface)’,border:‘2px solid var(–accent)’}}>{member[0]}</div>
+<div style={{padding:'0 20px 20px'}}>
+<div style={{display:'flex',alignItems:'center',gap:16,marginBottom:24}}>
+<div className="av-sq" style={{width:60,height:60,fontSize:24,background:'var(--surface)',border:'2px solid var(--accent)'}}>{member[0]}</div>
 <div>
-<div style={{fontSize:24,fontWeight:800,color:‘var(–ink-dark)’}}>{member}</div>
-<div style={{fontSize:14,fontWeight:600,color:currentN>0.01?‘var(–green)’:currentN<-0.01?‘var(–accent)’:‘var(–ink-light)’}}>
+<div style={{fontSize:24,fontWeight:800,color:'var(--ink-dark)'}}>{member}</div>
+<div style={{fontSize:14,fontWeight:600,color:currentN>0.01?'var(--green)':currentN<-0.01?'var(--accent)':'var(--ink-light)'}}>
 {currentN>0.01?t.friendOwes(fmtAmt(currentN,displayCurrency)):currentN<-0.01?t.owesFriend(fmtAmt(-currentN,displayCurrency)):t.allClear}
 </div>
 </div>
 </div>
 {grossSettles.length>0&&(
-<div className=“sec-card” style={{background:‘var(–bg-pink)’}}>
-<div className=“lbl” style={{color:‘var(–ink-dark)’,fontSize:14,marginBottom:16}}>{t.settleHeader} ({displayCurrency})</div>
+<div className="sec-card" style={{background:'var(--bg-pink)'}}>
+<div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,marginBottom:16}}>{t.settleHeader} ({displayCurrency})</div>
 {grossSettles.map((s,i)=>{
 const isFrom=s.from===member;
-const related=expenses.filter(e=>e.category===‘Settlement’&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to]);
+const related=expenses.filter(e=>e.category==='Settlement'&&e.currency===displayCurrency&&e.payer===s.from&&e.splits[s.to]);
 const paidAmt=related.reduce((sum,e)=>sum+(e.splits[s.to]||0),0);
 const isPaid=paidAmt>=(s.amount-0.01);
-return <div key={i} style={{background:‘var(–surface)’,padding:‘16px’,borderRadius:16,marginBottom:12,border:isPaid?‘2px solid var(–accent)’:‘2px solid transparent’}}>
-<div style={{display:‘flex’,justifyContent:‘space-between’,alignItems:‘center’,marginBottom:12}}>
-<div style={{fontSize:14,fontWeight:600,display:‘flex’,alignItems:‘center’,gap:6}}>
-{isFrom?<span style={{color:‘var(–ink-dark)’,display:‘flex’,alignItems:‘center’,gap:6}}>{t.payTo} <NewArrowIcon color="var(--ink-dark)"/> {s.to}</span>:<span style={{color:‘var(–ink-dark)’,display:‘flex’,alignItems:‘center’,gap:6}}>{t.receiveFrom} <NewArrowIcon color="var(--ink-dark)"/> {s.from}</span>}
+return <div key={i} style={{background:'var(--surface)',padding:'16px',borderRadius:16,marginBottom:12,border:isPaid?'2px solid var(--accent)':'2px solid transparent'}}>
+<div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}>
+<div style={{fontSize:14,fontWeight:600,display:'flex',alignItems:'center',gap:6}}>
+{isFrom?<span style={{color:'var(--ink-dark)',display:'flex',alignItems:'center',gap:6}}>{t.payTo} <NewArrowIcon color="var(--ink-dark)"/> {s.to}</span>:<span style={{color:'var(--ink-dark)',display:'flex',alignItems:'center',gap:6}}>{t.receiveFrom} <NewArrowIcon color="var(--ink-dark)"/> {s.from}</span>}
 </div>
-<div style={{fontSize:18,fontWeight:800,color:‘var(–ink-dark)’}}>{fmtAmt(s.amount,displayCurrency)}</div>
+<div style={{fontSize:18,fontWeight:800,color:'var(--ink-dark)'}}>{fmtAmt(s.amount,displayCurrency)}</div>
 </div>
-<div className={`split-chip ${isPaid?'on':'off'}`} style={{width:‘100%’,border:isPaid?‘none’:‘1.5px solid rgba(119,5,35,0.1)’}} onClick={()=>togglePaid(s)}>
+<div className={`split-chip ${isPaid?'on':'off'}`} style={{width:'100%',border:isPaid?'none':'1.5px solid rgba(119,5,35,0.1)'}} onClick={()=>togglePaid(s)}>
 {isPaid&&<HandCoinIcon/>}
 {isPaid?(isFrom?t.alreadySent:t.alreadyReceived):(isFrom?t.tapWhenSent:t.tapWhenReceived)}
 </div>
@@ -695,8 +678,7 @@ return <div key={i} style={{background:‘var(–surface)’,padding:‘16px’,
 </div>
 )}
 </div>
-
-  </div>;
+</div>;
 }
 
 // ═══════════════════════════════════════════════════
@@ -708,57 +690,56 @@ const handleCurChange=(newCur)=>{
 if(newCur===displayCurrency) return;
 if(confirm(t.convertConfirm(newCur))){
 const rF=RATES[displayCurrency]||1, rT=RATES[newCur]||1;
-upd(d=>{d.expenses=d.expenses.map(exp=>{const cv=a=>(a/rF)*rT;const ns={};Object.keys(exp.splits).forEach(k=>ns[k]=cv(exp.splits[k]));return{…exp,currency:newCur,amount:cv(exp.amount),splits:ns};});d.displayCurrency=newCur;return d;});
+upd(d=>{d.expenses=d.expenses.map(exp=>{const cv=a=>(a/rF)*rT;const ns={};Object.keys(exp.splits).forEach(k=>ns[k]=cv(exp.splits[k]));return{...exp,currency:newCur,amount:cv(exp.amount),splits:ns};});d.displayCurrency=newCur;return d;});
 toast(t.converted(newCur));
 } else { upd(d=>{d.displayCurrency=newCur;return d;}); }
 };
 const handleLangChange=(l)=>{setLang(l);localStorage.setItem(LANG_KEY,l);};
-return <div className=“app-container” style={{background:‘var(–bg-pink)’,zIndex:200,position:‘absolute’,top:0,left:0,right:0,bottom:0}}>
-<div className=“top-header” style={{alignItems:‘center’,background:‘transparent’}}>
-<button className=“pill-btn” style={{display:‘flex’,gap:6,alignItems:‘center’}} onClick={goBack}>{I.back} {t.back}</button>
-<div style={{fontWeight:800,fontSize:20,color:‘var(–ink-dark)’}}>{t.settings}</div>
+return <div className="app-container" style={{background:'var(--bg-pink)',zIndex:200,position:'absolute',top:0,left:0,right:0,bottom:0}}>
+<div className="top-header" style={{alignItems:'center',background:'transparent'}}>
+<button className="pill-btn" style={{display:'flex',gap:6,alignItems:'center'}} onClick={goBack}>{I.back} {t.back}</button>
+<div style={{fontWeight:800,fontSize:20,color:'var(--ink-dark)'}}>{t.settings}</div>
 <div style={{width:80}}></div>
 </div>
-<div style={{padding:‘0 20px 40px’}}>
+<div style={{padding:'0 20px 40px'}}>
 <div className="settings-card">
-<div className=“lbl” style={{color:‘var(–ink-dark)’,fontSize:14,marginBottom:12}}>{t.language}</div>
+<div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,marginBottom:12}}>{t.language}</div>
 <div className="lang-toggle">
-<button className={`lang-btn ${lang==='th'?'active':''}`} onClick={()=>handleLangChange(‘th’)}>{T.th.langTH}</button>
-<button className={`lang-btn ${lang==='en'?'active':''}`} onClick={()=>handleLangChange(‘en’)}>{T.en.langEN}</button>
+<button className={`lang-btn ${lang==='th'?'active':''}`} onClick={()=>handleLangChange('th')}>{T.th.langTH}</button>
+<button className={`lang-btn ${lang==='en'?'active':''}`} onClick={()=>handleLangChange('en')}>{T.en.langEN}</button>
 </div>
 </div>
 <div className="settings-card">
-<div className=“lbl” style={{color:‘var(–ink-dark)’,fontSize:14,display:‘flex’,alignItems:‘center’,gap:6}}>{t.myName}</div>
-<div style={{display:‘flex’,alignItems:‘center’,gap:12,marginTop:10}}>
-<div className=“av-sq” style={{background:’#EAF5F0’,color:’#2E7D5E’}}>{(myName||’?’)[0].toUpperCase()}</div>
+<div className="lbl" style={{color:'var(--ink-dark)',fontSize:14,display:'flex',alignItems:'center',gap:6}}>{t.myName}</div>
+<div style={{display:'flex',alignItems:'center',gap:12,marginTop:10}}>
+<div className="av-sq" style={{background:'#EAF5F0',color:'#2E7D5E'}}>{(myName||'?')[0].toUpperCase()}</div>
 <div style={{flex:1}}>
-<InlineEdit text={myName} onSave={onChangeName} placeholder={t.myNamePlaceholder} className=“bubble-hi” style={{color:‘var(–ink-dark)’}}/>
-<div style={{fontSize:12,color:‘var(–ink-light)’}}>{t.myNameSub}</div>
+<InlineEdit text={myName} onSave={onChangeName} placeholder={t.myNamePlaceholder} className="bubble-hi" style={{color:'var(--ink-dark)'}}/>
+<div style={{fontSize:12,color:'var(--ink-light)'}}>{t.myNameSub}</div>
 </div>
 </div>
 </div>
 <div className="settings-card">
-<div className=“lbl” style={{color:‘var(–ink-dark)’,fontSize:14}}>{t.currency}</div>
-<div style={{fontSize:12,color:‘var(–ink-light)’,marginBottom:12}}>{t.currencySub}</div>
+<div className="lbl" style={{color:'var(--ink-dark)',fontSize:14}}>{t.currency}</div>
+<div style={{fontSize:12,color:'var(--ink-light)',marginBottom:12}}>{t.currencySub}</div>
 <div className="curr-grid">
 {CURRENCIES.map(c=>(
 <div key={c.code} className={`curr-item ${displayCurrency===c.code?'active':''}`} onClick={()=>handleCurChange(c.code)}>
 <div style={{fontWeight:800,fontSize:16,width:24}}>{c.sym}</div>
-<div><div style={{fontWeight:700,fontSize:13,color:‘var(–ink-dark)’}}>{c.code}</div><div style={{fontSize:10,color:‘var(–ink-light)’}}>{c.name}</div></div>
+<div><div style={{fontWeight:700,fontSize:13,color:'var(--ink-dark)'}}>{c.code}</div><div style={{fontSize:10,color:'var(--ink-light)'}}>{c.name}</div></div>
 </div>
 ))}
 </div>
 </div>
 <div className="settings-card">
-<div className=“lbl” style={{color:‘var(–ink-dark)’,fontSize:14}}>{t.dangerZone}</div>
-<button className=“pill-btn” style={{width:‘100%’,padding:‘12px’,marginTop:10,background:’#F9E8EC’,color:’#770523’,border:‘none’}}
+<div className="lbl" style={{color:'var(--ink-dark)',fontSize:14}}>{t.dangerZone}</div>
+<button className="pill-btn" style={{width:'100%',padding:'12px',marginTop:10,background:'#F9E8EC',color:'#770523',border:'none'}}
 onClick={()=>{if(confirm(t.resetConfirm)){upd(()=>initData());goBack();}}}>
 {t.resetBtn}
 </button>
 </div>
 </div>
-
-  </div>;
+</div>;
 }
 
 // ═══════════════════════════════════════════════════
@@ -767,13 +748,13 @@ onClick={()=>{if(confirm(t.resetConfirm)){upd(()=>initData());goBack();}}}>
 function App(){
 const [welcomed,setWelcomed]=useState(false);
 const [data,setData]=useState(loadData);
-const [tab,setTab]=useState(‘home’);
+const [tab,setTab]=useState('home');
 const [memberDetail,setMemberDetail]=useState(null);
 const [editingExp,setEditingExp]=useState(null);
-const [myName,setMyName]=useState(()=>localStorage.getItem(MY_KEY)||’’);
-const [lang,setLang]=useState(()=>localStorage.getItem(LANG_KEY)||‘th’);
+const [myName,setMyName]=useState(()=>localStorage.getItem(MY_KEY)||'');
+const [lang,setLang]=useState(()=>localStorage.getItem(LANG_KEY)||'th');
 const [toast,showToast]=useToast();
-const t=T[lang]||T[‘th’];
+const t=T[lang]||T['th'];
 
 const syncData=useCallback(()=>{
 if(!WEB_APP_URL) return;
@@ -787,8 +768,8 @@ useEffect(()=>localStorage.setItem(LANG_KEY,lang),[lang]);
 
 const upd=fn=>{
 setData(prev=>{
-const nd=fn({…prev});
-if(WEB_APP_URL){fetch(WEB_APP_URL,{method:‘POST’,headers:{‘Content-Type’:‘text/plain;charset=utf-8’},body:JSON.stringify(nd)}).catch(()=>showToast(t.cloudFail));}
+const nd=fn({...prev});
+if(WEB_APP_URL){fetch(WEB_APP_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(nd)}).catch(()=>showToast(t.cloudFail));}
 return nd;
 });
 };
@@ -803,31 +784,30 @@ return <WelcomeScreen onEnter={handleWelcomeEnter} initialName={myName}/>;
 }
 
 return <div id="root">
-{tab===‘home’&&!memberDetail&&<HomeTab data={data} upd={upd} toast={showToast} myName={myName} onChangeName={setMyName} setTab={setTab} onSelectMember={setMemberDetail} syncData={syncData} t={t}/>}
-{tab===‘add’&&<AddTab data={data} upd={upd} toast={showToast} goBack={()=>setTab(‘home’)} editingExp={null} t={t}/>}
-{tab===‘edit’&&<AddTab data={data} upd={upd} toast={showToast} goBack={()=>{setTab(‘list’);setEditingExp(null);}} editingExp={editingExp} t={t}/>}
-{tab===‘list’&&<ListTab data={data} setEditingExp={e=>{setEditingExp(e);setTab(‘edit’);}} t={t}/>}
+{tab==='home'&&!memberDetail&&<HomeTab data={data} upd={upd} toast={showToast} myName={myName} onChangeName={setMyName} setTab={setTab} onSelectMember={setMemberDetail} syncData={syncData} t={t}/>}
+{tab==='add'&&<AddTab data={data} upd={upd} toast={showToast} goBack={()=>setTab('home')} editingExp={null} t={t}/>}
+{tab==='edit'&&<AddTab data={data} upd={upd} toast={showToast} goBack={()=>{setTab('list');setEditingExp(null);}} editingExp={editingExp} t={t}/>}
+{tab==='list'&&<ListTab data={data} setEditingExp={e=>{setEditingExp(e);setTab('edit');}} t={t}/>}
 {memberDetail&&<MemberDetail member={memberDetail} data={data} upd={upd} toast={showToast} goBack={()=>setMemberDetail(null)} t={t}/>}
-{tab===‘settings’&&<SettingsTab data={data} upd={upd} goBack={()=>setTab(‘home’)} myName={myName} onChangeName={setMyName} toast={showToast} lang={lang} setLang={setLang} t={t}/>}
+{tab==='settings'&&<SettingsTab data={data} upd={upd} goBack={()=>setTab('home')} myName={myName} onChangeName={setMyName} toast={showToast} lang={lang} setLang={setLang} t={t}/>}
 {toast&&<div className="toast">{toast}</div>}
-{(tab===‘home’||tab===‘list’)&&!memberDetail&&(
+{(tab==='home'||tab==='list')&&!memberDetail&&(
 <nav className="bottom-nav">
-<button className={`nav-item ${tab==='home'?'active':''}`} onClick={()=>setTab(‘home’)}>{I.home}<span>{t.navHome}</span></button>
+<button className={`nav-item ${tab==='home'?'active':''}`} onClick={()=>setTab('home')}>{I.home}<span>{t.navHome}</span></button>
 <div className="fab-container">
-<button className=“fab-btn” onClick={()=>{if(data.members.length<2){showToast(t.needMoreMembers);}else{setTab(‘add’);}}}>
+<button className="fab-btn" onClick={()=>{if(data.members.length<2){showToast(t.needMoreMembers);}else{setTab('add');}}}>
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
 </button>
 </div>
-<button className={`nav-item ${tab==='list'?'active':''}`} onClick={()=>setTab(‘list’)}>{I.list}<span>{t.navTransactions}</span></button>
+<button className={`nav-item ${tab==='list'?'active':''}`} onClick={()=>setTab('list')}>{I.list}<span>{t.navTransactions}</span></button>
 </nav>
 )}
-
-  </div>;
+</div>;
 }
 
-ReactDOM.createRoot(document.getElementById(‘root’)).render(<App/>);
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
-
 </body>
 </html>
+
 

@@ -7,291 +7,89 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <title>NoMorePaylater</title>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Mitr:wght@400;500;600&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        keyframes: {
-          mascotBounceUp: {
-            '0%':   { transform: 'translateY(80px)', opacity: '0' },
-            '60%':  { transform: 'translateY(-12px)', opacity: '1' },
-            '80%':  { transform: 'translateY(4px)',  opacity: '1' },
-            '100%': { transform: 'translateY(0)',    opacity: '1' },
-          }
-        },
-        animation: {
-          'mascot': 'mascotBounceUp 0.85s cubic-bezier(0.175,0.885,0.32,1.275) 0.1s both',
-        },
-        fontFamily: {
-          mitr: ['Mitr', 'sans-serif'],
-          kanit: ['Kanit', 'sans-serif'],
-        },
-        colors: {
-          pink1: '#FAD2E1',
-          pink2: '#F8B9D0',
-          cream: '#FBF6F2',
-          accent: '#770523',
-          dark:   '#0B1009',
-        }
-      }
-    }
-  }
-</script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden;font-family:'Kanit',sans-serif;background:#FFFFFF;color:#770523}
-
 :root{
-–bg-main:#FFFFFF;
-–bg-pink:#FAD2E1;
-–surface:#FFFFFF;
-–accent:#770523;
-–accent-light:#F9E8EC;
-–ink-dark:#111111;
-–ink-mid:#770523;
-–ink-light:#A65368;
-–green:#2E7D5E;
-–green-light:#EAF5F0;
-–shadow:0 4px 16px rgba(119, 5, 35, 0.08);
-–r:24px; –rs:14px;
+  --bg-main:#FFFFFF;--bg-pink:#FAD2E1;--surface:#FFFFFF;--accent:#770523;
+  --accent-light:#F9E8EC;--ink-dark:#111111;--ink-mid:#770523;--ink-light:#A65368;
+  --green:#2E7D5E;--green-light:#EAF5F0;--shadow:0 4px 16px rgba(119,5,35,0.08);
+  --r:24px;--rs:14px;
 }
-
 #root{height:100%;display:flex;flex-direction:column;position:relative}
-.app-container{flex:1;overflow-y:auto;padding-bottom:120px;-webkit-overflow-scrolling:touch;background:var(–bg-main);}
+.app-container{flex:1;overflow-y:auto;padding-bottom:120px;-webkit-overflow-scrolling:touch;background:var(--bg-main);}
 .app-container::-webkit-scrollbar{display:none}
-
-.inline-input{border:1px dashed var(–ink-light);background:rgba(255,255,255,0.5);padding:4px 8px;border-radius:8px;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;width:100%;outline:none;}
-.inline-input:focus{border:1px solid var(–accent);background:var(–surface);}
-
-.top-header{padding:24px 20px 20px;display:flex;justify-content:space-between;align-items:flex-start;background:var(–bg-main);}
-.bubble-chat{background:var(–surface);padding:12px 20px;border-radius:30px;border-bottom-left-radius:8px;box-shadow:var(–shadow);cursor:pointer;display:inline-block;animation:pop .3s ease;border:1px solid rgba(119,5,35,0.05);}
-.bubble-hi{font-weight:800;font-size:16px;color:var(–accent);line-height:1.2;}
-.bubble-sub{font-size:13px;color:var(–ink-light);font-weight:500;}
-.settings-btn{width:44px;height:44px;border-radius:50%;background:var(–surface);border:none;box-shadow:var(–shadow);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(–accent);transition:transform .1s;}
+.inline-input{border:1px dashed var(--ink-light);background:rgba(255,255,255,0.5);padding:4px 8px;border-radius:8px;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;width:100%;outline:none;}
+.inline-input:focus{border:1px solid var(--accent);background:var(--surface);}
+.top-header{padding:24px 20px 20px;display:flex;justify-content:space-between;align-items:flex-start;background:var(--bg-main);}
+.bubble-chat{background:var(--surface);padding:12px 20px;border-radius:30px;border-bottom-left-radius:8px;box-shadow:var(--shadow);cursor:pointer;display:inline-block;animation:pop .3s ease;border:1px solid rgba(119,5,35,0.05);}
+.bubble-hi{font-weight:800;font-size:16px;color:var(--accent);line-height:1.2;}
+.bubble-sub{font-size:13px;color:var(--ink-light);font-weight:500;}
+.settings-btn{width:44px;height:44px;border-radius:50%;background:var(--surface);border:none;box-shadow:var(--shadow);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(--accent);transition:transform .1s;}
 .settings-btn:active{transform:scale(0.95);}
 .settings-btn svg{width:22px;height:22px;stroke-width:2.5;}
-
-.pink-board{background:var(–bg-pink);border-radius:32px 32px 0 0;padding:24px 20px 40px;min-height:100%;}
-
+.pink-board{background:var(--bg-pink);border-radius:32px 32px 0 0;padding:24px 20px 40px;min-height:100%;}
 .trip-header{margin-bottom:20px;}
-.trip-title{font-size:22px;font-weight:800;color:var(–ink-dark);display:flex;align-items:center;gap:8px;cursor:pointer;}
-.trip-sub{font-size:13px;color:var(–ink-dark);font-weight:500;margin-top:4px;opacity:0.8;}
-
-.sec-card{background:var(–surface);border-radius:var(–r);box-shadow:var(–shadow);padding:20px;margin-bottom:16px;animation:slide-up .3s ease;}
-.settings-card{background:var(–surface);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
-
-.pill-btn{background:var(–surface);color:var(–accent);border:1.5px solid rgba(119,5,35,0.1);padding:6px 16px;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer;font-family:‘Kanit’;}
-.pill-btn:active{background:var(–accent-light);}
-.btn-main{background:var(–accent);color:#fff;border:none;padding:14px 20px;border-radius:var(–rs);font-weight:700;font-size:16px;width:100%;cursor:pointer;font-family:‘Kanit’;}
-input,select,textarea{width:100%;padding:12px 16px;border:1.5px solid rgba(119,5,35,0.2);border-radius:var(–rs);font-family:‘Kanit’;font-size:15px;color:var(–ink-dark);outline:none;transition:border-color .2s;}
-input:focus,select:focus,textarea:focus{border-color:var(–accent);}
+.trip-title{font-size:22px;font-weight:800;color:var(--ink-dark);display:flex;align-items:center;gap:8px;cursor:pointer;}
+.trip-sub{font-size:13px;color:var(--ink-dark);font-weight:500;margin-top:4px;opacity:0.8;}
+.sec-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;margin-bottom:16px;animation:slide-up .3s ease;}
+.settings-card{background:var(--surface);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.pill-btn{background:var(--surface);color:var(--accent);border:1.5px solid rgba(119,5,35,0.1);padding:6px 16px;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Kanit';}
+.pill-btn:active{background:var(--accent-light);}
+.btn-main{background:var(--accent);color:#fff;border:none;padding:14px 20px;border-radius:var(--rs);font-weight:700;font-size:16px;width:100%;cursor:pointer;font-family:'Kanit';}
+input,select,textarea{width:100%;padding:12px 16px;border:1.5px solid rgba(119,5,35,0.2);border-radius:var(--rs);font-family:'Kanit';font-size:15px;color:var(--ink-dark);outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);}
 .input-group{display:flex;gap:8px;align-items:center;}
-
 .split-chip-group{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
-.split-chip{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;border:2px solid transparent;padding:10px 20px;font-family:‘Kanit’;font-size:16px;font-weight:700;cursor:pointer;transition:all 0.2s;background:var(–surface);box-shadow:0 2px 6px rgba(0,0,0,0.04);}
-.split-chip.off{color:var(–ink-dark);border-color:transparent;}
-.split-chip.on{color:var(–accent);border-color:var(–bg-pink);}
-.split-chip svg{width:22px;height:22px;fill:none;stroke:var(–accent);}
-
+.split-chip{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;border:2px solid transparent;padding:10px 20px;font-family:'Kanit';font-size:16px;font-weight:700;cursor:pointer;transition:all 0.2s;background:var(--surface);box-shadow:0 2px 6px rgba(0,0,0,0.04);}
+.split-chip.off{color:var(--ink-dark);border-color:transparent;}
+.split-chip.on{color:var(--accent);border-color:var(--bg-pink);}
+.split-chip svg{width:22px;height:22px;fill:none;stroke:var(--accent);}
 .add-mem-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
-.paw-btn{width:44px;height:44px;border-radius:12px;background:#FBF6F2;border:1.5px solid rgba(119,5,35,0.15);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(–accent);flex-shrink:0;}
+.paw-btn{width:44px;height:44px;border-radius:12px;background:#FBF6F2;border:1.5px solid rgba(119,5,35,0.15);display:flex;justify-content:center;align-items:center;cursor:pointer;color:var(--accent);flex-shrink:0;}
 .paw-btn svg{width:22px;height:22px;fill:currentColor;}
-
-/* Language Toggle */
 .lang-toggle{display:flex;background:#F0E6EA;border-radius:30px;padding:4px;gap:2px;}
-.lang-btn{padding:6px 14px;border-radius:24px;border:none;font-family:‘Kanit’;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;background:transparent;color:var(–ink-light);}
-.lang-btn.active{background:var(–accent);color:#fff;box-shadow:0 2px 6px rgba(119,5,35,0.25);}
-
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(–surface);box-shadow:0 -2px 10px rgba(0,0,0,0.03);display:flex;justify-content:space-around;align-items:center;padding:12px 20px 24px;z-index:100;border-top:1px solid rgba(119,5,35,0.05);}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;color:var(–accent);font-family:‘Kanit’;cursor:pointer;width:80px;}
-.nav-item svg{width:28px;height:28px;stroke-width:2.5;stroke:var(–accent);fill:none;}
-.nav-item span{font-size:13px;font-weight:800;color:var(–accent);}
+.lang-btn{padding:6px 14px;border-radius:24px;border:none;font-family:'Kanit';font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--ink-light);}
+.lang-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 6px rgba(119,5,35,0.25);}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);box-shadow:0 -2px 10px rgba(0,0,0,0.03);display:flex;justify-content:space-around;align-items:center;padding:12px 20px 24px;z-index:100;border-top:1px solid rgba(119,5,35,0.05);}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;color:var(--accent);font-family:'Kanit';cursor:pointer;width:80px;}
+.nav-item svg{width:28px;height:28px;stroke-width:2.5;stroke:var(--accent);fill:none;}
+.nav-item span{font-size:13px;font-weight:800;color:var(--accent);}
 .fab-container{position:relative;top:-18px;}
-.fab-btn{width:68px;height:68px;border-radius:50%;background:var(–bg-pink);border:6px solid var(–surface);box-shadow:none;display:flex;justify-content:center;align-items:center;font-size:36px;color:var(–surface);cursor:pointer;font-weight:300;}
-
+.fab-btn{width:68px;height:68px;border-radius:50%;background:var(--bg-pink);border:6px solid var(--surface);box-shadow:none;display:flex;justify-content:center;align-items:center;font-size:36px;color:var(--surface);cursor:pointer;font-weight:300;}
 .mem-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(119,5,35,0.05);cursor:pointer;}
 .mem-item:last-child{border-bottom:none;padding-bottom:0;}
-.av-sq{width:40px;height:40px;border-radius:10px;background:var(–green-light);color:var(–green);display:flex;justify-content:center;align-items:center;font-weight:700;font-size:18px;}
-
-.total-label{font-size:16px;font-weight:800;color:var(–accent);margin-bottom:12px;}
+.av-sq{width:40px;height:40px;border-radius:10px;background:var(--green-light);color:var(--green);display:flex;justify-content:center;align-items:center;font-weight:700;font-size:18px;}
+.total-label{font-size:16px;font-weight:800;color:var(--accent);margin-bottom:12px;}
 .total-row{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(119,5,35,0.1);}
 .badge{display:inline-flex;align-items:center;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:0.02em;}
-
 .curr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.curr-item{border:1px solid #eee;border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer;background:var(–surface);}
-.curr-item.active{border-color:var(–accent);background:#FCF4F6;}
-
-.lbl{font-size:13px;font-weight:700;color:var(–ink-light);margin-bottom:6px;}
-.debt-banner{background:var(–accent);border-radius:var(–r);padding:16px 20px;margin-bottom:16px;animation:slide-up .3s ease;overflow:hidden;position:relative;}
-.debt-banner::before{content:’’;position:absolute;top:-20px;right:-20px;width:90px;height:90px;background:rgba(255,255,255,0.07);border-radius:50%;}
-.debt-banner::after{content:’’;position:absolute;bottom:-30px;right:20px;width:70px;height:70px;background:rgba(255,255,255,0.05);border-radius:50%;}
+.curr-item{border:1px solid #eee;border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer;background:var(--surface);}
+.curr-item.active{border-color:var(--accent);background:#FCF4F6;}
+.lbl{font-size:13px;font-weight:700;color:var(--ink-light);margin-bottom:6px;}
+.debt-banner{background:var(--accent);border-radius:var(--r);padding:16px 20px;margin-bottom:16px;animation:slide-up .3s ease;overflow:hidden;position:relative;}
+.debt-banner::before{content:'';position:absolute;top:-20px;right:-20px;width:90px;height:90px;background:rgba(255,255,255,0.07);border-radius:50%;}
+.debt-banner::after{content:'';position:absolute;bottom:-30px;right:20px;width:70px;height:70px;background:rgba(255,255,255,0.05);border-radius:50%;}
 .debt-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.12);}
 .debt-row:last-of-type{border-bottom:none;}
-.pay-now-btn{width:100%;padding:12px;border-radius:30px;border:2px solid rgba(255,255,255,0.5);background:transparent;color:#fff;font-family:‘Kanit’;font-size:15px;font-weight:800;cursor:pointer;margin-top:12px;letter-spacing:0.02em;transition:all 0.15s;}
+.pay-now-btn{width:100%;padding:12px;border-radius:30px;border:2px solid rgba(255,255,255,0.5);background:transparent;color:#fff;font-family:'Kanit';font-size:15px;font-weight:800;cursor:pointer;margin-top:12px;letter-spacing:0.02em;transition:all 0.15s;}
 .pay-now-btn:active{background:rgba(255,255,255,0.15);}
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(–ink-dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:500;z-index:999;animation:pop .2s ease;white-space:nowrap;}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink-dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:500;z-index:999;animation:pop .2s ease;white-space:nowrap;}
+/* Welcome screen placeholder */
+input[placeholder]::placeholder{color:#BE647C;opacity:0.4;}
 
-/* ── Welcome Screen ───────────────────────────────── */
-.welcome-root{
-height:100%; width:100%; display:flex; flex-direction:column;
-background:linear-gradient(to bottom,#FAD2E1,#F8B9D0);
-position:relative; overflow:hidden; font-family:‘Mitr’,sans-serif;
+/* Welcome keyframes */
+@keyframes wMascot{
+0%  {opacity:0;transform:translateX(-50%) translateY(80px);}
+60% {opacity:1;transform:translateX(-50%) translateY(-12px);}
+80% {transform:translateX(-50%) translateY(4px);}
+100%{opacity:1;transform:translateX(-50%) translateY(0);}
 }
-.welcome-pink{
-flex:1; min-height:0; padding:clamp(32px,8vw,56px) clamp(24px,7vw,40px) 0;
-position:relative; z-index:1;
-}
-.welcome-to{
-font-size:clamp(28px,7.5vw,42px); font-weight:500; color:#0B1009; line-height:1.15; margin-bottom:4px;
-}
-.welcome-title{
-font-size:clamp(40px,11vw,58px); font-weight:600; color:#fff; line-height:1.08;
-text-shadow:0 0 28px rgba(255,255,255,0.85),0 0 56px rgba(255,255,255,0.5),0 0 90px rgba(255,255,255,0.25);
-margin-bottom:14px;
-}
-.welcome-tagline{
-font-size:clamp(12px,3.2vw,14px); font-weight:500; color:#770523; line-height:1.65;
-}
-/* Cream wave section */
-.welcome-cream{
-position:relative; z-index:2;
-background:#FBF6F2;
-border-radius:52% 48% 0 0 / clamp(36px,9vw,52px) clamp(36px,9vw,52px) 0 0;
-box-shadow:0 -12px 36px rgba(200,90,120,0.13);
-padding:clamp(78px,21vw,115px) clamp(24px,7vw,40px) clamp(36px,8vw,52px);
-}
-/* Mascot — sits on the wave boundary */
-.welcome-mascot{
-position:absolute;
-left:50%; top:0;
-/* translateX centers, translateY(-65%) puts 65% of img ABOVE the wave line */
-transform:translateX(-50%) translateY(-63%);
-width:clamp(150px,58%,240px);
-filter:drop-shadow(0 10px 32px rgba(119,5,35,0.18));
-animation:mascotBounce 0.95s cubic-bezier(0.34,1.56,0.64,1) 0.15s both;
-z-index:10; /* above cream */
-}
-@keyframes mascotBounce{
-0%{transform:translateX(-50%) translateY(40%);opacity:0;}
-55%{transform:translateX(-50%) translateY(-68%);opacity:1;}
-72%{transform:translateX(-50%) translateY(-59%);}
-85%{transform:translateX(-50%) translateY(-65%);}
-100%{transform:translateX(-50%) translateY(-63%);opacity:1;}
-}
-/* Input pill */
-.welcome-input-wrap{position:relative;margin-bottom:clamp(12px,3vw,18px);}
-.welcome-input{
-width:100%; padding:clamp(13px,3.5vw,17px) clamp(20px,5vw,28px);
-border-radius:100px; border:1.5px solid #FAD2E1;
-box-shadow:0 2px 16px rgba(250,210,225,0.55);
-background:#fff; font-size:clamp(14px,3.8vw,16px);
-font-family:‘Kanit’,sans-serif; color:#111; outline:none;
-text-align:center; caret-color:#770523;
-transition:border-color .2s, box-shadow .2s;
-}
-.welcome-input:focus{border-color:#F8B9D0; box-shadow:0 2px 20px rgba(248,185,208,0.55);}
-.welcome-placeholder{
-position:absolute; top:50%; left:50%;
-transform:translate(-50%,-50%);
-pointer-events:none; white-space:nowrap;
-font-family:‘Kanit’,sans-serif; font-size:clamp(14px,3.8vw,16px);
-color:#C4A4B4;
-}
-/* CTA button */
-.welcome-btn{
-display:flex; align-items:center; justify-content:center; gap:clamp(8px,2vw,12px);
-margin:0 auto;
-padding:clamp(13px,3.5vw,17px) clamp(36px,9vw,52px);
-border-radius:100px; border:none; cursor:pointer;
-background:#0B1009; color:#FAD2E1;
-font-family:‘Mitr’,sans-serif; font-size:clamp(16px,4.2vw,20px); font-weight:500;
-letter-spacing:0.01em;
-transition:transform 0.18s ease, box-shadow 0.18s ease;
-box-shadow:0 4px 20px rgba(11,16,9,0.22);
-}
-.welcome-btn:hover{transform:scale(1.055); box-shadow:0 6px 28px rgba(11,16,9,0.3);}
-.welcome-btn:active{transform:scale(0.97);}
-.welcome-btn img{width:clamp(18px,4.5vw,22px); height:auto;}
-
-/* ── Returning user: Hello animation ─────────────── */
-.hello-wrap{
-text-align:center;
-margin-bottom:clamp(20px,5vw,32px);
-line-height:1.15;
-}
-.hello-line{
-display:block;
-font-family:‘Mitr’,sans-serif;
-font-weight:600;
-color:#0B1009;
-font-size:clamp(36px,10vw,52px);
-overflow:hidden;
-}
-/* each letter span */
-.hello-char{
-display:inline-block;
-opacity:0;
-transform:translateY(28px) scale(0.8);
-animation:charPop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards;
-}
-@keyframes charPop{
-to{opacity:1;transform:translateY(0) scale(1);}
-}
-/* “Hello,” fades in as a whole first */
-.hello-greet{
-font-size:clamp(32px,9vw,46px);
-font-weight:500;
-color:#0B1009;
-opacity:0;
-animation:fadeSlideUp 0.5s ease 0.05s forwards;
-}
-@keyframes fadeSlideUp{
-from{opacity:0;transform:translateY(16px);}
-to{opacity:1;transform:translateY(0);}
-}
-/* name pops letter by letter after the greeting */
-.hello-name-char{
-display:inline-block;
-opacity:0;
-transform:translateY(30px) rotate(-4deg) scale(0.7);
-animation:charBounce 0.5s cubic-bezier(0.34,1.62,0.64,1) forwards;
-}
-@keyframes charBounce{
-to{opacity:1;transform:translateY(0) rotate(0deg) scale(1);}
-}
-/* exclamation mark special: bigger bounce */
-.hello-exclaim{
-display:inline-block;
-color:#770523;
-opacity:0;
-transform:scale(0) rotate(12deg);
-animation:exclaimPop 0.5s cubic-bezier(0.34,1.8,0.64,1) forwards;
-}
-@keyframes exclaimPop{
-to{opacity:1;transform:scale(1) rotate(0deg);}
-}
-
-.welcome-input::placeholder { color: #BE647C; opacity: 0.4; font-family: ‘Kanit’, sans-serif; }
-.lets-pay-btn:hover { transform: scale(1.06); box-shadow: 0 8px 28px rgba(11,16,9,0.30); }
+@keyframes wFadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+@keyframes wCharBounce{to{opacity:1;transform:translateY(0) rotate(0) scale(1);}}
+@keyframes wExclaim{to{opacity:1;transform:scale(1) rotate(0);}}
 
 @keyframes pop{0%{opacity:0;transform:scale(0.9) translateX(-50%);}100%{opacity:1;transform:scale(1) translateX(-50%);}}
-@keyframes mascotBounceUp{
-0%   { transform: translateX(-50%) translateY(80px); opacity:0; }
-60%  { transform: translateX(-50%) translateY(-12px); opacity:1; }
-80%  { transform: translateX(-50%) translateY(4px);  opacity:1; }
-100% { transform: translateX(-50%) translateY(0);    opacity:1; }
-}
-@keyframes fadeSlideUp{
-from{opacity:0;transform:translateY(16px);}
-to{opacity:1;transform:translateY(0);}
-}
-@keyframes charBounce{
-to{opacity:1;transform:translateY(0) rotate(0deg) scale(1);}
-}
-@keyframes exclaimPop{
-to{opacity:1;transform:scale(1) rotate(0deg);}
-}
 @keyframes slide-up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 </style>
 
@@ -302,8 +100,7 @@ to{opacity:1;transform:scale(1) rotate(0deg);}
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-
-const WEB_APP_URL = ‘https://script.google.com/macros/s/AKfycbzLGzE8NeGLHmdp1ySkzoyhgtQ5TFWYwDOzzMEXcl8h_ox_xyuMgn7PHEFXT13DgbIQ/exec’;
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzLGzE8NeGLHmdp1ySkzoyhgtQ5TFWYwDOzzMEXcl8h_ox_xyuMgn7PHEFXT13DgbIQ/exec';
 
 const {useState, useEffect, useRef, useCallback} = React;
 const KEY = ‘splittrip-v6’;
@@ -1149,186 +946,174 @@ return <div className=“app-container” style={{background:‘var(–bg-pink)�
 }
 
 // ═══════════════════════════════════════════════════
-// WELCOME SCREEN — animated letter-by-letter greeting
+// ANIMATED HELLO (returning user)
 // ═══════════════════════════════════════════════════
-
 function AnimatedHello({ name }) {
-const chars = name.split(’’);
+const chars = Array.from(name);
 return (
-<div className="text-center mb-6">
+<div style={{textAlign:‘center’, marginBottom:24}}>
 <span style={{
-display:‘block’, fontFamily:‘Mitr,sans-serif’, fontWeight:500,
-fontSize:‘clamp(28px,8vw,40px)’, color:’#0B1009’, lineHeight:1.2,
-opacity:0, animation:‘fadeSlideUp 0.45s ease 0.05s forwards’
+display:‘block’, fontFamily:”‘Mitr’,sans-serif”, fontWeight:500,
+fontSize:‘clamp(26px,7.5vw,38px)’, color:’#0B1009’, lineHeight:1.2,
+opacity:0, animation:‘wFadeUp 0.45s ease 0.05s forwards’
 }}>Hello,</span>
-<span style={{display:‘block’, fontFamily:‘Mitr,sans-serif’, fontWeight:600, fontSize:‘clamp(36px,10vw,52px)’, color:’#0B1009’, lineHeight:1.1}}>
+<span style={{display:‘block’, fontFamily:”‘Mitr’,sans-serif”, fontWeight:600,
+fontSize:‘clamp(34px,9.5vw,50px)’, color:’#0B1009’, lineHeight:1.1}}>
 {chars.map((ch, i) => (
 <span key={i} style={{
 display:‘inline-block’, opacity:0,
 transform:‘translateY(28px) rotate(-4deg) scale(0.7)’,
-animation:`charBounce 0.48s cubic-bezier(0.34,1.62,0.64,1) ${0.32 + i*0.065}s forwards`
-}}>{ch === ’ ’ ? ’ ’ : ch}</span>
+animation:`wCharBounce 0.48s cubic-bezier(0.34,1.62,0.64,1) ${0.3 + i * 0.065}s forwards`
+}}>{ch === ’ ’ ? ‘\u00A0’ : ch}</span>
 ))}
 <span style={{
 display:‘inline-block’, color:’#770523’, opacity:0,
 transform:‘scale(0) rotate(12deg)’,
-animation:`exclaimPop 0.5s cubic-bezier(0.34,1.8,0.64,1) ${0.32 + chars.length*0.065}s forwards`
+animation:`wExclaim 0.5s cubic-bezier(0.34,1.8,0.64,1) ${0.3 + chars.length * 0.065}s forwards`
 }}>!</span>
 </span>
 </div>
 );
 }
 
+// ═══════════════════════════════════════════════════
+// WELCOME SCREEN
+// ═══════════════════════════════════════════════════
 function WelcomeScreen({ onEnter, initialName }) {
 const isReturning = !!(initialName && initialName.trim());
-const [nick, setNick] = React.useState(initialName || ‘’);
+const [nick, setNick] = useState(initialName || ‘’);
 const go = () => onEnter(nick.trim());
+
+const btnStyle = {
+display:‘flex’, alignItems:‘center’, justifyContent:‘center’, gap:10,
+padding:‘13px 40px’, borderRadius:100, border:‘none’, cursor:‘pointer’,
+background:’#0B1009’, color:’#FAD2E1’,
+fontFamily:”‘Mitr’,sans-serif”, fontSize:‘clamp(15px,4vw,18px)’, fontWeight:500,
+boxShadow:‘0 4px 20px rgba(11,16,9,0.22)’,
+transition:‘transform 0.18s ease, box-shadow 0.18s ease’
+};
 
 return (
 <div style={{
 height:‘100%’, width:‘100%’, display:‘flex’, flexDirection:‘column’,
-background:‘linear-gradient(to bottom, #FAD2E1 0%, #F8B9D0 28%, #F8B9D0 100%)’,
-fontFamily:‘Mitr,sans-serif’, position:‘relative’, overflow:‘hidden’
+background:‘linear-gradient(to bottom,#FAD2E1 0%,#F8B9D0 28%,#F8B9D0 100%)’,
+fontFamily:”‘Mitr’,sans-serif”, position:‘relative’, overflow:‘hidden’
 }}>
 
 ```
-  {/* ── PINK ZONE: Typography ── */}
-  <div style={{padding:'clamp(36px,11vh,64px) clamp(20px,6vw,36px) 0', zIndex:30, position:'relative'}}>
-    <div style={{fontSize:'clamp(28px,7.5vw,40px)', fontWeight:500, color:'#0B1009', lineHeight:1.15}}>
+  {/* ── Typography (pink zone) ── */}
+  <div style={{padding:'clamp(36px,11vh,64px) clamp(22px,6vw,36px) 0', zIndex:3, position:'relative'}}>
+    <div style={{fontSize:'clamp(26px,7vw,40px)', fontWeight:500, color:'#0B1009', lineHeight:1.15}}>
       Welcome to
     </div>
     <div style={{
-      fontSize:'clamp(38px,10.5vw,52px)', fontWeight:600, color:'#fff', lineHeight:1.05,
-      marginTop:10, textShadow:'0 0 14px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,0.5)'
+      fontSize:'clamp(36px,10vw,52px)', fontWeight:600, color:'#fff',
+      lineHeight:1.05, marginTop:8,
+      textShadow:'0 0 14px rgba(255,255,255,0.9),0 0 40px rgba(255,255,255,0.5)'
     }}>
       No More<br/>PayLater
     </div>
     <div style={{fontSize:'clamp(12px,3.2vw,13px)', fontWeight:500, color:'#770523', marginTop:12, lineHeight:1.65}}>
-      where we all know you're gonna<br/>PayLater anyway
+      where we all know you&apos;re gonna<br/>PayLater anyway
     </div>
   </div>
 
-  {/* ── MASCOT + WAVE SANDWICH ZONE ── */}
-  <div style={{position:'absolute', bottom:0, left:0, right:0, height:'62vh', display:'flex', justifyContent:'center', alignItems:'flex-end'}}>
+  {/* ── Mascot sandwich + wave ── */}
+  <div style={{position:'absolute', bottom:0, left:0, right:0, height:'62vh', zIndex:1}}>
 
-    {/* Layer 1 (z-0): Mascot body — behind wave */}
-    <img
-      src="./Mascot%20Body%201.png"
-      alt=""
+    {/* LAYER 1 — mascot body (behind wave) */}
+    <img src="./Mascot%20Body%201.png" alt=""
       style={{
         position:'absolute', zIndex:0,
-        width:'clamp(150px,65%,240px)',
-        bottom:'calc(42vh - 4px)',
+        width:'clamp(140px,62%,230px)',
+        bottom:'calc(42vh - 2px)',
         left:'50%', transform:'translateX(-50%)',
-        animation:'mascotBounceUp 0.85s cubic-bezier(0.175,0.885,0.32,1.275) 0.1s both',
-        filter:'drop-shadow(0 8px 24px rgba(119,5,35,0.14))',
-        objectFit:'contain'
+        animation:'wMascot 0.85s cubic-bezier(0.175,0.885,0.32,1.275) 0.1s both',
+        filter:'drop-shadow(0 8px 24px rgba(119,5,35,0.14))', objectFit:'contain'
       }}
-      onError={e => { e.target.style.display='none'; }}
+      onError={e=>{ e.target.style.display='none'; }}
     />
 
-    {/* Layer 2 (z-10): Wave SVG — clips the body's lower half */}
+    {/* LAYER 2 — cream wave */}
     <div style={{
-      position:'absolute', bottom:0, left:0, right:0, height:'44vh', zIndex:10,
+      position:'absolute', bottom:0, left:0, right:0, height:'44vh', zIndex:2,
       background:'#FBF6F2',
-      borderRadius:'52% 48% 0 0 / clamp(32px,8vw,48px) clamp(32px,8vw,48px) 0 0',
-      boxShadow:'0 -10px 32px rgba(200,90,120,0.14)'
+      borderRadius:'52% 48% 0 0 / clamp(30px,8vw,48px) clamp(30px,8vw,48px) 0 0',
+      boxShadow:'0 -10px 32px rgba(200,90,120,0.15)'
     }}/>
 
-    {/* Layer 3 (z-20): Mascot hand/arm — in front of wave */}
-    <img
-      src="./Mascot%20Hand.png"
-      alt=""
+    {/* LAYER 3 — mascot hand (in front of wave) */}
+    <img src="./Mascot%20Hand.png" alt=""
       style={{
-        position:'absolute', zIndex:20,
-        width:'clamp(150px,65%,240px)',
-        bottom:'calc(42vh - 4px)',
+        position:'absolute', zIndex:5,
+        width:'clamp(140px,62%,230px)',
+        bottom:'calc(42vh - 2px)',
         left:'50%', transform:'translateX(-50%)',
-        animation:'mascotBounceUp 0.85s cubic-bezier(0.175,0.885,0.32,1.275) 0.1s both',
-        objectFit:'contain',
-        pointerEvents:'none'
+        animation:'wMascot 0.85s cubic-bezier(0.175,0.885,0.32,1.275) 0.1s both',
+        objectFit:'contain', pointerEvents:'none'
       }}
-      onError={e => { e.target.style.display='none'; }}
+      onError={e=>{ e.target.style.display='none'; }}
     />
 
-    {/* Fallback single-image mascot if split files not found */}
-    <img
-      src="./Mascot%20Welcome%20Page.png"
-      alt="mascot"
-      id="mascot-fallback"
+    {/* FALLBACK — single file mascot */}
+    <img src="./Mascot%20Welcome%20Page.png" alt="mascot"
       style={{
-        position:'absolute', zIndex:15,
-        width:'clamp(150px,60%,230px)',
-        bottom:'calc(42vh - 4px)',
+        position:'absolute', zIndex:3,
+        width:'clamp(140px,58%,220px)',
+        bottom:'calc(42vh - 2px)',
         left:'50%', transform:'translateX(-50%)',
-        animation:'mascotBounceUp 0.85s cubic-bezier(0.175,0.885,0.32,1.275) 0.1s both',
-        filter:'drop-shadow(0 8px 24px rgba(119,5,35,0.14))',
-        objectFit:'contain'
+        animation:'wMascot 0.85s cubic-bezier(0.175,0.885,0.32,1.275) 0.1s both',
+        filter:'drop-shadow(0 8px 24px rgba(119,5,35,0.14))', objectFit:'contain'
       }}
     />
   </div>
 
-  {/* ── CREAM ZONE: Input + Button ── */}
+  {/* ── Input + Button (cream zone) ── */}
   <div style={{
-    position:'absolute', bottom:'clamp(16px,5vh,48px)',
-    left:0, right:0, zIndex:30,
+    position:'absolute', bottom:'clamp(14px,5vh,48px)', left:0, right:0, zIndex:10,
     display:'flex', flexDirection:'column', alignItems:'center',
     padding:'0 clamp(20px,8vw,40px)'
   }}>
     {isReturning ? (
       <>
         <AnimatedHello name={initialName.trim()}/>
-        <button
-          className="lets-pay-btn"
-          onClick={go}
-          style={{
-            display:'flex', alignItems:'center', justifyContent:'center', gap:10,
-            padding:'13px 40px', borderRadius:100, border:'none', cursor:'pointer',
-            background:'#0B1009', color:'#FAD2E1',
-            fontFamily:'Mitr,sans-serif', fontSize:'clamp(15px,4vw,18px)', fontWeight:500,
-            boxShadow:'0 4px 20px rgba(11,16,9,0.22)',
-            transition:'transform 0.18s ease, box-shadow 0.18s ease'
-          }}
-        >
-          Let's Pay
-          <img src="./Arrow%20Right.png" alt="→" style={{width:'clamp(16px,4vw,20px)', height:'auto'}}
+        <button style={btnStyle}
+          onMouseEnter={e=>e.currentTarget.style.transform='scale(1.06)'}
+          onMouseLeave={e=>e.currentTarget.style.transform='scale(1)'}
+          onClick={go}>
+          Let&apos;s Pay
+          <img src="./Arrow%20Right.png" alt="→"
+            style={{width:'clamp(15px,4vw,19px)', height:'auto'}}
             onError={e=>{ e.target.style.display='none'; }}/>
         </button>
       </>
     ) : (
       <>
-        <div style={{position:'relative', width:'100%', maxWidth:340, marginBottom:'clamp(14px,4vw,20px)'}}>
+        <div style={{position:'relative', width:'100%', maxWidth:340, marginBottom:'clamp(12px,3.5vw,18px)'}}>
           <input
+            type="text"
+            value={nick}
+            onChange={e=>setNick(e.target.value)}
+            onKeyDown={e=>e.key==='Enter'&&go()}
+            placeholder="Pop your nickname here!"
+            autoComplete="off"
             style={{
               width:'100%', padding:'13px 24px', borderRadius:100,
               border:'2px solid #FAD2E1', background:'#fff',
-              boxShadow:'0 0 10px rgba(250,210,225,0.6)',
-              fontFamily:'Kanit,sans-serif', fontSize:'clamp(14px,3.8vw,16px)',
+              boxShadow:'0 0 12px rgba(250,210,225,0.65)',
+              fontFamily:"'Kanit',sans-serif", fontSize:'clamp(14px,3.8vw,16px)',
               color:'#111', textAlign:'center', outline:'none',
               caretColor:'#770523'
             }}
-            className="welcome-input"
-            placeholder="Pop your nickname here!"
-            value={nick}
-            onChange={e => setNick(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && go()}
-            autoComplete="off"
           />
         </div>
-        <button
-          className="lets-pay-btn"
-          onClick={go}
-          style={{
-            display:'flex', alignItems:'center', justifyContent:'center', gap:10,
-            padding:'13px 40px', borderRadius:100, border:'none', cursor:'pointer',
-            background:'#0B1009', color:'#FAD2E1',
-            fontFamily:'Mitr,sans-serif', fontSize:'clamp(15px,4vw,18px)', fontWeight:500,
-            boxShadow:'0 4px 20px rgba(11,16,9,0.22)',
-            transition:'transform 0.18s ease, box-shadow 0.18s ease'
-          }}
-        >
-          Let's Pay
-          <img src="./Arrow%20Right.png" alt="→" style={{width:'clamp(16px,4vw,20px)', height:'auto'}}
+        <button style={btnStyle}
+          onMouseEnter={e=>e.currentTarget.style.transform='scale(1.06)'}
+          onMouseLeave={e=>e.currentTarget.style.transform='scale(1)'}
+          onClick={go}>
+          Let&apos;s Pay
+          <img src="./Arrow%20Right.png" alt="→"
+            style={{width:'clamp(15px,4vw,19px)', height:'auto'}}
             onError={e=>{ e.target.style.display='none'; }}/>
         </button>
       </>
